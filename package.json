@@ -1,0 +1,12 @@
+{
+  "name": "kirsah-website",
+  "private": true,
+  "type": "module",
+  "description": "kirsah.com: Kirsah's personal site for job applications",
+  "scripts": {
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.1"
+  }
+}

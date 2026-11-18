@@ -1,0 +1,659 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kirsah Tiathawornchai · Tech / AI Project Manager</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="description" content="Kirsah Tiathawornchai: Tech / AI Project Manager. Ideas that go live.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Playfair:opsz,wdth,wght@5..1200,87.5..112.5,300..900&family=Yellowtail&display=swap">
+<style>
+[hidden]{display:none!important}
+img{max-width:100%}
+/* Layout: cream hero with cursor photo cards → pinned 3D card stack of 5 real projects → tall sticky "wall" that turns the page dark while 12 photos rise past → contact strip.
+   One deliberate look (cream + tomato, dark wall), so no light/dark token swap. */
+:root{
+  --cream:#faf3e4; --ink:#141110; --tomato:#ef4a23; --butter:#ffd46e; --sky:#8fc6e8;
+  --pink:#f6a9c2; --sage:#b9c48a; --white:#ffffff; --night:#141110; --placeholder:#e9dcc6;
+  --page:var(--cream);
+  --f-grot:"Archivo","Arial Narrow",Arial,sans-serif;
+  --f-serif:"Playfair","Playfair Display",Georgia,serif;
+  --f-script:"Yellowtail","Brush Script MT",cursive;
+  --f-sticker:"Titan One","Arial Rounded MT Bold",Arial,sans-serif;
+  --ease:cubic-bezier(.65,.05,0,1);
+  color-scheme:light;
+}
+html{font-size:calc(100vw / 90);background:var(--page)}
+@media (max-width:991px){html{font-size:calc(100vw / 60)}}
+@media (max-width:600px){html{font-size:calc(100vw / 24.375)}}
+html[data-theme="dark"]{--page:var(--night)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+a{color:inherit;text-decoration:none}
+img{display:block}
+button{font:inherit;color:inherit}
+body{background:var(--page);transition:background-color .7s var(--ease);color:var(--ink);font-family:var(--f-grot);overflow-x:clip}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+main{visibility:hidden}
+html[data-page-ready] main{visibility:visible}
+[data-text-reveal],[data-scroll-reveal]{visibility:hidden}
+:focus-visible{outline:2px solid var(--tomato);outline-offset:3px}
+
+/* ---------- type ---------- */
+.h-hero,.h-sec{font-family:var(--f-grot);font-weight:700;font-variation-settings:"wght" 700,"wdth" 72;text-transform:uppercase;letter-spacing:-.02em;line-height:.8em;text-wrap:balance}
+.h-hero{font-size:9rem}
+.h-sec{font-size:8rem}
+.hl{color:var(--tomato)}
+.alt{font-family:var(--f-serif);font-weight:300;font-variation-settings:"wght" 300,"wdth" 87.5,"opsz" 120;letter-spacing:-.035em}
+.eyebrow-m,.eyebrow-s{font-family:var(--f-serif);font-weight:500;font-variation-settings:"wght" 500,"wdth" 87.5,"opsz" 40;letter-spacing:-.03em;line-height:1em}
+.eyebrow-m{font-size:2.5rem}
+.eyebrow-s{font-size:2rem}
+.para{font-family:var(--f-serif);font-weight:400;font-variation-settings:"wght" 400,"wdth" 100,"opsz" 20;font-size:1.25rem;line-height:1.35;letter-spacing:-.01em}
+.line,.line-mask{padding-bottom:.06em;margin-bottom:-.06em}
+@media (max-width:991px){.h-hero{font-size:6.4rem}.h-sec{font-size:6rem}}
+@media (max-width:600px){.h-hero{font-size:4rem}.h-sec{font-size:4.2rem}.eyebrow-m{font-size:1.75rem}.eyebrow-s{font-size:1.5rem}}
+
+/* ---------- load wipe ---------- */
+.wipe{position:fixed;inset:0;z-index:1000;pointer-events:none;overflow:clip}
+.wipe svg{display:block;width:100%;height:100%}
+.wipe path{fill:none;stroke:var(--tomato);stroke-linecap:round;stroke-linejoin:round;stroke-width:0}
+.wipe[data-transition-ready]{display:none}
+
+/* ---------- cursor label ---------- */
+
+/* ---------- nav ---------- */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:flex-start;padding:1.25rem calc(1.5rem + env(safe-area-inset-right,0px)) 1.25rem calc(1.5rem + env(safe-area-inset-left,0px));pointer-events:none}
+.nav>*{pointer-events:auto}
+.logo{position:relative;display:block;margin:-.4rem 0 0 -.7rem;padding:.4rem 1.2rem .6rem .95rem}
+/* soft glow behind logo + nav text: blur that fades out at the edges, so photos passing behind never show a hard shape */
+.logo::before,.nav-pill::before,.nav-cta::before{content:"";position:absolute;inset:-1.1rem -1.6rem;z-index:-1;pointer-events:none;background:rgba(250,243,228,.55);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);-webkit-mask-image:radial-gradient(closest-side,#000 40%,transparent);mask-image:radial-gradient(closest-side,#000 40%,transparent);transition:background-color .7s var(--ease)}
+html[data-theme="dark"] .logo::before,html[data-theme="dark"] .nav-pill::before,html[data-theme="dark"] .nav-cta::before{background:rgba(20,17,16,.55)}
+.logo-text{display:block;font-family:var(--f-script);font-size:3.6rem;line-height:1;color:var(--tomato);transform:rotate(-8deg);transform-origin:0 50%}
+.nav-pill{position:absolute;left:50%;top:1.25rem;translate:-50% 0;height:3rem;padding:0 1.5rem;gap:1.6rem;display:flex;align-items:center}
+.nav-link{position:relative;display:flex;flex-direction:column;font-family:var(--f-grot);font-weight:700;font-variation-settings:"wght" 700,"wdth" 72;text-transform:uppercase;font-size:1.05rem;letter-spacing:-.01em;color:var(--ink)}
+.nav-cta{position:relative;height:3rem;padding:0 1.3rem;gap:.5rem;display:flex;align-items:center;color:var(--ink);transition:color .7s var(--ease)}
+.nav-link{transition:color .7s var(--ease)}
+html[data-theme="dark"] .nav-link,html[data-theme="dark"] .nav-cta{color:var(--cream)}
+.dot{width:.45rem;height:.45rem;border-radius:50%;background:var(--tomato);flex:none}
+.draw-box{position:absolute;left:0;top:100%;width:100%;height:.5em;color:var(--tomato);pointer-events:none}
+.draw-box svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+@media (max-width:991px){.nav-pill{display:none}}
+@media (max-width:600px){.nav{padding:1rem calc(1rem + env(safe-area-inset-right,0px)) 1rem calc(1rem + env(safe-area-inset-left,0px))}.logo-text{font-size:2.6rem}.nav-cta{height:2.5rem;padding:0 .9rem}.nav-cta .nav-link{font-size:.95rem}}
+
+/* ---------- hero ---------- */
+.hero{position:relative;height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.hero-card{position:absolute;left:50%;top:50%;width:16rem;height:16rem;translate:-50% -50%;overflow:hidden;z-index:1;visibility:hidden;opacity:0}
+.hero-card-media{position:absolute;inset:0;scale:1.2}
+.crop{position:relative;overflow:hidden;background:var(--placeholder)}
+.crop img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero-card .crop{position:absolute;inset:0;visibility:hidden}
+.hero-card .crop.on{visibility:visible}
+.hero-content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:2rem;margin-top:-3rem;text-align:center;padding-inline:1.5rem}
+.hero-role{font-size:1.3rem;opacity:.72}
+.hero-link{position:relative;display:inline-flex;align-items:center;gap:.375em;font-family:var(--f-serif);font-weight:500;font-variation-settings:"wght" 500,"wdth" 87.5,"opsz" 40;font-size:2.1rem;letter-spacing:-.03em;line-height:1}
+.hero-link .txt{position:relative;display:flex;flex-direction:column}
+.hero-link .draw-box{top:118%;height:.6em}
+.marquee{position:absolute;left:0;right:0;bottom:1.5rem;z-index:2;overflow:hidden}
+.marquee-scroll{display:flex;width:100%}
+.marquee-collection{display:flex;flex:none}
+.m-item{flex:none;height:7rem;margin:0 2.5rem;display:flex;align-items:center;gap:.9rem;color:var(--tomato);font-family:var(--f-grot);font-weight:800;font-variation-settings:"wght" 800,"wdth" 72;text-transform:uppercase;font-size:1.7rem;letter-spacing:-.01em;white-space:nowrap}
+.m-item svg{width:1.4rem;height:1.4rem;flex:none}
+@media (max-width:600px){
+  .hero-content{gap:1.4rem;margin-top:5rem;padding-inline:1rem}
+  .hero-role{font-size:1.05rem}
+  .hero-link{font-size:1.6rem}
+  .m-item{height:5rem;margin:0 1rem;font-size:1.1rem}
+  .hero-card{width:7.5rem;height:7.5rem;top:13%;left:50%;translate:-50% 0;rotate:-5deg;visibility:visible;opacity:1}
+}
+
+/* ---------- work stack ---------- */
+.work .pin{height:100vh;display:grid;grid-template-columns:38fr 62fr;gap:2rem;padding:0 3rem 0 5rem;align-items:center;overflow:hidden}
+.work-copy{display:flex;flex-direction:column;gap:1.5rem;justify-content:center;min-width:0}
+.work-copy .eyebrow-s{max-width:24rem;font-size:1.55rem;opacity:.72}
+.stage{position:relative;height:100%;perspective:1400px;min-width:0}
+.stack{position:absolute;inset:0;transform-style:preserve-3d}
+.slide{position:absolute;display:flex;flex-direction:column;gap:1.5vh;width:min(76vh,50vw);max-width:100%;left:50%;top:calc(50% - 3vh);translate:-50% -50%;padding:1.4vh;border-radius:2.4vh;background:#fffaf0;box-shadow:0 2.5vh 5vh -2.8vh rgba(20,17,16,.38),0 0 0 1px rgba(20,17,16,.06)}
+.slide .crop{width:100%;aspect-ratio:16/9;border-radius:1.5vh}
+.slide img,.ph img{filter:saturate(.82) sepia(.1) contrast(.97)}
+.slide-body{display:flex;align-items:baseline;justify-content:space-between;gap:1.5rem;padding:.4vh 1.2vh 1vh}
+.slide .ttl{font-family:var(--f-grot);font-weight:800;font-variation-settings:"wght" 800,"wdth" 72;text-transform:uppercase;font-size:4.4vh;line-height:.9;letter-spacing:-.02em;color:var(--ink);white-space:nowrap}
+.slide .sub{font-family:var(--f-serif);font-weight:400;font-variation-settings:"wght" 400,"wdth" 100,"opsz" 20;font-size:1.9vh;line-height:1.3;color:rgba(20,17,16,.68);text-align:right;max-width:26vh}
+.slide .tag{position:absolute;top:calc(1.75vh + .8rem);left:calc(1.75vh + .8rem);background:var(--cream);color:var(--ink);font-family:var(--f-grot);font-weight:700;font-variation-settings:"wght" 700,"wdth" 72;text-transform:uppercase;font-size:.9rem;line-height:1;padding:.3rem .5rem}
+.badge{position:absolute;right:1rem;bottom:1rem;width:9rem;height:9rem;z-index:5}
+.badge svg{width:100%;height:100%;display:block}
+@media (max-width:991px){
+  .work .pin{height:auto;grid-template-columns:1fr;padding:6rem 1.5rem 4rem;gap:3rem}
+  .stage{height:auto;perspective:none}
+  .stack{position:relative;inset:auto;display:flex;flex-direction:column;gap:1.5rem}
+  .slide{position:relative;left:auto;top:auto;translate:none;width:100%;padding:.8rem;border-radius:1.4rem;gap:.9rem}
+  .slide .crop{border-radius:1rem}
+  .slide-body{padding:.2rem .5rem .6rem}
+  .slide .sub{font-size:1.05rem;max-width:18rem}
+  .slide .tag{top:1.8rem;left:1.8rem}
+  .slide .ttl{font-size:2.6rem}
+  .badge{display:none}
+}
+@media (max-width:600px){.slide .ttl{font-size:2.1rem}.slide-body{flex-direction:column;align-items:flex-start;gap:.35rem}.slide .sub{text-align:left;max-width:none}}
+
+/* ---------- wall (proof wall / timeline) ---------- */
+.wall{position:relative;height:300vh;color:var(--ink);transition:color .7s var(--ease);overflow-x:clip}
+html[data-theme="dark"] .wall{color:var(--cream)}
+.wall-sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;z-index:1}
+.wall-title{position:relative;display:flex;flex-direction:column;align-items:center;gap:1.4rem;text-align:center}
+.wall-title .h-sec{font-size:6.2rem}
+.wall-title .para{max-width:26rem}
+.wall-title .eyebrow-m{font-size:1.7rem;opacity:.72}
+.photos{position:absolute;inset:0;z-index:2;pointer-events:none}
+.ph{position:absolute;top:var(--top);width:var(--w)}
+.ph.l{left:var(--off)}
+.ph.r{right:var(--off)}
+.ph-inner{position:relative;rotate:var(--rot);pointer-events:auto}
+.ph .crop{aspect-ratio:4/5}
+.sticker{position:absolute;left:50%;bottom:-.9rem;translate:-50% 0;rotate:var(--srot);font-family:var(--f-grot);font-weight:800;font-variation-settings:"wght" 800,"wdth" 75;text-transform:uppercase;letter-spacing:-.01em;font-size:3.6rem;line-height:1;color:var(--tomato);-webkit-text-stroke:.32rem var(--cream);paint-order:stroke fill;white-space:nowrap}
+.ph-photo{position:relative}
+.cap{display:block;margin-top:1.8rem;padding-inline:.2rem;font-family:var(--f-serif);font-weight:400;font-variation-settings:"wght" 400,"wdth" 100,"opsz" 20;font-size:1rem;line-height:1.3;opacity:.75;text-align:center}
+@media (max-width:991px){.wall{height:260vh}}
+@media (max-width:600px){
+  .wall-title .h-sec{font-size:4.2rem}
+  .wall-sticky{padding-inline:1.5rem}
+  .ph{width:8rem;top:var(--mtop)}
+  .ph.l{left:var(--moff)}
+  .ph.r{right:var(--moff)}
+  .sticker{font-size:1.9rem;-webkit-text-stroke:.22rem var(--cream)}
+  .cap{font-size:.72rem;margin-top:1.1rem}
+  .photos{z-index:0}
+  .wall-title{background:rgba(20,17,16,.74);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-radius:1.5rem;padding:1.6rem 1rem}
+}
+
+/* ---------- contact ---------- */
+.contact{display:flex;flex-direction:column;align-items:center;gap:2.2rem;text-align:center;padding-block:10rem 6rem;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.contact .eyebrow-s{max-width:32rem}
+.email{font-family:var(--f-serif);font-weight:500;font-variation-settings:"wght" 500,"wdth" 87.5,"opsz" 40;font-size:1.9rem;opacity:.85;letter-spacing:-.03em;line-height:1;user-select:all;word-break:break-all}
+ .btn-row{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;align-items:center}
+.contact-eyebrow{opacity:.72;max-width:34rem}
+.proof-pills{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:.75rem;max-width:62rem}
+.proof-pills li{display:flex;align-items:baseline;gap:.55rem;padding:.75rem 1.3rem;border-radius:999px;background:rgba(255,250,240,.85);border:1px solid rgba(20,17,16,.08);font-family:var(--f-serif);font-weight:400;font-variation-settings:"wght" 400,"wdth" 100,"opsz" 20;font-size:1.05rem;line-height:1.2}
+.proof-pills b{font-family:var(--f-grot);font-weight:800;font-variation-settings:"wght" 800,"wdth" 72;font-size:1.55rem;letter-spacing:-.01em;color:var(--tomato)}
+.cta-main{display:inline-flex;align-items:center;gap:1rem;height:4.4rem;padding:0 .7rem 0 2.1rem;border-radius:999px;background:var(--tomato);color:var(--white);font-family:var(--f-grot);font-weight:700;font-variation-settings:"wght" 700,"wdth" 72;text-transform:uppercase;font-size:1.5rem;letter-spacing:-.01em;white-space:nowrap;box-shadow:0 1.1rem 2.4rem -1.1rem rgba(239,74,35,.7);transition:background-color .15s ease-out,box-shadow .3s var(--ease)}
+.cta-main:hover{background:#d93d18;box-shadow:0 1.4rem 2.8rem -1.1rem rgba(239,74,35,.8)}
+.cta-main:active{background:#c23514;box-shadow:inset 0 2px 5px rgba(0,0,0,.22)}
+.cta-arrow{display:inline-grid;place-items:center;flex:none;width:3rem;height:3rem;border-radius:50%;background:rgba(255,255,255,.2);line-height:0;transition:transform .35s var(--ease)}
+.cta-arrow svg{display:block;width:1.3rem;height:1.3rem}
+.cta-main:hover .cta-arrow{transform:translateX(.35rem)}
+.cta-ghost{height:4.4rem;padding:0 2rem;border-radius:999px;border:1.5px solid rgba(20,17,16,.22);background:transparent;cursor:pointer;font-family:var(--f-grot);font-weight:700;font-variation-settings:"wght" 700,"wdth" 72;text-transform:uppercase;font-size:1.3rem;letter-spacing:-.01em;color:var(--ink);white-space:nowrap;transition:border-color .15s ease-out,background-color .15s ease-out}
+.cta-ghost:hover{border-color:var(--ink);background:rgba(255,250,240,.8)}
+.cta-ghost:active{background:rgba(20,17,16,.06)}
+.cta-main:focus-visible,.cta-ghost:focus-visible{outline:2px solid var(--tomato);outline-offset:4px}
+.btn{display:inline-flex;align-items:center;gap:.6rem;height:3.4rem;padding:0 1.5rem;border:0;cursor:pointer;font-family:var(--f-grot);font-weight:700;font-variation-settings:"wght" 700,"wdth" 72;text-transform:uppercase;font-size:1.15rem;letter-spacing:-.01em}
+.foot{display:flex;flex-direction:column;gap:.4rem;margin-top:5rem;font-family:var(--f-grot);font-variation-settings:"wght" 500,"wdth" 90;font-size:.85rem;opacity:.7}
+.foot a{text-decoration:underline;text-underline-offset:.15em}
+@media (max-width:600px){.email{font-size:1.3rem}.btn{height:3rem;font-size:1rem}.cta-main{height:3.6rem;font-size:1.15rem;padding-left:1.5rem;gap:.7rem}.cta-arrow{width:2.4rem;height:2.4rem}.cta-arrow svg{width:1.05rem;height:1.05rem}.cta-ghost{height:3.6rem;font-size:1.05rem;padding:0 1.4rem}.proof-pills li{font-size:.92rem;padding:.6rem 1rem}.proof-pills b{font-size:1.25rem}}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion:reduce){
+  .wall{height:auto}
+  .wall-sticky{position:relative;height:auto;padding:8rem 1.5rem 4rem}
+  .photos{position:relative;inset:auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(14rem,1fr));gap:2rem;padding:2rem}
+  .ph,.ph.l,.ph.r{position:relative;top:auto;left:auto;right:auto;width:auto}
+}
+</style>
+</head>
+<body>
+<div class="wipe" aria-hidden="true"><svg viewBox="0 0 1000 1000" preserveAspectRatio="none"><path d="M43 259C296 11.5688 994 -3 922.994 498.259C851.988 999.517 281.229 1004.28 123 767C-35.2287 529.721 179 259 472 259C765 259 792 498.259 659 654C526 809.741 319 755 285 669.001C251 583.001 299 452 496 452C693 452 876.073 639.171 935 937.001"/></svg></div>
+
+
+<main>
+  <nav class="nav" aria-label="Main">
+    <a class="logo" href="#top" aria-label="Kirsah, back to top"><span class="logo-text">Kirsah</span></a>
+    <div class="nav-pill">
+      <a class="nav-link" href="#work" data-draw-line>Work<span class="draw-box"></span></a>
+      <a class="nav-link" href="#wall" data-draw-line>About<span class="draw-box"></span></a>
+      <a class="nav-link" href="#contact" data-resume target="_blank" rel="noopener" data-draw-line>Resume<span class="draw-box"></span></a>
+    </div>
+    <a class="nav-cta" href="#contact"><span class="dot"></span><span class="nav-link" data-draw-line>Contact<span class="draw-box"></span></span></a>
+  </nav>
+
+  <section class="hero" id="top" data-cursor-cards data-threshold="300">
+    <div class="hero-card" aria-hidden="true"><div class="hero-card-media" id="heroMedia"></div></div>
+    <div class="hero-content" data-text-reveal-group>
+      <p class="eyebrow-s hero-role" data-text-reveal="lines">Kirsah Tiathawornchai · Tech / AI Project Manager</p>
+      <h1 class="h-hero" data-text-reveal="chars" data-font-weight-hover data-fw-rest="700" data-fw-near="200" data-fw-radius="400">Ideas that<br>go <span class="hl">live</span></h1>
+      <a class="hero-link" href="#work"><span class="txt">See my work<span class="draw-box" data-draw-target></span></span></a>
+    </div>
+    <div class="marquee" data-marquee aria-label="Tools I work with">
+      <div class="marquee-scroll"><div class="marquee-collection" id="mCollection"></div></div>
+    </div>
+  </section>
+
+  <section class="work" id="work" data-featured-stack data-scroll-factor="1.2">
+    <div class="pin">
+      <div class="work-copy" data-scroll-reveal-group>
+        <p class="eyebrow-s" data-scroll-reveal="lines">Real projects, live today. Each one planned, built and run by me.</p>
+        <h2 class="h-sec" data-scroll-reveal="chars" data-font-weight-hover data-fw-rest="700" data-fw-near="200" data-fw-radius="400">Latest <span class="hl">work</span></h2>
+      </div>
+      <div class="stage">
+        <div class="stack" id="stack"></div>
+        <div class="badge" aria-hidden="true">
+          <svg viewBox="0 0 200 200">
+            <defs><path id="badgeCircle" d="M100,100 m-70,0 a70,70 0 1,1 140,0 a70,70 0 1,1 -140,0"/></defs>
+            <circle cx="100" cy="100" r="98" fill="#ef4a23"/>
+            <text fill="#faf3e4" style="font-family:'Archivo',Arial,sans-serif;font-variation-settings:'wght' 800,'wdth' 80;font-weight:800;font-size:24px"><textPath href="#badgeCircle" textLength="436" lengthAdjust="spacing">IDEA · BUILD · TEST · SHIP ·</textPath></text>
+            <g fill="none" stroke="#faf3e4" stroke-width="5" stroke-linecap="round"><circle cx="100" cy="100" r="17"/><path d="M100 70v-8M100 130v8M70 100h-8M130 100h8M78.8 78.8l-5.7-5.7M121.2 121.2l5.7 5.7M78.8 121.2l-5.7 5.7M121.2 78.8l5.7-5.7"/></g>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="wall">
+    <section class="wall" data-wall="proof" data-page-theme="dark">
+      <div class="wall-sticky">
+        <div class="wall-title" data-scroll-reveal-group>
+          <p class="eyebrow-m" data-scroll-reveal="lines">Real numbers from real work</p>
+          <h2 class="h-sec" data-scroll-reveal="chars" data-font-weight-hover data-fw-rest="700" data-fw-near="200" data-fw-radius="400">The proof <span class="hl">wall</span></h2>
+          <p class="para" data-scroll-reveal="lines">Every sticker is a number from my resume, across Den Air, AirPlus, TeamPit and GoGoCash.</p>
+        </div>
+      </div>
+      <div class="photos"></div>
+    </section>
+  </div>
+
+  <section class="contact" id="contact">
+    <div class="contact-inner" data-scroll-reveal-group style="display:flex;flex-direction:column;align-items:center;gap:2.2rem">
+      <p class="eyebrow-s contact-eyebrow" data-scroll-reveal="lines">Open to AI project manager roles. Bangkok or remote.</p>
+      <h2 class="h-sec" data-scroll-reveal="chars" data-font-weight-hover data-fw-rest="700" data-fw-near="200" data-fw-radius="400">Let’s <span class="hl">talk</span></h2>
+      <p class="email" id="email" data-scroll-reveal="element">lady.kirsah@gmail.com</p>
+      <ul class="proof-pills" data-scroll-reveal="element">
+        <li><b>9 days</b><span>from idea to a live web store</span></li>
+        <li><b>26×</b><span>Shopee sales growth, no paid ads</span></li>
+        <li><b>4,267</b><span>automated tests before release</span></li>
+      </ul>
+      <div class="btn-row" data-scroll-reveal="element">
+        <a class="cta-main" href="#contact" data-resume target="_blank" rel="noopener"><span>Get my resume</span><span class="cta-arrow" aria-hidden="true"><svg viewBox="0 0 256 256" fill="currentColor" focusable="false"><path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"/></svg></span></a>
+        <button class="cta-ghost" type="button" id="copyBtn">Copy email</button>
+      </div>
+    </div>
+    <div class="foot">
+      <span>© 2026 Kirsah Tiathawornchai · Surin and Bangkok, Thailand</span>
+      <span>Photos: stand-ins (CC0) via Openverse and Wikimedia Commons, and screenshots of airplusauto.com and gogocash.co. Phone photo by <a href="https://commons.wikimedia.org/wiki/File:Fediverse_smartphone_apps_(photo_by_Elena_Rossini).jpg" target="_blank" rel="noopener">Elena Rossini</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>, cropped.</span>
+    </div>
+  </section>
+</main>
+
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" integrity="sha384-HOvlOYPIs/zjoIkWUGXkVmXsjr8GuZLV+Q+rcPwmJOVZVpvTSXQChiN4t9Euv9Vc" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" integrity="sha384-P8VzCVnT9NBUkMrpcIZrJbA7EBjJvh/fJS6PmP+4nLIM284DtsImIv8D0fFjIkeh" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js" integrity="sha384-xb96EMJeax+NLXMC88ZBa1xAeAW+kn+horHh/zFlbMLG2UPWhMJJSlv7fi57hS+Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/DrawSVGPlugin.min.js" integrity="sha384-hk4mr+NXgJSfCJFF+LKzt26e6ZekZmmXAesF9r58nbaoAqB/VAlvY4T8k2plkXf+" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.17/dist/lenis.min.js" integrity="sha384-4EgXbGZLDwcPHcRGrHOxm1OvumWUqhr/ts6eapdZnak6ORZAsSE3fMd0niykaSkw" crossorigin="anonymous"></script>
+<script>
+(() => {
+  "use strict";
+  const IMG = {
+    store:"/img/store2.webp", ggc:"/img/ggc.webp", code2:"/img/code2.webp", code3:"/img/code3.webp",
+    night:"/img/night.webp", mech:"/img/mech.webp", parcel:"/img/parcel.webp", film:"/img/film.webp", shop:"/img/shop.webp", phone:"/img/phone.webp"
+  };
+  const html = document.documentElement;
+  const main = document.querySelector("main");
+  const wipe = document.querySelector(".wipe");
+  const reduceMQ = matchMedia("(prefers-reduced-motion: reduce)");
+  const touchMQ = matchMedia("(hover: none), (pointer: coarse)");
+  const clamp = (min, max, v) => Math.min(max, Math.max(min, v));
+
+  /* ---------- content (built first, so it shows even without GSAP) ---------- */
+  const cropHTML = (src, cls = "") => `<div class="crop ${cls}"><img src="${src}" alt="" loading="lazy" decoding="async"></div>`;
+
+  const heroPhotos = ["store", "mech", "parcel", "ggc", "film", "code2", "shop", "phone"];
+  document.getElementById("heroMedia").innerHTML = heroPhotos.map((k, i) => cropHTML(IMG[k], i === 0 ? "on" : "")).join("");
+
+  const tools = ["Claude Code", "Cursor", "Cloudflare", "GitHub", "Figma", "Shopee", "TikTok Shop", "LINE OA"];
+  const spark = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 0c.6 6.6 5.4 11.4 12 12-6.6.6-11.4 5.4-12 12-.6-6.6-5.4-11.4-12-12C6.6 11.4 11.4 6.6 12 0z"/></svg>';
+  document.getElementById("mCollection").innerHTML = tools.map(t => `<div class="m-item">${spark}<span>${t}</span></div>`).join("");
+
+  const slides = [
+    { t: "TeamPit", sub: "Back office and POS for our A/C shop, built with AI agents", tag: "AI project · back office + POS", c: "var(--tomato)", img: "code3", href: "#work" },
+    { t: "AirPlus store", sub: "Our own parts store, live in 9 days", tag: "AI project · live in 9 days", c: "var(--sky)", img: "store", href: "https://airplusauto.com" },
+    { t: "26× on Shopee", sub: "AirPlus Auto, grown with no paid ads", tag: "AirPlus Auto · organic growth", c: "var(--butter)", img: "parcel", href: "#work" },
+    { t: "GoGoCash", sub: "Admin, forward deployed engineer and UX/UI", tag: "Admin · FDE · UX/UI", c: "var(--sage)", img: "ggc", href: "https://gogocash.co" },
+    { t: "45.9K views", sub: "Den Air TikTok, about 70× my followers", tag: "Den Air TikTok", c: "var(--pink)", img: "film", href: "#work" }
+  ];
+  document.getElementById("stack").innerHTML = slides.map(s => {
+    const ext = s.href.startsWith("http");
+    return `<a class="slide" href="${s.href}"${ext ? ' target="_blank" rel="noopener"' : ""} >${cropHTML(IMG[s.img])}<span class="slide-body"><span class="ttl">${s.t}</span><span class="sub">${s.sub}</span></span></a>`;
+  }).join("");
+
+  const POS = [
+    { s: "l", off: "2.5vw", top: 3, w: 14, rot: -4, sp: 1 },
+    { s: "l", off: "3vw", top: 33, w: 13, rot: 5, sp: 1.3 },
+    { s: "l", off: "13vw", top: 49, w: 12.5, rot: -3, sp: .8 },
+    { s: "l", off: "12vw", top: 79, w: 13, rot: 4, sp: .7 },
+    { s: "r", off: "3vw", top: 2, w: 13.5, rot: 4, sp: .75 },
+    { s: "r", off: "2.5vw", top: 32, w: 14, rot: -3, sp: .9 },
+    { s: "r", off: "13vw", top: 48, w: 12.5, rot: 5, sp: 1.4 },
+    { s: "r", off: "12vw", top: 78, w: 13, rot: -4, sp: 1.05 }
+  ];
+  const WALLS = {
+    proof: [
+      { img: "mech", st: "5 yrs", sr: -7, cap: "Running Den Air" },
+      { img: "store", st: "9 days", sr: 4, cap: "Idea to a live web store" },
+      { img: "code3", st: "4,267", sr: -5, cap: "Automated tests" },
+      { img: "phone", st: "1,035", sr: 6, cap: "GoGoCash users" },
+      { img: "parcel", st: "26×", sr: 5, cap: "Shopee sales growth" },
+      { img: "night", st: "198", sr: -6, cap: "Merged pull requests" },
+      { img: "film", st: "45.9K", sr: 4, cap: "TikTok views" },
+      { img: "ggc", st: "180+", sr: -4, cap: "Code changes shipped" }
+    ]
+  };
+  document.querySelectorAll(".wall").forEach(sec => {
+    const items = WALLS[sec.dataset.wall];
+    let li = 0, ri = 0;
+    sec.querySelector(".photos").innerHTML = POS.map((p, i) => {
+      const it = items[i];
+      const k = p.s === "l" ? li++ : ri++;
+      const mtop = (p.s === "l" ? 2 : 14) + k * 24;
+      const moff = k % 2 === 0 ? "-1rem" : "4rem";
+      const sticker = it.st ? `<span class="sticker" style="--srot:${it.sr}deg">${it.st}</span>` : "";
+      return `<div class="ph ${p.s}" data-speed="${p.sp}" style="--off:${p.off};--top:${p.top}%;--w:${p.w}rem;--rot:${p.rot}deg;--mtop:${mtop}%;--moff:${moff}"><div class="ph-inner"><div class="ph-photo">${cropHTML(IMG[it.img])}${sticker}</div><span class="cap">${it.cap}</span></div></div>`;
+    }).join("");
+  });
+
+  /* ---------- resume links ---------- */
+  const RESUME = "https://drive.google.com/file/d/1ulZomG9QY1oNPI25NE-MFR4rrFEOVwm0/view";
+  document.querySelectorAll("[data-resume]").forEach(a => (a.href = RESUME));
+
+  /* ---------- copy email ---------- */
+  document.getElementById("copyBtn").addEventListener("click", () => {
+    const btn = document.getElementById("copyBtn");
+    const email = document.getElementById("email");
+    const done = () => { btn.textContent = "Copied"; setTimeout(() => (btn.textContent = "Copy email"), 1800); };
+    const fallback = () => { const r = document.createRange(); r.selectNodeContents(email); const s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = "Selected, press copy"; setTimeout(() => (btn.textContent = "Copy email"), 2200); };
+    try { navigator.clipboard.writeText(email.textContent.trim()).then(done, fallback); } catch (e) { fallback(); }
+  });
+
+  /* ---------- failsafes ---------- */
+  function revealAll() {
+    html.setAttribute("data-page-ready", "");
+    main.style.visibility = "visible"; main.style.opacity = "1";
+    document.querySelectorAll("[data-text-reveal],[data-scroll-reveal]").forEach(el => (el.style.visibility = "visible"));
+    wipe.setAttribute("data-transition-ready", "");
+  }
+  setTimeout(() => { if (!html.hasAttribute("data-page-ready")) revealAll(); }, 4000);
+  if (!window.gsap || !window.ScrollTrigger || !window.SplitText) { revealAll(); return; }
+
+  gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin);
+
+  /* ---------- smooth scroll ---------- */
+  let lenis = null;
+  if (!reduceMQ.matches && window.Lenis) {
+    lenis = new Lenis({ lerp: 0.165, wheelMultiplier: 1.25 });
+    lenis.on("scroll", ScrollTrigger.update);
+    gsap.ticker.add(t => lenis.raf(t * 1000));
+    gsap.ticker.lagSmoothing(0);
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener("click", e => {
+    const id = a.getAttribute("href");
+    if (id.length < 2) return;
+    const t = id === "#wall" ? document.querySelector(".wall:not([hidden])") : document.querySelector(id);
+    if (!t) return;
+    e.preventDefault();
+    if (lenis) lenis.scrollTo(t, { duration: 1.4 });
+    else t.scrollIntoView({ behavior: reduceMQ.matches ? "auto" : "smooth" });
+  }));
+
+  /* ---------- split helpers ---------- */
+  function split(el, mode) {
+    if (el._split) return el._split;
+    el._split = SplitText.create(el, { type: mode === "chars" ? "chars,words,lines" : "lines,words", linesClass: "line", charsClass: "char", mask: "lines", autoSplit: false });
+    return el._split;
+  }
+  function revealTween(el, mode, delay = 0) {
+    if (mode === "element") { gsap.set(el, { visibility: "visible" }); return gsap.fromTo(el, { y: 24, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .8, ease: "expo.out", delay }); }
+    const s = split(el, mode);
+    gsap.set(el, { visibility: "visible" });
+    return gsap.from(mode === "chars" ? s.chars : s.lines, { yPercent: 135, duration: 1, ease: "expo.out", stagger: mode === "chars" ? 0.07 * 0.25 : 0.07, delay, onComplete: () => el.dispatchEvent(new CustomEvent("reveal:done")) });
+  }
+  function runTextReveal(base) {
+    const groups = new Map();
+    document.querySelectorAll("[data-text-reveal]").forEach(el => {
+      const g = el.closest("[data-text-reveal-group]");
+      let d = base;
+      if (g) { const i = groups.get(g) || 0; d += i * 0.12; groups.set(g, i + 1); }
+      revealTween(el, el.dataset.textReveal, d);
+    });
+  }
+  function initScrollReveal(root) {
+    const groups = new Map(), singles = [];
+    root.querySelectorAll("[data-scroll-reveal]").forEach(el => {
+      if (el.closest(".wall") && root === document) return; // walls handle their own
+      const g = el.closest("[data-scroll-reveal-group]");
+      if (g) { if (!groups.has(g)) groups.set(g, []); groups.get(g).push(el); } else singles.push(el);
+    });
+    if (reduceMQ.matches) { [...singles, ...[...groups.values()].flat()].forEach(el => (el.style.visibility = "visible")); return; }
+    groups.forEach((els, g) => {
+      const tl = gsap.timeline({ paused: true });
+      els.forEach((el, i) => tl.add(revealTween(el, el.dataset.scrollReveal), i * 0.12));
+      ScrollTrigger.create({ trigger: g, start: "top 85%", once: true, onEnter: () => tl.play() });
+    });
+    singles.forEach(el => { const tw = revealTween(el, el.dataset.scrollReveal); tw.pause(); ScrollTrigger.create({ trigger: el, start: "top 85%", once: true, onEnter: () => tw.play() }); });
+  }
+
+  /* ---------- draw underline ---------- */
+  const LINES = [
+    "M5 20.9999C26.7762 16.2245 49.5532 11.5572 71.7979 14.6666C84.9553 16.5057 97.0392 21.8432 109.987 24.3888C116.413 25.6523 123.012 25.5143 129.042 22.6388C135.981 19.3303 142.586 15.1422 150.092 13.3333C156.799 11.7168 161.702 14.6225 167.887 16.8333C181.562 21.7212 194.975 22.6234 209.252 21.3888C224.678 20.0548 239.912 17.991 255.42 18.3055C272.027 18.6422 288.409 18.867 305 17.9999",
+    "M5 24.2592C26.233 20.2879 47.7083 16.9968 69.135 13.8421C98.0469 9.5853 128.407 4.02322 158.059 5.14674C172.583 5.69708 187.686 8.66104 201.598 11.9696C207.232 13.3093 215.437 14.9471 220.137 18.3619C224.401 21.4596 220.737 25.6575 217.184 27.6168C208.309 32.5097 197.199 34.281 186.698 34.8486C183.159 35.0399 147.197 36.2657 155.105 26.5837C158.11 22.9053 162.993 20.6229 167.764 18.7924C178.386 14.7164 190.115 12.1115 201.624 10.3984C218.367 7.90626 235.528 7.06127 252.521 7.49276C258.455 7.64343 264.389 7.92791 270.295 8.41825C280.321 9.25056 296 10.8932 305 13.0242",
+    "M5 29.5014C9.61174 24.4515 12.9521 17.9873 20.9532 17.5292C23.7742 17.3676 27.0987 17.7897 29.6575 19.0014C33.2644 20.7093 35.6481 24.0004 39.4178 25.5014C48.3911 29.0744 55.7503 25.7731 63.3048 21.0292C67.9902 18.0869 73.7668 16.1366 79.3721 17.8903C85.1682 19.7036 88.2173 26.2464 94.4121 27.2514C102.584 28.5771 107.023 25.5064 113.276 20.6125C119.927 15.4067 128.83 12.3333 137.249 15.0014C141.418 16.3225 143.116 18.7528 146.581 21.0014C149.621 22.9736 152.78 23.6197 156.284 24.2514C165.142 25.8479 172.315 17.5185 179.144 13.5014C184.459 10.3746 191.785 8.74853 195.868 14.5292C199.252 19.3205 205.597 22.9057 211.621 22.5014C215.553 22.2374 220.183 17.8356 222.979 15.5569C225.4 13.5845 227.457 11.1105 230.742 10.5292C232.718 10.1794 234.784 12.9691 236.164 14.0014C238.543 15.7801 240.717 18.4775 243.356 19.8903C249.488 23.1729 255.706 21.2551 261.079 18.0014C266.571 14.6754 270.439 11.5202 277.146 13.6125C280.725 14.7289 283.221 17.209 286.393 19.0014C292.321 22.3517 298.255 22.5014 305 22.5014",
+    "M17.0039 32.6826C32.2307 32.8412 47.4552 32.8277 62.676 32.8118C67.3044 32.807 96.546 33.0555 104.728 32.0775C113.615 31.0152 104.516 28.3028 102.022 27.2826C89.9573 22.3465 77.3751 19.0254 65.0451 15.0552C57.8987 12.7542 37.2813 8.49399 44.2314 6.10216C50.9667 3.78422 64.2873 5.81914 70.4249 5.96641C105.866 6.81677 141.306 7.58809 176.75 8.59886C217.874 9.77162 258.906 11.0553 300 14.4892",
+    "M4.99805 20.9998C65.6267 17.4649 126.268 13.845 187.208 12.8887C226.483 12.2723 265.751 13.2796 304.998 13.9998",
+    "M5 29.8857C52.3147 26.9322 99.4329 21.6611 146.503 17.1765C151.753 16.6763 157.115 15.9505 162.415 15.6551C163.28 15.6069 165.074 15.4123 164.383 16.4275C161.704 20.3627 157.134 23.7551 153.95 27.4983C153.209 28.3702 148.194 33.4751 150.669 34.6605C153.638 36.0819 163.621 32.6063 165.039 32.2029C178.55 28.3608 191.49 23.5968 204.869 19.5404C231.903 11.3436 259.347 5.83254 288.793 5.12258C294.094 4.99476 299.722 4.82265 305 5.45025"
+  ];
+  let lineIdx = Math.floor(Math.random() * LINES.length);
+  const nextLine = () => { const d = LINES[lineIdx]; lineIdx = (lineIdx + 1) % LINES.length; return d; };
+  function makeLine(box) {
+    box.innerHTML = `<svg viewBox="0 0 310 40" preserveAspectRatio="none" aria-hidden="true"><path d="${nextLine()}" fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round"/></svg>`;
+    return box.querySelector("path");
+  }
+  function initDrawLines() {
+    document.querySelectorAll("[data-draw-line]").forEach(el => {
+      const box = el.querySelector(".draw-box");
+      if (!box) return;
+      let tween = null, leaving = false;
+      el.addEventListener("mouseenter", () => {
+        leaving = false;
+        if (tween && tween.isActive()) return;
+        const p = makeLine(box);
+        tween = gsap.fromTo(p, { drawSVG: "0%" }, { drawSVG: "100%", duration: .5, ease: "power2.inOut", onComplete: () => { if (leaving) erase(); } });
+      });
+      const erase = () => {
+        const p = box.querySelector("path");
+        if (!p) return;
+        tween = gsap.to(p, { drawSVG: "100% 100%", duration: .5, ease: "power2.inOut", onComplete: () => { box.innerHTML = ""; } });
+      };
+      el.addEventListener("mouseleave", () => { leaving = true; if (!(tween && tween.isActive())) erase(); });
+    });
+  }
+  function drawAlways() {
+    const box = document.querySelector(".hero-link [data-draw-target]");
+    const p = makeLine(box);
+    if (reduceMQ.matches) return;
+    gsap.fromTo(p, { drawSVG: "0%" }, { drawSVG: "100%", duration: .6, ease: "power2.inOut" });
+  }
+
+  /* ---------- font weight follows cursor ---------- */
+  const WH = { items: [], px: null, py: null, lastScroll: scrollY, enabled: !touchMQ.matches && !reduceMQ.matches };
+  function whMeasure() {
+    const sx = scrollX, sy = scrollY;
+    WH.items.forEach(it => { const r = it.char.getBoundingClientRect(); it.cx = r.left + r.width / 2 + sx; it.cy = r.top + r.height / 2 + sy; });
+  }
+  function whAdd(el) {
+    if (!WH.enabled) return;
+    const chars = el._split ? el._split.chars : SplitText.create(el, { type: "chars,words", charsClass: "char", autoSplit: false }).chars;
+    chars.forEach(char => {
+      const owner = char.parentElement.closest("[data-font-weight-hover]") || el;
+      const rest = +owner.dataset.fwRest, near = +owner.dataset.fwNear, radius = +owner.dataset.fwRadius;
+      const cs = getComputedStyle(char).fontVariationSettings;
+      const axes = cs && cs !== "normal" ? cs.split(",").map(s => s.trim()).filter(a => !/^["']wght["']/.test(a)) : [];
+      char.style.fontVariationSettings = [...axes, '"wght" var(--wght)'].join(", ");
+      gsap.set(char, { "--wght": rest });
+      WH.items.push({ el, char, rest, near, radius, cur: rest, quick: gsap.quickTo(char, "--wght", { duration: .4, ease: "power2.out" }), cx: 0, cy: 0 });
+    });
+    el.addEventListener("reveal:done", whMeasure);
+    whMeasure();
+  }
+  function whRemove(root) { WH.items = WH.items.filter(it => !root.contains(it.el)); }
+  if (WH.enabled) {
+    addEventListener("mousemove", e => { WH.px = e.clientX + scrollX; WH.py = e.clientY + scrollY; }, { passive: true });
+    addEventListener("scroll", () => { const d = scrollY - WH.lastScroll; WH.lastScroll = scrollY; if (WH.py !== null) WH.py += d; whMeasure(); }, { passive: true });
+    addEventListener("resize", whMeasure);
+    gsap.ticker.add(() => {
+      if (WH.px === null) return;
+      for (const it of WH.items) {
+        const d = Math.hypot(WH.px - it.cx, WH.py - it.cy);
+        const f = d >= it.radius ? 0 : 1 - d / it.radius;
+        const target = clamp(Math.min(it.rest, it.near), Math.max(it.rest, it.near), it.rest + (it.near - it.rest) * f);
+        if (Math.abs(target - it.cur) >= 1) { it.cur = target; it.quick(target); }
+      }
+    });
+  }
+  const topLevelFW = root => [...root.querySelectorAll("[data-font-weight-hover]")].filter(el => !el.parentElement.closest("[data-font-weight-hover]"));
+
+  /* ---------- hero cursor card ---------- */
+  function initHeroCard() {
+    const mq = matchMedia("(min-width: 992px) and (hover: hover) and (pointer: fine)");
+    if (!mq.matches) return;
+    const hero = document.querySelector("[data-cursor-cards]");
+    const threshold = +hero.dataset.threshold || 300;
+    const card = hero.querySelector(".hero-card"), media = card.querySelector(".hero-card-media"), crops = [...media.children];
+    const xTo = gsap.quickTo(card, "x", { duration: 1, ease: "power4" }), yTo = gsap.quickTo(card, "y", { duration: 1, ease: "power4" });
+    const rTo = gsap.quickTo(card, "rotation", { duration: 1, ease: "power4" });
+    const mxTo = gsap.quickTo(media, "xPercent", { duration: .6, ease: "power2" }), myTo = gsap.quickTo(media, "yPercent", { duration: .7, ease: "power2" });
+    gsap.set(card, { autoAlpha: 0 });
+    let last = null, travel = 0, idx = 0, idle = 0, shown = false;
+    hero.addEventListener("mousemove", e => {
+      const top = hero.getBoundingClientRect().top;
+      const x = e.clientX - innerWidth / 2, y = e.clientY - innerHeight / 2 - top;
+      if (e.target.closest("a,button")) { if (shown) { gsap.to(card, { autoAlpha: 0, duration: .25, ease: "power2.out", overwrite: "auto" }); shown = false; } last = { x, y }; return; }
+      if (!last) { gsap.set(card, { x, y }); last = { x, y }; }
+      if (!shown) { gsap.to(card, { autoAlpha: 1, duration: .3, overwrite: "auto" }); shown = true; }
+      const dx = (x - last.x) / 2, dy = (y - last.y) / 2;
+      rTo((x - last.x) / 4); xTo(x); yTo(y);
+      mxTo(-clamp(-8, 8, dx)); myTo(-clamp(-8, 8, dy));
+      travel += Math.abs(dx) + Math.abs(dy);
+      if (travel > threshold) { travel = 0; crops[idx].classList.remove("on"); idx = (idx + 1) % crops.length; crops[idx].classList.add("on"); }
+      last = { x, y };
+      clearTimeout(idle);
+      idle = setTimeout(() => { rTo(0); mxTo(0); myTo(0); }, 66);
+    });
+    hero.addEventListener("mouseleave", () => { last = null; travel = 0; rTo(0); mxTo(0); myTo(0); gsap.to(card, { autoAlpha: 0, duration: .3, overwrite: "auto" }); shown = false; });
+  }
+
+  /* ---------- marquee ---------- */
+  function initMarquee() {
+    const m = document.querySelector("[data-marquee]");
+    const scroll = m.querySelector(".marquee-scroll");
+    const coll = m.querySelector(".marquee-collection");
+    const speed = 30, direction = -1, dup = 2;
+    for (let i = 0; i < dup; i++) scroll.appendChild(coll.cloneNode(true));
+    scroll.querySelectorAll(".marquee-collection").forEach((c, i) => { if (i) c.setAttribute("aria-hidden", "true"); });
+    if (reduceMQ.matches) return;
+    scroll.style.marginLeft = "-10%"; scroll.style.width = "120%";
+    const f = innerWidth < 479 ? .25 : innerWidth < 991 ? .5 : 1;
+    const dur = speed * (coll.offsetWidth / innerWidth) * f;
+    const colls = scroll.querySelectorAll(".marquee-collection");
+    gsap.set(colls, { xPercent: 0 });
+    const tw = gsap.to(colls, { xPercent: -100, repeat: -1, duration: dur, ease: "none" });
+    tw.totalProgress(.5);
+    ScrollTrigger.create({ trigger: m, start: "top bottom", end: "bottom top", onUpdate: self => tw.timeScale(self.direction === 1 ? -direction : direction) });
+    gsap.fromTo(scroll, { x: "10vw" }, { x: "-10vw", ease: "none", scrollTrigger: { trigger: m, start: "top bottom", end: "bottom top", scrub: 0 } });
+  }
+
+  /* ---------- 3D work stack ---------- */
+  function initStack(mm) {
+    mm.add("(min-width: 992px)", () => {
+      const section = document.querySelector("[data-featured-stack]");
+      const pin = section.querySelector(".pin"), root = section.querySelector(".stack"), badge = section.querySelector(".badge svg");
+      const items = [...root.querySelectorAll(".slide")], n = items.length;
+      const factor = +section.dataset.scrollFactor || 1.2;
+      const DEPTH = 120, OFFSET = 40;
+      items.forEach((s, b) => gsap.set(s, { z: -b * DEPTH, y: -b * OFFSET, zIndex: n - b, autoAlpha: 1 }));
+      const tl = gsap.timeline({ paused: true });
+      for (let b = 0; b < n - 1; b++) {
+        tl.to(items[b], { y: () => "+=" + innerHeight * .9, ease: "power2.in", duration: 1 }, b);
+        tl.to(items[b], { autoAlpha: 0, ease: "none", duration: .25 }, b + .7);
+        for (let j = b + 1; j < n; j++) { const C = j - b - 1; tl.to(items[j], { z: -C * DEPTH, y: -C * OFFSET, ease: "none", duration: 1 }, b); }
+      }
+      tl.fromTo(badge, { rotation: 0 }, { rotation: 180, ease: "none", duration: n - 1 }, 0);
+      ScrollTrigger.create({ trigger: section, start: "top top", end: () => "+=" + innerHeight * factor * (n - 1), pin, pinSpacing: true, animation: tl, scrub: .3, refreshPriority: 1, invalidateOnRefresh: true });
+    });
+  }
+
+  /* ---------- proof wall ---------- */
+  let wallCtx = null, wallMM = null;
+  function activateWall(ver, scrollTo) {
+    if (wallCtx) { wallCtx.revert(); wallCtx = null; }
+    if (wallMM) { wallMM.revert(); wallMM = null; }
+    document.querySelectorAll(".wall").forEach(w => { whRemove(w); if (w._splits) w._splits.forEach(s => s.revert()); w._splits = []; w.querySelectorAll("[data-scroll-reveal],[data-text-reveal]").forEach(el => { delete el._split; el.style.visibility = ""; }); });
+    html.removeAttribute("data-theme");
+    const sec = document.querySelector(`.wall[data-wall="${ver}"]`);
+    wallCtx = gsap.context(() => {
+      initScrollReveal(sec);
+      ScrollTrigger.create({ trigger: sec, start: "top 55%", end: "bottom 45%", refreshPriority: -1, onToggle: self => { if (self.isActive) html.dataset.theme = "dark"; else html.removeAttribute("data-theme"); } });
+    }, sec);
+    sec._splits = [...sec.querySelectorAll("[data-scroll-reveal]")].map(el => el._split).filter(Boolean);
+    wallMM = gsap.matchMedia();
+    wallMM.add({ isDesktop: "(min-width: 992px)", isTablet: "(min-width: 480px) and (max-width: 991px)", isMobile: "(max-width: 479px)", reduce: "(prefers-reduced-motion: reduce)" }, ctx => {
+      const { isDesktop, isTablet, reduce } = ctx.conditions;
+      if (reduce) return;
+      const dist = 320 * (isDesktop ? 1 : isTablet ? .5 : .3);
+      sec.querySelectorAll(".ph").forEach(p => {
+        const sp = +p.dataset.speed;
+        gsap.fromTo(p, { y: dist * sp }, { y: -dist * sp, ease: "none", scrollTrigger: { trigger: sec, start: "clamp(top bottom)", end: "clamp(bottom top)", scrub: true, invalidateOnRefresh: true, refreshPriority: -1 } });
+      });
+    });
+    topLevelFW(sec).forEach(whAdd);
+    ScrollTrigger.refresh();
+    whMeasure();
+    if (scrollTo) { if (lenis) lenis.scrollTo(sec, { duration: 1.2 }); else sec.scrollIntoView({ behavior: reduceMQ.matches ? "auto" : "smooth" }); }
+  }
+
+  /* ---------- init + load sequence ---------- */
+  let initDone = false;
+  function init() {
+    if (initDone) return; initDone = true;
+    initDrawLines();
+    initMarquee();
+    initHeroCard();
+    const mm = gsap.matchMedia();
+    initStack(mm);
+    initScrollReveal(document);
+    topLevelFW(document).filter(el => !el.closest(".wall")).forEach(whAdd);
+    activateWall("proof", false);
+    gsap.delayedCall(1.3, drawAlways);
+    addEventListener("load", () => ScrollTrigger.refresh());
+  }
+  let started = false;
+  function start() {
+    if (started) return; started = true;
+    html.setAttribute("data-page-ready", "");
+    if (reduceMQ.matches) {
+      gsap.set(main, { autoAlpha: 1 });
+      document.querySelectorAll("[data-text-reveal]").forEach(el => (el.style.visibility = "visible"));
+      wipe.setAttribute("data-transition-ready", "");
+      init();
+      return;
+    }
+    const path = wipe.querySelector("path");
+    const tl = gsap.timeline();
+    tl.set(main, { autoAlpha: 0 })
+      .set(path, { drawSVG: "0% 100%", strokeWidth: "30%" })
+      .addLabel("reveal", .4)
+      .set(main, { autoAlpha: 1 }, "reveal")
+      .call(() => { runTextReveal(.6); init(); }, null, "reveal")
+      .to(path, { drawSVG: "100% 100%", strokeWidth: "5%", duration: 1.25, ease: "power1.inOut", onComplete: () => wipe.setAttribute("data-transition-ready", "") }, "reveal");
+  }
+  Promise.race([document.fonts.ready, new Promise(r => setTimeout(r, 1500))]).then(start);
+})();
+</script>
+</body>
+</html>
