@@ -1,0 +1,19 @@
+{
+  // How Cloudflare serves kirsah.com. There is no Worker code on purpose:
+  // the site is the finished files in public/, served as static assets.
+  // Static asset requests are free and there is nothing running that can fall over.
+  "name": "kirsah-website",
+  "compatibility_date": "2026-11-01",
+
+  // Both names the site answers on. Cloudflare creates the DNS record and the
+  // certificate for each. These are website records only; they cannot touch
+  // MX or any email records.
+  "routes": [
+    { "pattern": "kirsah.com", "custom_domain": true },
+    { "pattern": "www.kirsah.com", "custom_domain": true }
+  ],
+
+  "assets": {
+    "directory": "./public"
+  }
+}
