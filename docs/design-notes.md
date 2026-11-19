@@ -86,3 +86,18 @@ The rules this site follows, and the lessons from building it. Read before chang
   picture with the K's edges strengthened; phone sizes use it exactly as she made it. She picked this ("Clearer K").
 - **Privacy check on every picture she sends:** the TeamPit mock-up showed her phone number and PromptPay QR on the
   phone screen; both are blurred before the picture is used.
+
+## Round 7: every screen size gets its best version (19 Nov 2026)
+
+L: "if the full desktop design / layout / motion is the best version > make all sizes the best version of itself too."
+- **Text size must not jump between breakpoints.** The phone scale (100vw/24.375) grew to 24.6px at 600px and the
+  tablet scale started at 10px at 601px: a narrow desktop window got oversized phone text. Now phone ≤ 17px, tablet ≥ 13px.
+- **Resizing a window must look like loading at that size.** Two leftovers broke it: the desktop card stack left its
+  centring transform on the cards (cleared when the desktop layout switches off), and text split into lines kept the old
+  line breaks (lines are now split only when they appear and put back after).
+- **Top of the page:** her own 8 photos (no stand-ins left anywhere). On phones, tablets and touch screens the picture
+  sits in the flow above the text, never on top of it.
+- **Proof wall:** inner photos at 9.5vw so photos and stickers never cross the title on any desktop size; on tablets the
+  title gets the same frosted panel as phones; phone photos stay inside the screen edges.
+- **Let's talk** leaves room for the menu at the top, so in a short window nothing hides under the logo.
+- Checks cover 390, 572, 768, 1024, 1280 and 1440 wide, touch and mouse, and a wide-to-narrow resize.
