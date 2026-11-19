@@ -61,3 +61,28 @@ The rules this site follows, and the lessons from building it. Read before chang
 - After every merge, and every day at 09:00 Thailand time: `Live check` waits for Cloudflare to serve the
   new version, then checks kirsah.com, www, the resume link, and the share/AI files.
 - Dependabot proposes tool updates every Monday; they go through the same checks.
+
+## Proof wall colour (19 Nov 2026)
+- Dark chocolate `#2e1d15` (`--night`), picked from 5 browns because the proof numbers must pop
+  (cream text 14.6:1, orange headline 4.4:1). Walnut felt warmer but its orange sat near the 3:1 minimum.
+- The same brown is used, see-through, for the soft glow behind the logo and menu on the dark section
+  and for the title panel on phones. Change all three together.
+
+## Round 6: her own photos, resume page, icon (19 Nov 2026)
+
+- **Work cards:** six cards, one per picture in her Desktop "Work" folder (Den Air card added). The picture fills
+  the card edge to edge; a frame of card colour around it looked like a mistake to her ("fix the popup background").
+- **No fade filter on photos.** The old `saturate/sepia` filter only existed to blend stock photos; on her own photos
+  it looked faded. Do not add filters to her pictures.
+- **Proof wall spacing follows the photo count.** Photos are spread over the whole wall height, so fewer photos means
+  bigger empty gaps. With 6 photos: wall 170vh (180vh under 992px), left and right spots staggered. The check
+  "each side always shows at least two photos" guards it on laptop, small laptop and phone.
+- **Let's talk** fills the last screen (min-height 100vh, grid 1fr / content / 1fr), so its content sits in the middle
+  when you reach the end of the page; footer at the bottom. Checked at ±4% of screen height on three sizes.
+- **Resume page** at `/resume/` (folder + index.html so the local test server and Cloudflare both serve it). The PDF
+  lives on the site, but `_headers` sends `X-Robots-Tag: noindex` for it, because the PDF has her phone number and
+  Google indexes PDFs. The web page itself never shows the phone number.
+- **Tab icon:** her orange K picture. At 16–48 px the soft orange-on-orange K disappears, so the tab sizes use the same
+  picture with the K's edges strengthened; phone sizes use it exactly as she made it. She picked this ("Clearer K").
+- **Privacy check on every picture she sends:** the TeamPit mock-up showed her phone number and PromptPay QR on the
+  phone screen; both are blurred before the picture is used.

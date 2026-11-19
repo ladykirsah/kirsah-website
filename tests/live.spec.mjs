@@ -12,14 +12,18 @@ test.describe('live kirsah.com', () => {
     expect(errors).toEqual([]);
   });
 
-  test('resume buttons > open a Drive file anyone can see', async ({ page, request }) => {
+  test('resume buttons > open the resume page, and its PDF stays out of search results', async ({ page, request, baseURL }) => {
     await page.goto('/');
     const links = [...new Set(await page.locator('[data-resume]').evaluateAll((els) => els.map((a) => a.href)))];
-    expect(links).toHaveLength(1);
-    expect(links[0]).toMatch(/^https:\/\/drive\.google\.com\/file\/d\/[\w-]+\/view$/);
-    // A private or deleted file answers 401/404 instead of 200.
-    const res = await request.get(links[0], { maxRedirects: 0 });
-    expect(res.status()).toBe(200);
+    expect(links).toEqual([new URL('/resume/', baseURL).href]);
+    const resume = await request.get('/resume/');
+    expect(resume.status()).toBe(200);
+    expect(await resume.text()).not.toMatch(/63\s?926|0639261445|\+66/);
+    // The PDF has her phone number: it must answer, but tell search engines not to list it.
+    const pdf = await request.get('/Kirsah_Tiathawornchai_AI_Project_Manager.pdf');
+    expect(pdf.status()).toBe(200);
+    expect(pdf.headers()['content-type']).toBe('application/pdf');
+    expect(pdf.headers()['x-robots-tag']).toBe('noindex');
   });
 
   test('share image, icons and AI files > are online', async ({ request }) => {
