@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-const RESUME_URL = 'https://drive.google.com/file/d/1ulZomG9QY1oNPI25NE-MFR4rrFEOVwm0/view';
+const RESUME_URL = 'https://drive.google.com/file/d/1nM__isIh0vHr9P6hTDduK2Izp1mMPxKc/view';
 const TITLE = 'Kirsah Tiathawornchai · Tech / AI Project Manager';
 
 function collectErrors(page) {

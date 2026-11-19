@@ -23,3 +23,9 @@ The rules this site follows, and the lessons from building it. Read before chang
   licence the moment a picture is added (we had to trace the stand-ins back afterwards).
 - Current stand-ins are CC0, except the phone photo (Elena Rossini, CC BY-SA 4.0, credited in
   the footer). The plan is to replace them with AI-made pictures.
+
+## Links
+- The resume buttons point to Kirsah's current resume PDF on Google Drive, shared "Anyone with the link".
+  Before changing the link, check the file is the newest one and not in the Drive trash (the first live
+  version pointed at a trashed old copy with the same name), and that it opens without signing in.
+  `tests/site.spec.mjs` holds the expected link.
