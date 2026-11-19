@@ -1,6 +1,5 @@
 import { test, expect } from '@playwright/test';
 
-const RESUME_URL = 'https://drive.google.com/file/d/1nM__isIh0vHr9P6hTDduK2Izp1mMPxKc/view';
 const TITLE = 'Kirsah Tiathawornchai · Tech / AI Project Manager';
 
 function collectErrors(page) {
@@ -62,13 +61,103 @@ test.describe('home page', () => {
     await expect(footer).toContainText('CC BY-SA 4.0');
   });
 
-  test('resume buttons > open the resume on Google Drive', async ({ page }) => {
+  test('resume buttons > open the resume page on this site, same tab', async ({ page, baseURL }) => {
     await page.goto('/');
+    await page.waitForLoadState('networkidle');
     const links = page.locator('[data-resume]');
     expect(await links.count()).toBeGreaterThanOrEqual(2);
-    for (const href of await links.evaluateAll((els) => els.map((a) => a.href))) {
-      expect(href).toBe(RESUME_URL);
+    for (const { href, target } of await links.evaluateAll((els) => els.map((a) => ({ href: a.href, target: a.target })))) {
+      expect(href).toBe(new URL('/resume/', baseURL).href);
+      expect(target).toBe('');
     }
+  });
+
+  test('work cards > show my own six pictures, Den Air included', async ({ page }) => {
+    await page.goto('/');
+    const slides = page.locator('#stack .slide');
+    await expect(slides).toHaveCount(6);
+    for (const src of await slides.locator('img').evaluateAll((els) => els.map((i) => i.getAttribute('src')))) {
+      expect(src).toMatch(/^\/img\/work-[a-z]+\.webp$/);
+    }
+    await expect(slides.locator('.ttl')).toContainText(['TeamPit', 'AirPlus store', '26× on Shopee', 'GoGoCash', '45.9K views', 'Den Air Service']);
+  });
+
+  test('work cards > picture fills the card edge to edge, no frame around it', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto('/');
+    await page.waitForLoadState('networkidle');
+    const box = await page.evaluate(() => {
+      const slide = document.querySelector('#stack .slide');
+      const s = slide.getBoundingClientRect(), c = slide.querySelector('.crop').getBoundingClientRect();
+      return { left: c.left - s.left, right: s.right - c.right, top: c.top - s.top };
+    });
+    expect(Math.abs(box.left)).toBeLessThanOrEqual(1);
+    expect(Math.abs(box.right)).toBeLessThanOrEqual(1);
+    expect(Math.abs(box.top)).toBeLessThanOrEqual(1);
+  });
+
+  test('photos > show their real colours, no fade filter', async ({ page }) => {
+    await page.goto('/');
+    const filters = await page.evaluate(() => [...document.querySelectorAll('.slide img, .ph img')].map((i) => getComputedStyle(i).filter));
+    expect(filters.length).toBeGreaterThan(0);
+    expect(new Set(filters)).toEqual(new Set(['none']));
+  });
+
+  test('proof wall > six photos of my own, without 9 days and 198', async ({ page }) => {
+    await page.goto('/');
+    const photos = page.locator('.wall .ph');
+    await expect(photos).toHaveCount(6);
+    await expect(photos.locator('.sticker')).toHaveText(['5 yrs', '4,267', '1,035', '26×', '45.9K', '180+']);
+    for (const src of await photos.locator('img').evaluateAll((els) => els.map((i) => i.getAttribute('src')))) {
+      expect(src).toMatch(/^\/img\/wall-[a-z0-9-]+\.webp$/);
+    }
+  });
+
+  for (const size of [{ width: 1440, height: 900 }, { width: 1000, height: 764 }, { width: 390, height: 844 }]) {
+    test(`proof wall > at ${size.width}px wide, each side always shows at least two photos`, async ({ page }) => {
+      await page.setViewportSize(size);
+      await page.goto('/');
+      await page.waitForLoadState('networkidle');
+      for (let step = 1; step <= 9; step++) {
+        await page.evaluate((f) => {
+          const w = document.querySelector('.wall');
+          window.scrollTo(0, w.getBoundingClientRect().top + window.scrollY + (w.offsetHeight - innerHeight) * f);
+        }, step / 10);
+        await page.waitForTimeout(300);
+        const seen = await page.evaluate(() => ['l', 'r'].map((side) => [...document.querySelectorAll(`.wall .ph.${side} .ph-photo`)]
+          .map((e) => e.getBoundingClientRect()).filter((b) => b.bottom > 0 && b.top < innerHeight).length));
+        expect(seen[0], `left side at ${step * 10}%`).toBeGreaterThanOrEqual(2);
+        expect(seen[1], `right side at ${step * 10}%`).toBeGreaterThanOrEqual(2);
+      }
+    });
+  }
+
+  for (const size of [{ width: 1440, height: 900 }, { width: 1000, height: 764 }, { width: 390, height: 844 }]) {
+    test(`let's talk > at ${size.width}px wide, sits in the middle of the screen at the end of the page`, async ({ page }) => {
+      await page.setViewportSize(size);
+      await page.goto('/');
+      await page.waitForLoadState('networkidle');
+      await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+      await page.waitForTimeout(800);
+      const { middle, height } = await page.evaluate(() => {
+        const b = document.querySelector('.contact-inner').getBoundingClientRect();
+        return { middle: (b.top + b.bottom) / 2, height: innerHeight };
+      });
+      expect(Math.abs(middle - height / 2)).toBeLessThanOrEqual(height * 0.04);
+    });
+  }
+
+  test('proof wall > turns the page dark chocolate while in view', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto('/');
+    await page.waitForLoadState('networkidle');
+    await page.evaluate(() => {
+      const wall = document.querySelector('.wall');
+      window.scrollTo(0, wall.getBoundingClientRect().top + window.scrollY + wall.offsetHeight * 0.4);
+    });
+    await expect
+      .poll(() => page.evaluate(() => getComputedStyle(document.body).backgroundColor), { timeout: 5000 })
+      .toBe('rgb(46, 29, 21)');
   });
 
   for (const size of [{ width: 390, height: 844 }, { width: 1440, height: 900 }]) {

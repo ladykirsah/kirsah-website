@@ -91,15 +91,32 @@ test.describe('search and share', () => {
     expect(robots).not.toMatch(/Disallow:\s*\/\s*$/m);
     const sitemap = await (await request.get('/sitemap.xml')).text();
     expect(sitemap).toContain(`<loc>${SITE}</loc>`);
+    expect(sitemap).toContain(`<loc>${SITE}resume/</loc>`);
     const llms = await (await request.get('/llms.txt')).text();
     expect(llms.startsWith('# Kirsah Tiathawornchai')).toBe(true);
     expect(llms).toContain('Tech / AI Project Manager');
+    expect(llms).toContain(`(${SITE}resume/)`);
+    expect(llms).not.toContain('drive.google.com');
+  });
+
+  test('resume page head > has its own description, canonical link and share tags', async ({ request }) => {
+    const res = await request.get('/resume/');
+    expect(res.ok()).toBe(true);
+    const html = await res.text();
+    const description = meta(html, 'name', 'description');
+    expect(description?.length).toBeGreaterThan(80);
+    expect(description?.length).toBeLessThanOrEqual(160);
+    expect(html).toContain(`<link rel="canonical" href="${SITE}resume/">`);
+    expect(meta(html, 'property', 'og:url')).toBe(`${SITE}resume/`);
+    expect(meta(html, 'property', 'og:image')).toBe(SHARE_IMAGE);
+    expect(html).toContain('<link rel="icon" href="/favicon.ico" sizes="48x48">');
+    expect(html).toContain('<html lang="en">');
   });
 
   test('raw page without JavaScript > already shows projects and proof numbers', async ({ request }) => {
     // Text inside <script> is code, not page content: crawlers skip it.
     const html = (await rawHome(request)).replace(/<script[\s\S]*?<\/script>/g, '');
-    for (const text of ['TeamPit', 'AirPlus store', 'GoGoCash', 'Claude Code', 'Running Den Air', '45.9K', '1,035', '198']) {
+    for (const text of ['TeamPit', 'AirPlus store', 'GoGoCash', 'Claude Code', 'Running Den Air', '45.9K', '1,035', '4,267']) {
       expect(html, text).toContain(text);
     }
   });
