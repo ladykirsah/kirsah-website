@@ -29,3 +29,9 @@ The rules this site follows, and the lessons from building it. Read before chang
   Before changing the link, check the file is the newest one and not in the Drive trash (the first live
   version pointed at a trashed old copy with the same name), and that it opens without signing in.
   `tests/site.spec.mjs` holds the expected link.
+
+## Deploys
+- Merge to `main` = live on kirsah.com (Cloudflare Workers Builds runs `npx wrangler deploy`).
+- Every pull request also gets a Cloudflare preview build (`npx wrangler preview`). That command
+  needs the `"previews": {}` block in `wrangler.jsonc`; without it the "Workers Builds" check on
+  each PR fails. Keep the block when editing that file.
