@@ -91,7 +91,7 @@
 <style>
 [hidden]{display:none!important}
 img{max-width:100%}
-/* Layout: cream hero with cursor photo cards → pinned 3D card stack of 5 real projects → tall sticky "wall" that turns the page dark while 12 photos rise past → contact strip.
+/* Layout: cream hero with cursor photo cards → pinned 3D card stack of 5 real projects → sticky "wall" that turns the page dark while 6 photos rise past → contact strip.
    One deliberate look (cream + tomato, dark wall), so no light/dark token swap. */
 :root{
   --cream:#faf3e4; --ink:#141110; --tomato:#ef4a23; --butter:#ffd46e; --sky:#8fc6e8;
@@ -105,8 +105,8 @@ img{max-width:100%}
   color-scheme:light;
 }
 html{font-size:calc(100vw / 90);background:var(--page)}
-@media (max-width:991px){html{font-size:calc(100vw / 60)}}
-@media (max-width:600px){html{font-size:calc(100vw / 24.375)}}
+@media (max-width:991px){html{font-size:max(13px,calc(100vw / 60))}}
+@media (max-width:600px){html{font-size:min(17px,calc(100vw / 24.375))}}
 html[data-theme="dark"]{--page:var(--night)}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 a{color:inherit;text-decoration:none}
@@ -179,12 +179,20 @@ html[data-theme="dark"] .nav-link,html[data-theme="dark"] .nav-cta{color:var(--c
 .marquee-collection{display:flex;flex:none}
 .m-item{flex:none;height:7rem;margin:0 2.5rem;display:flex;align-items:center;gap:.9rem;color:var(--tomato);font-family:var(--f-grot);font-weight:800;font-variation-settings:"wght" 800,"wdth" 72;text-transform:uppercase;font-size:1.7rem;letter-spacing:-.01em;white-space:nowrap}
 .m-item svg{width:1.4rem;height:1.4rem;flex:none}
+@media (max-width:991px),(hover:none),(pointer:coarse){
+  .hero{flex-direction:column;gap:2.6rem;height:auto;min-height:100vh;min-height:100svh;padding-block:7rem 9rem}
+  /* !important: the desktop cursor effect leaves inline styles behind when a wide window is made narrow */
+  .hero-card{position:relative;left:auto;top:auto;translate:none;flex:none;width:13rem;height:13rem;rotate:-5deg;visibility:visible!important;opacity:1!important;transform:none!important}
+  .hero-card-media{transform:none!important}
+  .hero-content{margin-top:0}
+}
 @media (max-width:600px){
-  .hero-content{gap:1.4rem;margin-top:5rem;padding-inline:1rem}
+  .hero{gap:2rem;padding-block:6rem 7rem}
+  .hero-content{gap:1.4rem;padding-inline:1rem}
   .hero-role{font-size:1.05rem}
   .hero-link{font-size:1.6rem}
   .m-item{height:5rem;margin:0 1rem;font-size:1.1rem}
-  .hero-card{width:7.5rem;height:7.5rem;top:13%;left:50%;translate:-50% 0;rotate:-5deg;visibility:visible;opacity:1}
+  .hero-card{width:9.5rem;height:9.5rem}
 }
 
 /* ---------- work stack ---------- */
@@ -231,7 +239,11 @@ html[data-theme="dark"] .wall{color:var(--cream)}
 .sticker{position:absolute;left:50%;bottom:-.9rem;translate:-50% 0;rotate:var(--srot);font-family:var(--f-grot);font-weight:800;font-variation-settings:"wght" 800,"wdth" 75;text-transform:uppercase;letter-spacing:-.01em;font-size:3.6rem;line-height:1;color:var(--tomato);-webkit-text-stroke:.32rem var(--cream);paint-order:stroke fill;white-space:nowrap}
 .ph-photo{position:relative}
 .cap{display:block;margin-top:1.8rem;padding-inline:.2rem;font-family:var(--f-serif);font-weight:400;font-variation-settings:"wght" 400,"wdth" 100,"opsz" 20;font-size:1rem;line-height:1.3;opacity:.75;text-align:center}
-@media (max-width:991px){.wall{height:180vh}}
+@media (max-width:991px){
+  .wall{height:180vh}
+  .photos{z-index:0}
+  .wall-title{background:rgba(46,29,21,.74);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-radius:1.5rem;padding:2.2rem 2rem;max-width:min(36rem,100%)}
+}
 @media (max-width:600px){
   .wall-title .h-sec{font-size:4.2rem}
   .wall-sticky{padding-inline:1.5rem}
@@ -240,12 +252,12 @@ html[data-theme="dark"] .wall{color:var(--cream)}
   .ph.r{right:var(--moff)}
   .sticker{font-size:1.9rem;-webkit-text-stroke:.22rem var(--cream)}
   .cap{font-size:.72rem;margin-top:1.1rem}
-  .photos{z-index:0}
-  .wall-title{background:rgba(46,29,21,.74);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-radius:1.5rem;padding:1.6rem 1rem}
+  .wall-title{padding:1.6rem 1rem}
 }
 
 /* ---------- contact ---------- */
-.contact{display:grid;grid-template-rows:1fr auto 1fr;justify-items:center;gap:2.2rem;min-height:100vh;min-height:100svh;text-align:center;padding-block:2rem;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.contact{display:grid;grid-template-rows:1fr auto 1fr;justify-items:center;gap:2.2rem;min-height:100vh;min-height:100svh;text-align:center;padding-block:5rem 2rem;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.contact-inner{grid-row:2;display:flex;flex-direction:column;align-items:center;gap:2.2rem}
 .contact .eyebrow-s{max-width:32rem}
 .email{font-family:var(--f-serif);font-weight:500;font-variation-settings:"wght" 500,"wdth" 87.5,"opsz" 40;font-size:1.9rem;opacity:.85;letter-spacing:-.03em;line-height:1;user-select:all;word-break:break-all}
  .btn-row{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;align-items:center}
@@ -265,8 +277,7 @@ html[data-theme="dark"] .wall{color:var(--cream)}
 .cta-main:focus-visible,.cta-ghost:focus-visible{outline:2px solid var(--tomato);outline-offset:4px}
 .btn{display:inline-flex;align-items:center;gap:.6rem;height:3.4rem;padding:0 1.5rem;border:0;cursor:pointer;font-family:var(--f-grot);font-weight:700;font-variation-settings:"wght" 700,"wdth" 72;text-transform:uppercase;font-size:1.15rem;letter-spacing:-.01em}
 .foot{grid-row:3;align-self:end;display:flex;flex-direction:column;gap:.4rem;font-family:var(--f-grot);font-variation-settings:"wght" 500,"wdth" 90;font-size:.85rem;opacity:.7}
-.foot a{text-decoration:underline;text-underline-offset:.15em}
-@media (max-width:600px){.email{font-size:1.3rem}.btn{height:3rem;font-size:1rem}.cta-main{height:3.6rem;font-size:1.15rem;padding-left:1.5rem;gap:.7rem}.cta-arrow{width:2.4rem;height:2.4rem}.cta-arrow svg{width:1.05rem;height:1.05rem}.cta-ghost{height:3.6rem;font-size:1.05rem;padding:0 1.4rem}.proof-pills li{font-size:.92rem;padding:.6rem 1rem}.proof-pills b{font-size:1.25rem}}
+@media (max-width:600px){.contact-inner{gap:1.5rem}.email{font-size:1.3rem}.btn{height:3rem;font-size:1rem}.cta-main{height:3.6rem;font-size:1.15rem;padding-left:1.5rem;gap:.7rem}.cta-arrow{width:2.4rem;height:2.4rem}.cta-arrow svg{width:1.05rem;height:1.05rem}.cta-ghost{height:3.6rem;font-size:1.05rem;padding:0 1.4rem}.proof-pills li{font-size:.92rem;padding:.6rem 1rem}.proof-pills b{font-size:1.25rem}}
 
 /* ---------- reduced motion ---------- */
 @media (prefers-reduced-motion:reduce){
@@ -293,7 +304,7 @@ html[data-theme="dark"] .wall{color:var(--cream)}
   </nav>
 
   <section class="hero" id="top" data-cursor-cards data-threshold="300">
-    <div class="hero-card" aria-hidden="true"><div class="hero-card-media" id="heroMedia"><div class="crop on"><img src="/img/store2.webp" alt="" loading="lazy" decoding="async"></div><div class="crop "><img src="/img/mech.webp" alt="" loading="lazy" decoding="async"></div><div class="crop "><img src="/img/parcel.webp" alt="" loading="lazy" decoding="async"></div><div class="crop "><img src="/img/ggc.webp" alt="" loading="lazy" decoding="async"></div><div class="crop "><img src="/img/film.webp" alt="" loading="lazy" decoding="async"></div><div class="crop "><img src="/img/code2.webp" alt="" loading="lazy" decoding="async"></div><div class="crop "><img src="/img/shop.webp" alt="" loading="lazy" decoding="async"></div><div class="crop "><img src="/img/phone.webp" alt="" loading="lazy" decoding="async"></div></div></div>
+    <div class="hero-card" aria-hidden="true"><div class="hero-card-media" id="heroMedia"><div class="crop on"><img src="/img/hero-laptop.webp" alt="" loading="lazy" decoding="async"></div><div class="crop "><img src="/img/hero-airplus.webp" alt="" loading="lazy" decoding="async"></div><div class="crop "><img src="/img/hero-teampit.webp" alt="" loading="lazy" decoding="async"></div><div class="crop "><img src="/img/hero-shop.webp" alt="" loading="lazy" decoding="async"></div><div class="crop "><img src="/img/hero-mechanics.webp" alt="" loading="lazy" decoding="async"></div><div class="crop "><img src="/img/hero-packing.webp" alt="" loading="lazy" decoding="async"></div><div class="crop "><img src="/img/hero-demo.webp" alt="" loading="lazy" decoding="async"></div><div class="crop "><img src="/img/hero-denso.webp" alt="" loading="lazy" decoding="async"></div></div></div>
     <div class="hero-content" data-text-reveal-group>
       <p class="eyebrow-s hero-role" data-text-reveal="lines">Kirsah Tiathawornchai · Tech / AI Project Manager</p>
       <h1 class="h-hero" data-text-reveal="chars" data-font-weight-hover data-fw-rest="700" data-fw-near="200" data-fw-radius="400">Ideas that<br>go <span class="hl">live</span></h1>
@@ -333,12 +344,12 @@ html[data-theme="dark"] .wall{color:var(--cream)}
           <p class="para" data-scroll-reveal="lines">Every sticker is a number from my resume, across Den Air, AirPlus, TeamPit and GoGoCash.</p>
         </div>
       </div>
-      <div class="photos"><div class="ph l" data-speed="1" style="--off:2.5vw;--top:4%;--w:14rem;--rot:-4deg;--mtop:2%;--moff:-1rem"><div class="ph-inner"><div class="ph-photo"><div class="crop "><img src="/img/wall-denair-2.webp" alt="" loading="lazy" decoding="async"></div><span class="sticker" style="--srot:-7deg">5 yrs</span></div><span class="cap">Running Den Air</span></div></div><div class="ph l" data-speed="0.8" style="--off:13vw;--top:37%;--w:12.5rem;--rot:-3deg;--mtop:35%;--moff:4rem"><div class="ph-inner"><div class="ph-photo"><div class="crop "><img src="/img/wall-airplus-teampit.webp" alt="" loading="lazy" decoding="async"></div><span class="sticker" style="--srot:-5deg">4,267</span></div><span class="cap">Automated tests</span></div></div><div class="ph l" data-speed="0.7" style="--off:4vw;--top:70%;--w:13rem;--rot:4deg;--mtop:68%;--moff:-1rem"><div class="ph-inner"><div class="ph-photo"><div class="crop "><img src="/img/wall-ggc.webp" alt="" loading="lazy" decoding="async"></div><span class="sticker" style="--srot:6deg">1,035</span></div><span class="cap">GoGoCash users</span></div></div><div class="ph r" data-speed="0.75" style="--off:3vw;--top:20%;--w:13.5rem;--rot:4deg;--mtop:18%;--moff:-1rem"><div class="ph-inner"><div class="ph-photo"><div class="crop "><img src="/img/wall-shopee.webp" alt="" loading="lazy" decoding="async"></div><span class="sticker" style="--srot:5deg">26×</span></div><span class="cap">Shopee sales growth</span></div></div><div class="ph r" data-speed="1.4" style="--off:13vw;--top:53%;--w:12.5rem;--rot:5deg;--mtop:51%;--moff:4rem"><div class="ph-inner"><div class="ph-photo"><div class="crop "><img src="/img/wall-denair-1.webp" alt="" loading="lazy" decoding="async"></div><span class="sticker" style="--srot:4deg">45.9K</span></div><span class="cap">TikTok views</span></div></div><div class="ph r" data-speed="1.05" style="--off:4vw;--top:86%;--w:13rem;--rot:-4deg;--mtop:84%;--moff:-1rem"><div class="ph-inner"><div class="ph-photo"><div class="crop "><img src="/img/wall-laptop.webp" alt="" loading="lazy" decoding="async"></div><span class="sticker" style="--srot:-4deg">180+</span></div><span class="cap">Code changes shipped</span></div></div></div>
+      <div class="photos"><div class="ph l" data-speed="1" style="--off:2.5vw;--top:4%;--w:14rem;--rot:-4deg;--mtop:2%;--moff:.6rem"><div class="ph-inner"><div class="ph-photo"><div class="crop "><img src="/img/wall-denair-2.webp" alt="" loading="lazy" decoding="async"></div><span class="sticker" style="--srot:-7deg">5 yrs</span></div><span class="cap">Running Den Air</span></div></div><div class="ph l" data-speed="0.8" style="--off:9.5vw;--top:37%;--w:12.5rem;--rot:-3deg;--mtop:35%;--moff:4rem"><div class="ph-inner"><div class="ph-photo"><div class="crop "><img src="/img/wall-airplus-teampit.webp" alt="" loading="lazy" decoding="async"></div><span class="sticker" style="--srot:-5deg">4,267</span></div><span class="cap">Automated tests</span></div></div><div class="ph l" data-speed="0.7" style="--off:4vw;--top:70%;--w:13rem;--rot:4deg;--mtop:68%;--moff:.6rem"><div class="ph-inner"><div class="ph-photo"><div class="crop "><img src="/img/wall-ggc.webp" alt="" loading="lazy" decoding="async"></div><span class="sticker" style="--srot:6deg">1,035</span></div><span class="cap">GoGoCash users</span></div></div><div class="ph r" data-speed="0.75" style="--off:3vw;--top:20%;--w:13.5rem;--rot:4deg;--mtop:18%;--moff:.6rem"><div class="ph-inner"><div class="ph-photo"><div class="crop "><img src="/img/wall-shopee.webp" alt="" loading="lazy" decoding="async"></div><span class="sticker" style="--srot:5deg">26×</span></div><span class="cap">Shopee sales growth</span></div></div><div class="ph r" data-speed="1.4" style="--off:9.5vw;--top:53%;--w:12.5rem;--rot:5deg;--mtop:51%;--moff:4rem"><div class="ph-inner"><div class="ph-photo"><div class="crop "><img src="/img/wall-denair-1.webp" alt="" loading="lazy" decoding="async"></div><span class="sticker" style="--srot:4deg">45.9K</span></div><span class="cap">TikTok views</span></div></div><div class="ph r" data-speed="1.05" style="--off:4vw;--top:86%;--w:13rem;--rot:-4deg;--mtop:84%;--moff:.6rem"><div class="ph-inner"><div class="ph-photo"><div class="crop "><img src="/img/wall-laptop.webp" alt="" loading="lazy" decoding="async"></div><span class="sticker" style="--srot:-4deg">180+</span></div><span class="cap">Code changes shipped</span></div></div></div>
     </section>
   </div>
 
   <section class="contact" id="contact">
-    <div class="contact-inner" data-scroll-reveal-group style="grid-row:2;display:flex;flex-direction:column;align-items:center;gap:2.2rem">
+    <div class="contact-inner" data-scroll-reveal-group>
       <p class="eyebrow-s contact-eyebrow" data-scroll-reveal="lines">Open to AI project manager roles. Bangkok or remote.</p>
       <h2 class="h-sec" data-scroll-reveal="chars" data-font-weight-hover data-fw-rest="700" data-fw-near="200" data-fw-radius="400">Let’s <span class="hl">talk</span></h2>
       <p class="email" id="email" data-scroll-reveal="element">lady.kirsah@gmail.com</p>
@@ -354,7 +365,7 @@ html[data-theme="dark"] .wall{color:var(--cream)}
     </div>
     <div class="foot">
       <span>© 2026 Kirsah Tiathawornchai · Surin and Bangkok, Thailand</span>
-      <span>Photos: my own, plus stand-ins (CC0) via Openverse and Wikimedia Commons in the top section. Phone photo by <a href="https://commons.wikimedia.org/wiki/File:Fediverse_smartphone_apps_(photo_by_Elena_Rossini).jpg" target="_blank" rel="noopener">Elena Rossini</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>, cropped.</span>
+      <span>Photos: my own.</span>
     </div>
   </section>
 </main>
@@ -419,16 +430,16 @@ html[data-theme="dark"] .wall{color:var(--cream)}
   }));
 
   /* ---------- split helpers ---------- */
-  function split(el, mode) {
-    if (el._split) return el._split;
-    el._split = SplitText.create(el, { type: mode === "chars" ? "chars,words,lines" : "lines,words", linesClass: "line", charsClass: "char", mask: "lines", autoSplit: false });
+  function split(el) {
+    if (!el._split) el._split = SplitText.create(el, { type: "chars,words,lines", linesClass: "line", charsClass: "char", mask: "lines", autoSplit: false });
     return el._split;
   }
   function revealTween(el, mode, delay = 0) {
     if (mode === "element") { gsap.set(el, { visibility: "visible" }); return gsap.fromTo(el, { y: 24, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .8, ease: "expo.out", delay }); }
-    const s = split(el, mode);
+    // Text lines are split at the width the reader has now, and put back once shown, so a resize re-wraps them.
+    const s = mode === "chars" ? split(el) : SplitText.create(el, { type: "lines", linesClass: "line", mask: "lines", autoSplit: false });
     gsap.set(el, { visibility: "visible" });
-    return gsap.from(mode === "chars" ? s.chars : s.lines, { yPercent: 135, duration: 1, ease: "expo.out", stagger: mode === "chars" ? 0.07 * 0.25 : 0.07, delay, onComplete: () => el.dispatchEvent(new CustomEvent("reveal:done")) });
+    return gsap.from(mode === "chars" ? s.chars : s.lines, { yPercent: 135, duration: 1, ease: "expo.out", stagger: mode === "chars" ? 0.07 * 0.25 : 0.07, delay, onComplete: () => { if (mode !== "chars") s.revert(); el.dispatchEvent(new CustomEvent("reveal:done")); } });
   }
   function runTextReveal(base) {
     const groups = new Map();
@@ -447,12 +458,8 @@ html[data-theme="dark"] .wall{color:var(--cream)}
       if (g) { if (!groups.has(g)) groups.set(g, []); groups.get(g).push(el); } else singles.push(el);
     });
     if (reduceMQ.matches) { [...singles, ...[...groups.values()].flat()].forEach(el => (el.style.visibility = "visible")); return; }
-    groups.forEach((els, g) => {
-      const tl = gsap.timeline({ paused: true });
-      els.forEach((el, i) => tl.add(revealTween(el, el.dataset.scrollReveal), i * 0.12));
-      ScrollTrigger.create({ trigger: g, start: "top 85%", once: true, onEnter: () => tl.play() });
-    });
-    singles.forEach(el => { const tw = revealTween(el, el.dataset.scrollReveal); tw.pause(); ScrollTrigger.create({ trigger: el, start: "top 85%", once: true, onEnter: () => tw.play() }); });
+    groups.forEach((els, g) => ScrollTrigger.create({ trigger: g, start: "top 85%", once: true, onEnter: () => els.forEach((el, i) => revealTween(el, el.dataset.scrollReveal, i * 0.12)) }));
+    singles.forEach(el => ScrollTrigger.create({ trigger: el, start: "top 85%", once: true, onEnter: () => revealTween(el, el.dataset.scrollReveal) }));
   }
 
   /* ---------- draw underline ---------- */
@@ -504,7 +511,7 @@ html[data-theme="dark"] .wall{color:var(--cream)}
   }
   function whAdd(el) {
     if (!WH.enabled) return;
-    const chars = el._split ? el._split.chars : SplitText.create(el, { type: "chars,words", charsClass: "char", autoSplit: false }).chars;
+    const chars = split(el).chars;
     chars.forEach(char => {
       const owner = char.parentElement.closest("[data-font-weight-hover]") || el;
       const rest = +owner.dataset.fwRest, near = +owner.dataset.fwNear, radius = +owner.dataset.fwRadius;
@@ -601,6 +608,7 @@ html[data-theme="dark"] .wall{color:var(--cream)}
       }
       tl.fromTo(badge, { rotation: 0 }, { rotation: 180, ease: "none", duration: n - 1 }, 0);
       ScrollTrigger.create({ trigger: section, start: "top top", end: () => "+=" + innerHeight * factor * (n - 1), pin, pinSpacing: true, animation: tl, scrub: .3, refreshPriority: 1, invalidateOnRefresh: true });
+      return () => requestAnimationFrame(() => items.forEach(s => s.removeAttribute("style")));
     });
   }
 
