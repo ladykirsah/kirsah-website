@@ -67,42 +67,142 @@ test.describe('home page', () => {
     for (const src of srcs) expect(src).toMatch(/^\/img\/hero-[a-z]+\.webp$/);
   });
 
-  for (const s of [{ width: 390, height: 844, touch: true }, { width: 572, height: 664 }, { width: 768, height: 1024, touch: true }, { width: 1024, height: 768, touch: true }]) {
-    test(`top of page > at ${s.width}x${s.height}${s.touch ? ' touch' : ''}, the picture shows above the text without covering it`, async ({ browser }) => {
-      const ctx = await browser.newContext({ viewport: { width: s.width, height: s.height }, hasTouch: !!s.touch, isMobile: !!s.touch && s.width < 900 });
+  for (const s of [{ width: 390, height: 844 }, { width: 768, height: 1024 }, { width: 1024, height: 768 }]) {
+    test(`top of page > on a ${s.width}px touch screen, there is no floating photo card`, async ({ browser }) => {
+      const ctx = await browser.newContext({ viewport: s, hasTouch: true, isMobile: s.width < 900 });
       const page = await ctx.newPage();
       await page.goto('/');
       await page.waitForLoadState('networkidle');
-      await page.waitForTimeout(2500);
-      const r = await page.evaluate(() => {
-        const card = document.querySelector('.hero-card'), role = document.querySelector('.hero-role');
-        const c = card.getBoundingClientRect(), t = role.getBoundingClientRect();
-        return { visible: getComputedStyle(card).visibility === 'visible' && +getComputedStyle(card).opacity > 0, cardBottom: c.bottom, cardTop: c.top, textTop: t.top };
-      });
-      expect(r.visible).toBe(true);
-      expect(r.cardTop).toBeGreaterThanOrEqual(0);
-      expect(r.cardBottom).toBeLessThanOrEqual(r.textTop);
+      await page.waitForTimeout(1500);
+      expect(await page.evaluate(() => getComputedStyle(document.querySelector('.hero-card')).display)).toBe('none');
       await ctx.close();
     });
   }
 
-  test('window made narrow > the top picture still shows above the text', async ({ page }) => {
+  async function expectCardFollowsMouse(page, width) {
+    await page.mouse.move(width * 0.2, 300);
+    await page.mouse.move(width * 0.7, 420, { steps: 25 });
+    await page.waitForTimeout(1500);
+    const r = await page.evaluate(() => {
+      const card = document.querySelector('.hero-card'), b = card.getBoundingClientRect(), cs = getComputedStyle(card);
+      const img = card.querySelector('.crop.on img');
+      return { visible: cs.visibility === 'visible' && +cs.opacity > 0.5, cx: b.left + b.width / 2, cy: b.top + b.height / 2, loaded: img.complete && img.naturalWidth > 0 };
+    });
+    expect(r.visible).toBe(true);
+    expect(r.loaded).toBe(true);
+    expect(Math.abs(r.cx - width * 0.7)).toBeLessThan(60);
+    expect(Math.abs(r.cy - 420)).toBeLessThan(60);
+  }
+
+  test('top of page > with a mouse in a narrow window, the photo card follows the cursor and its photo is loaded', async ({ page }) => {
+    await page.setViewportSize({ width: 572, height: 800 });
+    await page.goto('/');
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(1500);
+    await expectCardFollowsMouse(page, 572);
+  });
+
+  test('window made narrow > the photo card still follows the mouse', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/');
     await page.waitForLoadState('networkidle');
-    await page.mouse.move(300, 300);
-    await page.mouse.move(900, 500, { steps: 20 });
     await page.waitForTimeout(1500);
     await page.setViewportSize({ width: 572, height: 800 });
-    await page.waitForTimeout(1200);
-    const r = await page.evaluate(() => {
-      const card = document.querySelector('.hero-card'), c = card.getBoundingClientRect(), t = document.querySelector('.hero-role').getBoundingClientRect();
-      return { visible: getComputedStyle(card).visibility === 'visible' && +getComputedStyle(card).opacity > 0, left: c.left, right: c.right, bottom: c.bottom, textTop: t.top };
+    await page.waitForTimeout(1000);
+    await expectCardFollowsMouse(page, 572);
+  });
+
+  for (const size of [{ width: 1440, height: 900 }, { width: 991, height: 700 }, { width: 768, height: 1024 }, { width: 572, height: 664 }, { width: 390, height: 844 }, { width: 320, height: 640 }]) {
+    test(`work cards > at ${size.width}px wide, the stacked frames peek out evenly`, async ({ page }) => {
+      await page.setViewportSize(size);
+      await page.goto('/');
+      await page.waitForLoadState('networkidle');
+      await page.waitForTimeout(1500);
+      const boxes = await page.evaluate(() => [...document.querySelectorAll('#stack .slide')].slice(0, 4).map((s) => s.getBoundingClientRect().toJSON()));
+      const tops = boxes.slice(1).map((b, i) => boxes[i].top - b.top);
+      const sides = boxes.slice(1).map((b, i) => b.left - boxes[i].left);
+      for (const step of tops) expect(Math.abs(step - tops[0])).toBeLessThanOrEqual(1.5);
+      for (const step of sides) expect(Math.abs(step - sides[0])).toBeLessThanOrEqual(1.5);
+      expect(tops[0]).toBeGreaterThan(8);
     });
-    expect(r.visible).toBe(true);
-    expect(r.left).toBeGreaterThanOrEqual(0);
-    expect(r.right).toBeLessThanOrEqual(572);
-    expect(r.bottom).toBeLessThanOrEqual(r.textTop);
+  }
+
+  for (const size of [{ width: 572, height: 664 }, { width: 390, height: 667 }, { width: 390, height: 844 }, { width: 768, height: 1024 }, { width: 991, height: 700 }]) {
+    test(`work cards > at ${size.width}x${size.height}, the stacked frames stay below the Latest work title`, async ({ page }) => {
+      await page.setViewportSize(size);
+      await page.goto('/');
+      await page.waitForLoadState('networkidle');
+      await page.waitForTimeout(1500);
+      await page.evaluate(() => window.scrollTo(0, document.querySelector('#work').getBoundingClientRect().top + scrollY + 5));
+      await page.waitForTimeout(1200);
+      const { titleBottom, stackTop, stackBottom } = await page.evaluate(() => {
+        const title = document.querySelector('#work .h-sec').getBoundingClientRect();
+        const cards = [...document.querySelectorAll('#stack .slide')].map((s) => s.getBoundingClientRect());
+        return { titleBottom: title.bottom, stackTop: Math.min(...cards.map((c) => c.top)), stackBottom: Math.max(...cards.map((c) => c.bottom)) };
+      });
+      expect(stackTop).toBeGreaterThanOrEqual(titleBottom);
+      expect(stackBottom).toBeLessThanOrEqual(size.height);
+    });
+  }
+
+  test('window made narrow and short, then wide again > stack fits under the title, then goes back to full size', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto('/');
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(1500);
+    const fullWidth = await page.evaluate(() => document.querySelector('#stack .slide').getBoundingClientRect().width);
+    await page.setViewportSize({ width: 572, height: 664 });
+    await page.waitForTimeout(1200);
+    await page.evaluate(() => window.scrollTo(0, document.querySelector('#work').getBoundingClientRect().top + scrollY + 5));
+    await page.waitForTimeout(1200);
+    const fits = await page.evaluate(() => {
+      const title = document.querySelector('#work .h-sec').getBoundingClientRect();
+      return Math.min(...[...document.querySelectorAll('#stack .slide')].map((s) => s.getBoundingClientRect().top)) >= title.bottom;
+    });
+    expect(fits).toBe(true);
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.waitForTimeout(1200);
+    const backWidth = await page.evaluate(() => document.querySelector('#stack .slide').getBoundingClientRect().width);
+    expect(Math.abs(backWidth - fullWidth)).toBeLessThanOrEqual(1);
+  });
+
+  for (const size of [{ width: 360, height: 740 }, { width: 390, height: 844 }, { width: 572, height: 664 }, { width: 700, height: 500 }, { width: 820, height: 1180 }, { width: 991, height: 700 }, { width: 1280, height: 720 }]) {
+    test(`work cards > at ${size.width}x${size.height}, fonts arriving late > no card has an empty gap bigger than one line`, async ({ page }) => {
+      // a slow phone network: the web fonts arrive after the page has started its motion
+      await page.route('https://fonts.gstatic.com/**', async (route) => { await new Promise((r) => setTimeout(r, 2500)); await route.continue(); });
+      await page.setViewportSize(size);
+      await page.goto('/');
+      await page.waitForTimeout(4500);
+      const cards = await page.evaluate(() => [...document.querySelectorAll('#stack .slide')].map((s) => {
+        const cs = getComputedStyle(s), sub = s.querySelector('.sub');
+        const content = s.querySelector('.crop').offsetHeight + parseFloat(cs.rowGap) + s.querySelector('.slide-body').offsetHeight + parseFloat(cs.paddingBottom);
+        return { empty: s.offsetHeight - content, line: parseFloat(getComputedStyle(sub).lineHeight) };
+      }));
+      for (const c of cards) expect(c.empty).toBeLessThanOrEqual(c.line + 2);
+    });
+  }
+
+  test('work cards > card text changes size after start (late font) > cards are made equal again', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto('/');
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(1500);
+    await page.addStyleTag({ content: '#stack .slide:last-child .sub{font-size:2rem}' });
+    await page.waitForTimeout(600);
+    const heights = await page.evaluate(() => [...document.querySelectorAll('#stack .slide')].map((s) => s.offsetHeight));
+    expect(Math.max(...heights) - Math.min(...heights)).toBeLessThanOrEqual(1);
+  });
+
+  test('window made narrow > stacked frames still peek out evenly', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto('/');
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(1500);
+    await page.setViewportSize({ width: 991, height: 700 });
+    await page.waitForTimeout(1200);
+    const boxes = await page.evaluate(() => [...document.querySelectorAll('#stack .slide')].slice(0, 4).map((s) => s.getBoundingClientRect().toJSON()));
+    const tops = boxes.slice(1).map((b, i) => boxes[i].top - b.top);
+    for (const step of tops) expect(Math.abs(step - tops[0])).toBeLessThanOrEqual(1.5);
   });
 
   test('window made narrow > work cards line up inside the screen', async ({ page }) => {
