@@ -4,7 +4,9 @@
   "type": "module",
   "description": "kirsah.com: Kirsah's personal site for job applications",
   "scripts": {
-    "test": "playwright test"
+    "test": "playwright test",
+    "test:live": "LIVE_URL=https://kirsah.com playwright test",
+    "lighthouse": "npx --yes @lhci/cli@0.16.0 autorun"
   },
   "devDependencies": {
     "@playwright/test": "1.64.1"

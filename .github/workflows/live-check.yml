@@ -1,0 +1,51 @@
+name: Live check
+
+# Checks the real kirsah.com: after every deploy, and every morning at 09:00 Thailand time.
+# A failure here sends GitHub's failed-workflow email.
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "0 2 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: live-check
+  cancel-in-progress: false
+
+jobs:
+  live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Wait until Cloudflare serves this version
+        if: github.event_name == 'push'
+        run: |
+          want=$(sha256sum public/index.html | cut -d' ' -f1)
+          for i in $(seq 1 40); do
+            got=$(curl -fsS "https://kirsah.com/?v=$GITHUB_SHA" | sha256sum | cut -d' ' -f1 || true)
+            if [ "$got" = "$want" ]; then echo "Live after $((i * 15)) seconds"; exit 0; fi
+            sleep 15
+          done
+          echo "::error::kirsah.com did not update within 10 minutes. Check the Cloudflare deploy."
+          exit 1
+      - run: npx playwright test
+        env:
+          CI: "true"
+          LIVE_URL: https://kirsah.com
+      - name: Keep the test report when something fails
+        if: failure()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: live-report
+          path: playwright-report/
+          retention-days: 14

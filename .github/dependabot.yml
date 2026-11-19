@@ -1,0 +1,26 @@
+# Weekly, grouped update proposals for the test tools and the GitHub Actions used by CI.
+# Each one arrives as a pull request and must pass the same checks before merging.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "09:00"
+      timezone: Asia/Bangkok
+    groups:
+      test-tools:
+        patterns: ["*"]
+    open-pull-requests-limit: 3
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "09:00"
+      timezone: Asia/Bangkok
+    groups:
+      actions:
+        patterns: ["*"]
+    open-pull-requests-limit: 3

@@ -1,0 +1,5 @@
+# kirsah.com: every search engine and AI assistant may read this site.
+User-agent: *
+Allow: /
+
+Sitemap: https://kirsah.com/sitemap.xml
