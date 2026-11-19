@@ -35,3 +35,29 @@ The rules this site follows, and the lessons from building it. Read before chang
 - Every pull request also gets a Cloudflare preview build (`npx wrangler preview`). That command
   needs the `"previews": {}` block in `wrangler.jsonc`; without it the "Workers Builds" check on
   each PR fails. Keep the block when editing that file.
+
+## Share card and icons (19 Nov 2026)
+- Share card `public/og.png` (1200 × 630): headline plus the proof numbers 9 days / 26× / 4,267, the same
+  three as the contact section. Picked by Kirsah's own rules (proof with real numbers, keep the site's look).
+  Source: `L Life/kirsah-website/share-preview/cards.html` (rendered with headless Chrome).
+- Icons: orange square with the Yellowtail "K" from the logo (`favicon.ico`, `apple-touch-icon.png`,
+  `icon-192.png`, `icon-512.png`). The old blocky Arial "K" (`favicon.svg`) is gone.
+- After changing the share card, social apps keep the old one for a while; refresh with each platform's
+  debugger (Facebook Sharing Debugger, LinkedIn Post Inspector).
+
+## Search and AI
+- What AI assistants read: `public/llms.txt` (the "who is Kirsah" answer and key facts) and the
+  `application/ld+json` profile in the page head. Every fact must match her current resume; update both
+  together when the resume changes. Never add a phone number.
+- Project cards, the tools row and the proof wall are plain HTML (not built by JavaScript), so crawlers
+  that don't run code can read them. Keep it that way.
+- `robots.txt` allows everyone; Cloudflare adds its own lines on top. `sitemap.xml` lists the page.
+- Open: LinkedIn link and Thai spelling of her name (add to `sameAs` / `alternateName` when she gives them).
+- Open (design change, needs her OK): Lighthouse accessibility notes on text contrast and one ARIA attribute.
+
+## Checks and deploys
+- Every pull request: `site-checks` (Playwright, `tests/`) and `lighthouse` (SEO ≥ 95, best practices ≥ 90,
+  accessibility ≥ 90; speed is a warning). Cloudflare also builds a preview copy for each PR.
+- After every merge, and every day at 09:00 Thailand time: `Live check` waits for Cloudflare to serve the
+  new version, then checks kirsah.com, www, the resume link, and the share/AI files.
+- Dependabot proposes tool updates every Monday; they go through the same checks.

@@ -1,0 +1,43 @@
+# Kirsah Tiathawornchai
+
+> Tech / AI Project Manager in Bangkok, Thailand. Turns business ideas into live products with AI agents. Open to AI project manager roles, Bangkok or remote.
+
+## Who is Kirsah Tiathawornchai?
+
+Kirsah Tiathawornchai is a Tech / AI Project Manager based in Bangkok, Thailand. She runs real businesses and builds their software with AI agents such as Claude Code and Cursor. As General Manager of Den Air Service, a DENSO Service Partner car air-conditioning shop in Surin, she leads operations, purchasing and B2B sales. As founder of Formula L, she delivered TeamPit, the shop's back office and point-of-sale system, with 4,267 automated tests and 198 merged pull requests, and the AirPlus web store (airplusauto.com), live in 9 days. She grew the AirPlus Auto shop on Shopee 26× without paid ads. At GoGoCash, a cashback app with 1,035 users, she works as admin, forward deployed engineer and UX/UI designer. She holds a bachelor's degree in International Business Management from Burapha University's International College and is open to AI project manager roles in Bangkok or remote.
+
+## Proof in numbers
+
+- AirPlus web store (airplusauto.com): first version live in 9 days.
+- AirPlus Auto on Shopee: net sales grew 26×, from ฿2.6K (Jul 2024) to a ฿68K record month (Mar 2026), with no paid ads.
+- TeamPit (shop back office and point of sale): 4,267 automated tests, 198 merged pull requests.
+- GoGoCash cashback app: 1,035 users; 180+ code changes shipped with AI agents.
+- Den Air TikTok: best video 45.9K views, about 70× the follower count.
+- 1st Place, Startup Competition (pitch), April 2024.
+
+## Work
+
+- Den Air Service (DENSO Service Partner, Surin): General Manager, May 2021 to now.
+- Formula L (software, AI and automation company, formulal.cc): Founder, Sep 2026 to now.
+- AirPlus Auto (car A/C parts on Shopee and TikTok Shop): Jul 2024 to now.
+- GoGoCash (gogocash.co): Admin, Forward Deployed Engineer, UX/UI Designer, Jun 2025 to now.
+
+## Skills
+
+AI agents, workflow automation, prompt engineering, tool calling (MCP), business analysis, process mapping, project and stakeholder management, UX/UI (Figma), e-commerce, data dashboards (Google Sheets, PostHog).
+
+## Education
+
+Bachelor's degree, International Business Management, International College of Burapha University (2016 to 2020).
+
+## Links
+
+- [Portfolio](https://kirsah.com/)
+- [Resume (PDF)](https://drive.google.com/file/d/1nM__isIh0vHr9P6hTDduK2Izp1mMPxKc/view)
+- [Formula L](https://formulal.cc/)
+- [AirPlus web store](https://airplusauto.com/)
+- [GoGoCash](https://gogocash.co/)
+
+## Contact
+
+Email: lady.kirsah@gmail.com
