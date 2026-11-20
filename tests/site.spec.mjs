@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { readFileSync } from 'node:fs';
 
 const TITLE = 'Kirsah Tiathawornchai · Tech / AI Project Manager';
 
@@ -37,14 +38,19 @@ test.describe('home page', () => {
     expect(hrefs).not.toContain('https://gogocash.co');
   });
 
-  // iPhone Safari (iOS 26) never draws the page's fixed layers under its clock bar or its bottom bar: it paints those
-  // strips with the page background. So the page background turns orange while the orange wipe covers the screen.
-  test('page load > the page background is orange under the wipe, then cream again', async ({ page }) => {
+  // iPhone Safari (iOS 26) paints the strips under its clock and bottom bar with the page background, and keeps the
+  // colour it first saw. So the background stays cream from the first frame to the last (an orange one got stuck).
+  test('page load > the page background stays cream the whole time', async ({ page }) => {
     await page.goto('/');
     const bg = () => page.evaluate(() => [getComputedStyle(document.documentElement).backgroundColor, getComputedStyle(document.body).backgroundColor]);
-    expect(await bg()).toEqual(['rgb(239, 74, 35)', 'rgb(239, 74, 35)']);
-    await page.waitForTimeout(3500);
     expect(await bg()).toEqual(['rgb(250, 243, 228)', 'rgb(250, 243, 228)']);
+    await page.waitForTimeout(900);
+    expect(await bg()).toEqual(['rgb(250, 243, 228)', 'rgb(250, 243, 228)']);
+  });
+
+  test('test links > every pushed branch gets its own preview link (to check on a phone)', async () => {
+    const config = readFileSync(new URL('../wrangler.jsonc', import.meta.url), 'utf8');
+    expect(config).toMatch(/"preview_urls"\s*:\s*true/);
   });
 
   test('page load > with reduced motion, there is no wipe and the background stays cream', async ({ browser }) => {

@@ -145,13 +145,13 @@ L checked on her phone: "it's totally the same". Fitting the layout is not enoug
   `Content-Disposition: attachment`, so Download PDF saves the file in every browser.
 
 
-## iPhone Safari bars follow the load wipe (20 Nov 2026)
+## iPhone Safari: page content under the clock and the bottom bar (20 Nov 2026)
 
-- iPhone Safari (iOS 26) never draws a page's fixed layers under its clock bar or its bottom bar; it paints those two
-  strips with the page background (`theme-color` is no longer used). So the orange load wipe was cut flat at the top
-  and bottom ("fill the orange moving element to the top and bottom").
-- Fix: a tiny script in the head sets `data-wipe` on `<html>` (only when motion is allowed); `html` and `body` are
-  tomato while it is set, so Safari paints the strips orange too. At the "reveal" step it is removed and the background
-  fades back to cream (0.7 s). No-JS, reduced motion and the 4 s failsafe all end on cream; checks cover the three.
-- This Mac has no iPhone simulator and branch previews give no link (`wrangler preview` needs `"preview_urls": true`
-  to make one), so the real check is on her iPhone after it is live.
+- iPhone Safari (iOS 26) draws page content under its clock and its floating bottom bar ONLY when that content scrolls
+  with the page. Fixed layers (the old load wipe, pinned sections) are cut at both bars, and the strips are painted
+  with the page background colour, which Safari keeps once it has seen it. Proven in her TeamPit app on 7 Nov
+  (Kira.office memory "phone-website-fills-screen"); read sibling projects' phone lessons first.
+- Tried and reverted the same day: turning the background orange during the wipe. The clock band stayed orange after
+  the wipe, and the nav's soft glow became an orange blur. She called it "worse". The background now stays cream.
+- `wrangler.jsonc` has `"preview_urls": true`, so every pushed branch gets a test link she can open on her phone:
+  `https://<branch>-kirsah-website.lady-kirsah.workers.dev`. iPhone-only changes are checked there before merge.
