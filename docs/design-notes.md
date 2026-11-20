@@ -101,3 +101,23 @@ L: "if the full desktop design / layout / motion is the best version > make all 
   title gets the same frosted panel as phones; phone photos stay inside the screen edges.
 - **Let's talk** leaves room for the menu at the top, so in a short window nothing hides under the logo.
 - Checks cover 390, 572, 768, 1024, 1280 and 1440 wide, touch and mouse, and a wide-to-narrow resize.
+
+## Rounds 8 and 9: the same motion on every size (19 Nov 2026)
+
+L checked on her phone: "it's totally the same". Fitting the layout is not enough; the motion must match desktop too.
+- **Work cards:** the same pinned card stack on every size (no plain list on phones). Each card behind is the same
+  step smaller and higher (scale −0.06, up 26px per card), so the frames peek out evenly. The old 3D depth made the
+  steps shrink toward the back ("frame spacing is not even"). These two numbers keep the desktop stack the same size
+  and height as the approved 3D one; compare with the live site before changing them.
+- **Equal card heights:** every card takes the tallest card's height, measured again whenever card text changes size
+  (late fonts, a frame that changes width). A narrow card puts its line of text under the title; squeezed beside the
+  title it broke into many lines, one card grew tall, and every card copied that height ("fix the frame").
+- **Small screens:** the stack shrinks to fit under "Latest work" and is centred in the space left. Short screens
+  (small phones, short narrow windows) were the ones where the back cards covered the title.
+- **Top of the page:** the floating photo is only for a mouse (`hover: hover` and `pointer: fine`), at any window
+  width. Phones and tablets have no cursor, so it is hidden there (her call). All its photos load as soon as a mouse is
+  found; lazy loading left an empty frame when the card flipped to a photo not loaded yet.
+- **Proof wall:** no blurred panel behind the title on small screens; the photos move over the title like on desktop.
+- **Let's talk on phones:** two equal buttons side by side, 48px tall (still easy to tap), smaller text.
+- Checks: even steps at 1440/991/768/572/390/320, stack under the title at five sizes, no empty gap bigger than one
+  line at seven sizes with fonts arriving late, no floating photo on touch, photo loaded when it follows the mouse.

@@ -179,15 +179,9 @@ html[data-theme="dark"] .nav-link,html[data-theme="dark"] .nav-cta{color:var(--c
 .marquee-collection{display:flex;flex:none}
 .m-item{flex:none;height:7rem;margin:0 2.5rem;display:flex;align-items:center;gap:.9rem;color:var(--tomato);font-family:var(--f-grot);font-weight:800;font-variation-settings:"wght" 800,"wdth" 72;text-transform:uppercase;font-size:1.7rem;letter-spacing:-.01em;white-space:nowrap}
 .m-item svg{width:1.4rem;height:1.4rem;flex:none}
-@media (max-width:991px),(hover:none),(pointer:coarse){
-  .hero{flex-direction:column;gap:2.6rem;height:auto;min-height:100vh;min-height:100svh;padding-block:7rem 9rem}
-  /* !important: the desktop cursor effect leaves inline styles behind when a wide window is made narrow */
-  .hero-card{position:relative;left:auto;top:auto;translate:none;flex:none;width:13rem;height:13rem;rotate:-5deg;visibility:visible!important;opacity:1!important;transform:none!important}
-  .hero-card-media{transform:none!important}
-  .hero-content{margin-top:0}
-}
+@media (max-width:991px){.hero{height:100vh;height:100svh}.hero-card{width:13rem;height:13rem}}
+@media (hover:none),(pointer:coarse){.hero-card{display:none}} /* touch phones and tablets: no cursor, so no cursor card */
 @media (max-width:600px){
-  .hero{gap:2rem;padding-block:6rem 7rem}
   .hero-content{gap:1.4rem;padding-inline:1rem}
   .hero-role{font-size:1.05rem}
   .hero-link{font-size:1.6rem}
@@ -210,17 +204,19 @@ html[data-theme="dark"] .nav-link,html[data-theme="dark"] .nav-cta{color:var(--c
 .badge{position:absolute;right:1rem;bottom:1rem;width:9rem;height:9rem;z-index:5}
 .badge svg{width:100%;height:100%;display:block}
 @media (max-width:991px){
-  .work .pin{height:auto;grid-template-columns:1fr;padding:6rem 1.5rem 4rem;gap:3rem}
-  .stage{height:auto;perspective:none}
-  .stack{position:relative;inset:auto;display:flex;flex-direction:column;gap:1.5rem}
-  .slide{position:relative;left:auto;top:auto;translate:none;width:100%;padding:0 0 .8rem;border-radius:1.4rem;gap:.9rem}
+  .work .pin{height:100vh;height:100svh;grid-template-columns:1fr;grid-template-rows:auto 1fr;align-items:stretch;padding:6.5rem 1.25rem 1.5rem;gap:1.4rem}
+  .work-copy{gap:.9rem}
+  .stage{height:100%}
+  .slide{width:min(100%,64svh);top:52%;padding:0 0 .8rem;border-radius:1.4rem;gap:.9rem;container-type:inline-size}
   .slide-body{padding:.2rem 1.3rem .6rem}
   .slide .sub{font-size:1.05rem;max-width:18rem}
+  /* a narrow card puts the text under the title instead of squeezing it beside it */
+  @container (max-width:34rem){.slide-body{flex-direction:column;align-items:flex-start;gap:.35rem}.slide .sub{text-align:left;max-width:none}}
   .slide .tag{top:1.8rem;left:1.8rem}
   .slide .ttl{font-size:2.6rem}
   .badge{display:none}
 }
-@media (max-width:600px){.slide .ttl{font-size:2.1rem}.slide-body{flex-direction:column;align-items:flex-start;gap:.35rem}.slide .sub{text-align:left;max-width:none}}
+@media (max-width:600px){.work-copy .eyebrow-s{font-size:1.15rem}.slide .ttl{font-size:2.1rem}}
 
 /* ---------- wall (proof wall / timeline) ---------- */
 .wall{position:relative;height:170vh;color:var(--ink);transition:color .7s var(--ease);overflow-x:clip}
@@ -239,11 +235,7 @@ html[data-theme="dark"] .wall{color:var(--cream)}
 .sticker{position:absolute;left:50%;bottom:-.9rem;translate:-50% 0;rotate:var(--srot);font-family:var(--f-grot);font-weight:800;font-variation-settings:"wght" 800,"wdth" 75;text-transform:uppercase;letter-spacing:-.01em;font-size:3.6rem;line-height:1;color:var(--tomato);-webkit-text-stroke:.32rem var(--cream);paint-order:stroke fill;white-space:nowrap}
 .ph-photo{position:relative}
 .cap{display:block;margin-top:1.8rem;padding-inline:.2rem;font-family:var(--f-serif);font-weight:400;font-variation-settings:"wght" 400,"wdth" 100,"opsz" 20;font-size:1rem;line-height:1.3;opacity:.75;text-align:center}
-@media (max-width:991px){
-  .wall{height:180vh}
-  .photos{z-index:0}
-  .wall-title{background:rgba(46,29,21,.74);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-radius:1.5rem;padding:2.2rem 2rem;max-width:min(36rem,100%)}
-}
+@media (max-width:991px){.wall{height:180vh}}
 @media (max-width:600px){
   .wall-title .h-sec{font-size:4.2rem}
   .wall-sticky{padding-inline:1.5rem}
@@ -252,7 +244,6 @@ html[data-theme="dark"] .wall{color:var(--cream)}
   .ph.r{right:var(--moff)}
   .sticker{font-size:1.9rem;-webkit-text-stroke:.22rem var(--cream)}
   .cap{font-size:.72rem;margin-top:1.1rem}
-  .wall-title{padding:1.6rem 1rem}
 }
 
 /* ---------- contact ---------- */
@@ -277,7 +268,7 @@ html[data-theme="dark"] .wall{color:var(--cream)}
 .cta-main:focus-visible,.cta-ghost:focus-visible{outline:2px solid var(--tomato);outline-offset:4px}
 .btn{display:inline-flex;align-items:center;gap:.6rem;height:3.4rem;padding:0 1.5rem;border:0;cursor:pointer;font-family:var(--f-grot);font-weight:700;font-variation-settings:"wght" 700,"wdth" 72;text-transform:uppercase;font-size:1.15rem;letter-spacing:-.01em}
 .foot{grid-row:3;align-self:end;display:flex;flex-direction:column;gap:.4rem;font-family:var(--f-grot);font-variation-settings:"wght" 500,"wdth" 90;font-size:.85rem;opacity:.7}
-@media (max-width:600px){.contact-inner{gap:1.5rem}.email{font-size:1.3rem}.btn{height:3rem;font-size:1rem}.cta-main{height:3.6rem;font-size:1.15rem;padding-left:1.5rem;gap:.7rem}.cta-arrow{width:2.4rem;height:2.4rem}.cta-arrow svg{width:1.05rem;height:1.05rem}.cta-ghost{height:3.6rem;font-size:1.05rem;padding:0 1.4rem}.proof-pills li{font-size:.92rem;padding:.6rem 1rem}.proof-pills b{font-size:1.25rem}}
+@media (max-width:600px){.contact-inner{gap:1.5rem}.email{font-size:1.3rem}.btn{height:3rem;font-size:1rem}.btn-row{width:100%;max-width:24rem;display:grid;grid-template-columns:1fr 1fr;gap:.6rem}.cta-main{height:3rem;font-size:1rem;padding:0 .4rem 0 1rem;gap:.5rem;justify-content:space-between;box-shadow:0 .8rem 1.6rem -1rem rgba(239,74,35,.7)}.cta-arrow{width:2.2rem;height:2.2rem}.cta-arrow svg{width:.95rem;height:.95rem}.cta-ghost{height:3rem;font-size:1rem;padding:0 .8rem}.proof-pills li{font-size:.85rem;padding:.5rem .9rem}.proof-pills b{font-size:1.1rem}}
 
 /* ---------- reduced motion ---------- */
 @media (prefers-reduced-motion:reduce){
@@ -410,6 +401,7 @@ html[data-theme="dark"] .wall{color:var(--cream)}
   if (!window.gsap || !window.ScrollTrigger || !window.SplitText) { revealAll(); return; }
 
   gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin);
+  ScrollTrigger.config({ ignoreMobileResize: true });
 
   /* ---------- smooth scroll ---------- */
   let lenis = null;
@@ -541,34 +533,42 @@ html[data-theme="dark"] .wall{color:var(--cream)}
   }
   const topLevelFW = root => [...root.querySelectorAll("[data-font-weight-hover]")].filter(el => !el.parentElement.closest("[data-font-weight-hover]"));
 
-  /* ---------- hero cursor card ---------- */
-  function initHeroCard() {
-    const mq = matchMedia("(min-width: 992px) and (hover: hover) and (pointer: fine)");
-    if (!mq.matches) return;
+  /* ---------- hero photo card ---------- */
+  // The card follows the mouse, at any window width. Touch phones and tablets have no cursor, so CSS hides it.
+  function initHeroCard(mm) {
     const hero = document.querySelector("[data-cursor-cards]");
     const threshold = +hero.dataset.threshold || 300;
     const card = hero.querySelector(".hero-card"), media = card.querySelector(".hero-card-media"), crops = [...media.children];
-    const xTo = gsap.quickTo(card, "x", { duration: 1, ease: "power4" }), yTo = gsap.quickTo(card, "y", { duration: 1, ease: "power4" });
-    const rTo = gsap.quickTo(card, "rotation", { duration: 1, ease: "power4" });
-    const mxTo = gsap.quickTo(media, "xPercent", { duration: .6, ease: "power2" }), myTo = gsap.quickTo(media, "yPercent", { duration: .7, ease: "power2" });
-    gsap.set(card, { autoAlpha: 0 });
-    let last = null, travel = 0, idx = 0, idle = 0, shown = false;
-    hero.addEventListener("mousemove", e => {
-      const top = hero.getBoundingClientRect().top;
-      const x = e.clientX - innerWidth / 2, y = e.clientY - innerHeight / 2 - top;
-      if (e.target.closest("a,button")) { if (shown) { gsap.to(card, { autoAlpha: 0, duration: .25, ease: "power2.out", overwrite: "auto" }); shown = false; } last = { x, y }; return; }
-      if (!last) { gsap.set(card, { x, y }); last = { x, y }; }
-      if (!shown) { gsap.to(card, { autoAlpha: 1, duration: .3, overwrite: "auto" }); shown = true; }
-      const dx = (x - last.x) / 2, dy = (y - last.y) / 2;
-      rTo((x - last.x) / 4); xTo(x); yTo(y);
-      mxTo(-clamp(-8, 8, dx)); myTo(-clamp(-8, 8, dy));
-      travel += Math.abs(dx) + Math.abs(dy);
-      if (travel > threshold) { travel = 0; crops[idx].classList.remove("on"); idx = (idx + 1) % crops.length; crops[idx].classList.add("on"); }
-      last = { x, y };
-      clearTimeout(idle);
-      idle = setTimeout(() => { rTo(0); mxTo(0); myTo(0); }, 66);
+    let idx = 0;
+    const next = () => { crops[idx].classList.remove("on"); idx = (idx + 1) % crops.length; crops[idx].classList.add("on"); };
+    mm.add("(hover: hover) and (pointer: fine)", () => {
+      // load every photo now, so a flip never shows an empty frame
+      media.querySelectorAll("img").forEach(img => { img.loading = "eager"; });
+      const xTo = gsap.quickTo(card, "x", { duration: 1, ease: "power4" }), yTo = gsap.quickTo(card, "y", { duration: 1, ease: "power4" });
+      const rTo = gsap.quickTo(card, "rotation", { duration: 1, ease: "power4" });
+      const mxTo = gsap.quickTo(media, "xPercent", { duration: .6, ease: "power2" }), myTo = gsap.quickTo(media, "yPercent", { duration: .7, ease: "power2" });
+      gsap.set(card, { autoAlpha: 0 });
+      let last = null, travel = 0, idle = 0, shown = false;
+      const onMove = e => {
+        const top = hero.getBoundingClientRect().top;
+        const x = e.clientX - innerWidth / 2, y = e.clientY - innerHeight / 2 - top;
+        if (e.target.closest("a,button")) { if (shown) { gsap.to(card, { autoAlpha: 0, duration: .25, ease: "power2.out", overwrite: "auto" }); shown = false; } last = { x, y }; return; }
+        if (!last) { gsap.set(card, { x, y }); last = { x, y }; }
+        if (!shown) { gsap.to(card, { autoAlpha: 1, duration: .3, overwrite: "auto" }); shown = true; }
+        const dx = (x - last.x) / 2, dy = (y - last.y) / 2;
+        rTo((x - last.x) / 4); xTo(x); yTo(y);
+        mxTo(-clamp(-8, 8, dx)); myTo(-clamp(-8, 8, dy));
+        travel += Math.abs(dx) + Math.abs(dy);
+        if (travel > threshold) { travel = 0; next(); }
+        last = { x, y };
+        clearTimeout(idle);
+        idle = setTimeout(() => { rTo(0); mxTo(0); myTo(0); }, 66);
+      };
+      const onLeave = () => { last = null; travel = 0; rTo(0); mxTo(0); myTo(0); gsap.to(card, { autoAlpha: 0, duration: .3, overwrite: "auto" }); shown = false; };
+      hero.addEventListener("mousemove", onMove);
+      hero.addEventListener("mouseleave", onLeave);
+      return () => { hero.removeEventListener("mousemove", onMove); hero.removeEventListener("mouseleave", onLeave); clearTimeout(idle); };
     });
-    hero.addEventListener("mouseleave", () => { last = null; travel = 0; rTo(0); mxTo(0); myTo(0); gsap.to(card, { autoAlpha: 0, duration: .3, overwrite: "auto" }); shown = false; });
   }
 
   /* ---------- marquee ---------- */
@@ -593,22 +593,45 @@ html[data-theme="dark"] .wall{color:var(--cream)}
 
   /* ---------- 3D work stack ---------- */
   function initStack(mm) {
-    mm.add("(min-width: 992px)", () => {
+    // Same pinned card stack on every size.
+    mm.add({ desktop: "(min-width: 992px)", small: "(max-width: 991px)" }, ctx => {
       const section = document.querySelector("[data-featured-stack]");
       const pin = section.querySelector(".pin"), root = section.querySelector(".stack"), badge = section.querySelector(".badge svg");
       const items = [...root.querySelectorAll(".slide")], n = items.length;
       const factor = +section.dataset.scrollFactor || 1.2;
-      const DEPTH = 120, OFFSET = 40;
-      items.forEach((s, b) => gsap.set(s, { z: -b * DEPTH, y: -b * OFFSET, zIndex: n - b, autoAlpha: 1 }));
+      // each card behind is the same step smaller and higher, so the frames peek out evenly;
+      // these two numbers keep the desktop stack the same size and height as the approved 3D version
+      const SHRINK = .06, OFFSET = 26;
+      const stage = section.querySelector(".stage");
+      const layout = () => {
+        // every card gets the tallest card's height (text wraps differently per width), so the steps stay even
+        items.forEach(s => { s.style.minHeight = ""; });
+        const tallest = Math.max(...items.map(s => s.offsetHeight));
+        items.forEach(s => { s.style.minHeight = tallest + "px"; });
+        if (!ctx.conditions.small) return;
+        // small screens: shrink the whole stack when it is taller than the space under the title, and centre it there
+        const rise = (n - 1) * (OFFSET - tallest * SHRINK / 2);
+        const room = stage.clientHeight, centre = parseFloat(getComputedStyle(items[0]).top);
+        const k = Math.min(1, room / (tallest + rise));
+        gsap.set(root, { scale: k, y: k * (room / 2 + rise / 2 - centre) });
+      };
+      layout();
+      ScrollTrigger.addEventListener("refreshInit", layout);
+      // measure again whenever the card text changes size: fonts arriving late, or the frame changing width
+      let raf = 0;
+      const ro = new ResizeObserver(() => { cancelAnimationFrame(raf); raf = requestAnimationFrame(layout); });
+      items.forEach(s => ro.observe(s.querySelector(".slide-body")));
+      // centring is set here too: reading it back from the CSS translate is unreliable on some sizes
+      items.forEach((s, b) => gsap.set(s, { x: 0, xPercent: -50, yPercent: -50, scale: 1 - b * SHRINK, y: -b * OFFSET, zIndex: n - b, autoAlpha: 1 }));
       const tl = gsap.timeline({ paused: true });
       for (let b = 0; b < n - 1; b++) {
         tl.to(items[b], { y: () => "+=" + innerHeight * .9, ease: "power2.in", duration: 1 }, b);
         tl.to(items[b], { autoAlpha: 0, ease: "none", duration: .25 }, b + .7);
-        for (let j = b + 1; j < n; j++) { const C = j - b - 1; tl.to(items[j], { z: -C * DEPTH, y: -C * OFFSET, ease: "none", duration: 1 }, b); }
+        for (let j = b + 1; j < n; j++) { const C = j - b - 1; tl.to(items[j], { scale: 1 - C * SHRINK, y: -C * OFFSET, ease: "none", duration: 1 }, b); }
       }
       tl.fromTo(badge, { rotation: 0 }, { rotation: 180, ease: "none", duration: n - 1 }, 0);
       ScrollTrigger.create({ trigger: section, start: "top top", end: () => "+=" + innerHeight * factor * (n - 1), pin, pinSpacing: true, animation: tl, scrub: .3, refreshPriority: 1, invalidateOnRefresh: true });
-      return () => requestAnimationFrame(() => items.forEach(s => s.removeAttribute("style")));
+      return () => { ro.disconnect(); cancelAnimationFrame(raf); ScrollTrigger.removeEventListener("refreshInit", layout); items.forEach(s => { s.style.minHeight = ""; }); gsap.set(root, { clearProps: "transform" }); };
     });
   }
 
@@ -629,7 +652,7 @@ html[data-theme="dark"] .wall{color:var(--cream)}
     wallMM.add({ isDesktop: "(min-width: 992px)", isTablet: "(min-width: 480px) and (max-width: 991px)", isMobile: "(max-width: 479px)", reduce: "(prefers-reduced-motion: reduce)" }, ctx => {
       const { isDesktop, isTablet, reduce } = ctx.conditions;
       if (reduce) return;
-      const dist = 320 * (isDesktop ? 1 : isTablet ? .5 : .3);
+      const dist = 320 * (isDesktop ? 1 : isTablet ? .7 : .5);
       sec.querySelectorAll(".ph").forEach(p => {
         const sp = +p.dataset.speed;
         gsap.fromTo(p, { y: dist * sp }, { y: -dist * sp, ease: "none", scrollTrigger: { trigger: sec, start: "clamp(top bottom)", end: "clamp(bottom top)", scrub: true, invalidateOnRefresh: true, refreshPriority: -1 } });
@@ -647,8 +670,8 @@ html[data-theme="dark"] .wall{color:var(--cream)}
     if (initDone) return; initDone = true;
     initDrawLines();
     initMarquee();
-    initHeroCard();
     const mm = gsap.matchMedia();
+    initHeroCard(mm);
     initStack(mm);
     initScrollReveal(document);
     topLevelFW(document).filter(el => !el.closest(".wall")).forEach(whAdd);
