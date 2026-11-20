@@ -135,8 +135,11 @@ html[data-page-ready] main{visibility:visible}
 @media (max-width:600px){.h-hero{font-size:4rem}.h-sec{font-size:4.2rem}.eyebrow-m{font-size:1.75rem}.eyebrow-s{font-size:1.5rem}}
 
 /* ---------- load wipe ---------- */
-.wipe{position:fixed;inset:0;z-index:1000;pointer-events:none;overflow:clip}
-.wipe svg{display:block;width:100%;height:100%}
+/* part of the page, not a floating layer: iPhone Safari only draws page content under its clock and bottom bar.
+   Taller than the screen, and the shape wider than it (trimmed at the sides, so the page never gets wider on a phone):
+   the orange reaches all four edges. */
+.wipe{position:absolute;left:0;right:0;top:-12vh;top:-12lvh;height:130vh;height:130lvh;z-index:1000;pointer-events:none;overflow:clip}
+.wipe svg{position:absolute;top:0;left:-15%;width:130%;height:100%}
 .wipe path{fill:none;stroke:var(--tomato);stroke-linecap:round;stroke-linejoin:round;stroke-width:0}
 .wipe[data-transition-ready]{display:none}
 
@@ -630,7 +633,10 @@ html[data-theme="dark"] .wall{color:var(--cream)}
         for (let j = b + 1; j < n; j++) { const C = j - b - 1; tl.to(items[j], { scale: 1 - C * SHRINK, y: -C * OFFSET, ease: "none", duration: 1 }, b); }
       }
       tl.fromTo(badge, { rotation: 0 }, { rotation: 180, ease: "none", duration: n - 1 }, 0);
-      ScrollTrigger.create({ trigger: section, start: "top top", end: () => "+=" + innerHeight * factor * (n - 1), pin, pinSpacing: true, animation: tl, scrub: .3, refreshPriority: 1, invalidateOnRefresh: true });
+      ScrollTrigger.create({ trigger: section, start: "top top", end: () => "+=" + innerHeight * factor * (n - 1), pin, pinSpacing: true, animation: tl, scrub: .3, refreshPriority: 1, invalidateOnRefresh: true,
+        // touch screens: hold the stack by moving it with the page (not a floating layer), so iPhone Safari keeps
+        // drawing it under its bottom bar
+        pinType: touchMQ.matches ? "transform" : "fixed" });
       return () => { ro.disconnect(); cancelAnimationFrame(raf); ScrollTrigger.removeEventListener("refreshInit", layout); items.forEach(s => { s.style.minHeight = ""; }); gsap.set(root, { clearProps: "transform" }); };
     });
   }
@@ -691,13 +697,15 @@ html[data-theme="dark"] .wall{color:var(--cream)}
       return;
     }
     const path = wipe.querySelector("path");
+    // full orange for a short beat (0.3 s), then one even stroke draws away (1.6 s): about 2 seconds in all
+    gsap.set(wipe, { y: window.scrollY });
     const tl = gsap.timeline();
     tl.set(main, { autoAlpha: 0 })
-      .set(path, { drawSVG: "0% 100%", strokeWidth: "30%" })
-      .addLabel("reveal", .4)
+      .set(path, { drawSVG: "0% 100%", strokeWidth: "72%" })
+      .addLabel("reveal", .3)
       .set(main, { autoAlpha: 1 }, "reveal")
       .call(() => { runTextReveal(.6); init(); }, null, "reveal")
-      .to(path, { drawSVG: "100% 100%", strokeWidth: "5%", duration: 1.25, ease: "power1.inOut", onComplete: () => wipe.setAttribute("data-transition-ready", "") }, "reveal");
+      .to(path, { drawSVG: "100% 100%", strokeWidth: "20%", duration: 1.6, ease: "sine.inOut", onComplete: () => wipe.setAttribute("data-transition-ready", "") }, "reveal");
   }
   Promise.race([document.fonts.ready, new Promise(r => setTimeout(r, 1500))]).then(start);
 })();
