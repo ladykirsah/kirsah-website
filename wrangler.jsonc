@@ -20,5 +20,8 @@
   // Every pull request gets a preview copy of the site, made by `npx wrangler preview`
   // (Cloudflare's default preview command). That command refuses to run without
   // this block. It can stay empty: assets and settings above apply to previews too.
+  // a test link for every pushed branch (<branch>-kirsah-website.lady-kirsah.workers.dev), to check on a phone
+  "preview_urls": true,
+
   "previews": {}
 }
