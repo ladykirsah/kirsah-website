@@ -7,6 +7,8 @@
 <meta name="description" content="Tech / AI project manager in Bangkok. I turn ideas into live products with AI agents: a web store live in 9 days, 26× Shopee sales, 4,267 automated tests.">
 <link rel="canonical" href="https://kirsah.com/">
 <meta name="theme-color" content="#faf3e4">
+<!-- iPhone Safari paints the strips under its clock and bottom bars with the page background, so the background turns orange with the load wipe (only when the wipe runs) -->
+<script>if (!matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.setAttribute("data-wipe", "");</script>
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -104,7 +106,7 @@ img{max-width:100%}
   --ease:cubic-bezier(.65,.05,0,1);
   color-scheme:light;
 }
-html{font-size:calc(100vw / 90);background:var(--page)}
+html{font-size:calc(100vw / 90);background:var(--page);transition:background-color .7s var(--ease)}
 @media (max-width:991px){html{font-size:max(13px,calc(100vw / 60))}}
 @media (max-width:600px){html{font-size:min(17px,calc(100vw / 24.375))}}
 html[data-theme="dark"]{--page:var(--night)}
@@ -139,6 +141,7 @@ html[data-page-ready] main{visibility:visible}
 .wipe svg{display:block;width:100%;height:100%}
 .wipe path{fill:none;stroke:var(--tomato);stroke-linecap:round;stroke-linejoin:round;stroke-width:0}
 .wipe[data-transition-ready]{display:none}
+html[data-wipe],html[data-wipe] body{background:var(--tomato);transition:none}
 
 /* ---------- cursor label ---------- */
 
@@ -393,6 +396,7 @@ html[data-theme="dark"] .wall{color:var(--cream)}
   /* ---------- failsafes ---------- */
   function revealAll() {
     html.setAttribute("data-page-ready", "");
+    html.removeAttribute("data-wipe");
     main.style.visibility = "visible"; main.style.opacity = "1";
     document.querySelectorAll("[data-text-reveal],[data-scroll-reveal]").forEach(el => (el.style.visibility = "visible"));
     wipe.setAttribute("data-transition-ready", "");
@@ -696,6 +700,7 @@ html[data-theme="dark"] .wall{color:var(--cream)}
       .set(path, { drawSVG: "0% 100%", strokeWidth: "30%" })
       .addLabel("reveal", .4)
       .set(main, { autoAlpha: 1 }, "reveal")
+      .call(() => html.removeAttribute("data-wipe"), null, "reveal")
       .call(() => { runTextReveal(.6); init(); }, null, "reveal")
       .to(path, { drawSVG: "100% 100%", strokeWidth: "5%", duration: 1.25, ease: "power1.inOut", onComplete: () => wipe.setAttribute("data-transition-ready", "") }, "reveal");
   }

@@ -37,6 +37,32 @@ test.describe('home page', () => {
     expect(hrefs).not.toContain('https://gogocash.co');
   });
 
+  // iPhone Safari (iOS 26) never draws the page's fixed layers under its clock bar or its bottom bar: it paints those
+  // strips with the page background. So the page background turns orange while the orange wipe covers the screen.
+  test('page load > the page background is orange under the wipe, then cream again', async ({ page }) => {
+    await page.goto('/');
+    const bg = () => page.evaluate(() => [getComputedStyle(document.documentElement).backgroundColor, getComputedStyle(document.body).backgroundColor]);
+    expect(await bg()).toEqual(['rgb(239, 74, 35)', 'rgb(239, 74, 35)']);
+    await page.waitForTimeout(3500);
+    expect(await bg()).toEqual(['rgb(250, 243, 228)', 'rgb(250, 243, 228)']);
+  });
+
+  test('page load > with reduced motion, there is no wipe and the background stays cream', async ({ browser }) => {
+    const context = await browser.newContext({ reducedMotion: 'reduce' });
+    const page = await context.newPage();
+    await page.goto('/');
+    expect(await page.evaluate(() => getComputedStyle(document.documentElement).backgroundColor)).toBe('rgb(250, 243, 228)');
+    await context.close();
+  });
+
+  test('page load > without JavaScript, the background is cream', async ({ browser }) => {
+    const context = await browser.newContext({ javaScriptEnabled: false });
+    const page = await context.newPage();
+    await page.goto('/');
+    expect(await page.evaluate(() => getComputedStyle(document.documentElement).backgroundColor)).toBe('rgb(250, 243, 228)');
+    await context.close();
+  });
+
   test('every picture > is served as an image file', async ({ page, request }) => {
     await page.goto('/');
     const sources = await page.evaluate(() => [...new Set([...document.images].map((i) => i.src))]);
