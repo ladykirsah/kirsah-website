@@ -30,6 +30,13 @@ test.describe('home page', () => {
     expect(errors).toEqual([]);
   });
 
+  test('work cards > the GoGoCash card opens its company page', async ({ page }) => {
+    await page.goto('/');
+    const hrefs = await page.locator('#stack .slide').evaluateAll((els) => els.map((a) => a.getAttribute('href')));
+    expect(hrefs).toContain('https://about.gogocash.co/th');
+    expect(hrefs).not.toContain('https://gogocash.co');
+  });
+
   test('every picture > is served as an image file', async ({ page, request }) => {
     await page.goto('/');
     const sources = await page.evaluate(() => [...new Set([...document.images].map((i) => i.src))]);
