@@ -53,6 +53,55 @@ test.describe('home page', () => {
     expect(config).toMatch(/"preview_urls"\s*:\s*true/);
   });
 
+  // The opening's orange is part of the page (not a floating layer), so iPhone Safari also draws it under its clock
+  // and bottom bar; at the start it covers the whole screen, corners included.
+  test('page load > on a phone, the orange opening covers the whole screen at the start, edge to edge', async ({ browser }) => {
+    const context = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
+    const page = await context.newPage();
+    // stop the clock on the first orange frame, before it starts to move
+    await page.addInitScript(() => {
+      const watch = () => {
+        const path = document.querySelector('.wipe path');
+        if (path && parseFloat(path.style.strokeWidth) > 60 && window.gsap) { window.gsap.globalTimeline.pause(); window.__held = true; return; }
+        requestAnimationFrame(watch);
+      };
+      requestAnimationFrame(watch);
+    });
+    await page.goto('/');
+    await page.waitForFunction(() => window.__held === true);
+    const wipe = await page.evaluate(() => {
+      const el = document.querySelector('.wipe'), r = el.getBoundingClientRect();
+      return { position: getComputedStyle(el).position, covers: r.top <= 0 && r.left <= 0 && r.right >= innerWidth && r.bottom >= innerHeight };
+    });
+    expect(wipe).toEqual({ position: 'absolute', covers: true });
+    const shot = await page.screenshot();
+    const cream = await page.evaluate(async (b64) => {
+      const img = new Image(); img.src = 'data:image/png;base64,' + b64; await img.decode();
+      const c = document.createElement('canvas'); c.width = img.width; c.height = img.height;
+      const g = c.getContext('2d'); g.drawImage(img, 0, 0);
+      const d = g.getImageData(0, 0, c.width, c.height).data;
+      let n = 0;
+      for (let i = 0; i < d.length; i += 4) if (Math.abs(d[i] - 250) < 12 && Math.abs(d[i + 1] - 243) < 12 && Math.abs(d[i + 2] - 228) < 12) n++;
+      return n / (d.length / 4);
+    }, shot.toString('base64'));
+    expect(cream).toBeLessThan(0.01);
+    await context.close();
+  });
+
+  test('work cards > on a touch screen, the pinned stack scrolls with the page instead of floating on top', async ({ browser }) => {
+    const context = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
+    const page = await context.newPage();
+    await page.goto('/');
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(2500);
+    await page.evaluate(() => window.scrollTo(0, document.querySelector('#work').getBoundingClientRect().top + scrollY + innerHeight * 0.6));
+    await page.waitForTimeout(800);
+    const pin = await page.evaluate(() => { const el = document.querySelector('#work .pin'); return { position: getComputedStyle(el).position, top: Math.round(el.getBoundingClientRect().top) }; });
+    expect(pin.position).not.toBe('fixed');
+    expect(Math.abs(pin.top)).toBeLessThanOrEqual(2);
+    await context.close();
+  });
+
   test('page load > with reduced motion, there is no wipe and the background stays cream', async ({ browser }) => {
     const context = await browser.newContext({ reducedMotion: 'reduce' });
     const page = await context.newPage();
