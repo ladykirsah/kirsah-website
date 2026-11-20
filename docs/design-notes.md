@@ -155,3 +155,13 @@ L checked on her phone: "it's totally the same". Fitting the layout is not enoug
   the wipe, and the nav's soft glow became an orange blur. She called it "worse". The background now stays cream.
 - `wrangler.jsonc` has `"preview_urls": true`, so every pushed branch gets a test link she can open on her phone:
   `https://<branch>-kirsah-website.lady-kirsah.workers.dev`. iPhone-only changes are checked there before merge.
+  The links only work once that setting is live on main: merge the setting first, then push branches.
+- The opening (load wipe) is now part of the page: `position:absolute`, moved to the scroll position at load, 130% of
+  the screen height so it reaches under both bars. Its box is exactly screen-wide with `overflow:clip`, and the SVG
+  inside is 130% wide. A layer wider than the screen makes a phone widen the whole page (390 px became 449 px), so keep
+  any sideways overscan inside a screen-wide clipping box.
+- Timing, her pick on the artifact (round of 20 Nov): full orange for 0.3 s, then one even sweep (1.6 s, `sine.inOut`,
+  stroke 72% to 20%): about 2 seconds in all. She found the earlier version not smooth: no blur over moving layers,
+  even easing.
+- On touch screens the Work card stack is pinned with `pinType: "transform"`, so it scrolls with the page and Safari
+  keeps drawing it under the bottom bar. Mouse screens keep the fixed pin.
