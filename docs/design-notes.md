@@ -144,3 +144,14 @@ L checked on her phone: "it's totally the same". Fitting the layout is not enoug
   re-print the unchanged file first and compare the text, so only the intended line changes. `_headers` adds
   `Content-Disposition: attachment`, so Download PDF saves the file in every browser.
 
+
+## iPhone Safari bars follow the load wipe (20 Nov 2026)
+
+- iPhone Safari (iOS 26) never draws a page's fixed layers under its clock bar or its bottom bar; it paints those two
+  strips with the page background (`theme-color` is no longer used). So the orange load wipe was cut flat at the top
+  and bottom ("fill the orange moving element to the top and bottom").
+- Fix: a tiny script in the head sets `data-wipe` on `<html>` (only when motion is allowed); `html` and `body` are
+  tomato while it is set, so Safari paints the strips orange too. At the "reveal" step it is removed and the background
+  fades back to cream (0.7 s). No-JS, reduced motion and the 4 s failsafe all end on cream; checks cover the three.
+- This Mac has no iPhone simulator and branch previews give no link (`wrangler preview` needs `"preview_urls": true`
+  to make one), so the real check is on her iPhone after it is live.
