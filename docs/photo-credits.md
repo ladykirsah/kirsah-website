@@ -6,6 +6,7 @@ Every picture in `public/img/`, where it came from and its licence. Add a row th
 | --- | --- | --- | --- | --- |
 | work-teampit.webp | TeamPit back office + phone POS mock-up (phone number and PromptPay QR blurred) | L's Desktop/Work/10.png, 19 Nov 2026 | Kirsah | own work |
 | work-airplus.webp | airplusauto.com + phone mock-up | L's Desktop/Work/9.png | Kirsah | own work |
+| work-formulal.webp | formulal.cc home page, screenshot for the resume quick look | taken by me from her live site, 20 Nov 2026 | Kirsah (Formula L) | own work |
 | work-shopee.webp | Parcels + AirPlus Auto Shopee shop on a phone | L's Desktop/Work/13.png | Kirsah | own work |
 | work-ggc.webp | GoGoCash app banner | L's Desktop/Work/14.png | Kirsah / GoGoCash | own work |
 | work-social.webp | Her Instagram + TikTok "ลูกสาวร้านแอร์" | L's Desktop/Work/11.png | Kirsah | own work |

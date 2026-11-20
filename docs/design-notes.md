@@ -15,7 +15,8 @@ The rules this site follows, and the lessons from building it. Read before chang
 - Stickers: professional over playful. Titan One was "catchy but not professional".
 - Fonts are chosen by Kirsah from a picker (5 choices per spot, live preview on the proof wall),
   not by us.
-- Contact: email under "Let's talk", resume button, no phone number.
+- Contact: email under "Let's talk", resume button. The home page has no phone number; the resume page shows it
+  (her choice, 20 Nov 2026).
 - Hero: no video for now. The video and still from the design prompt belong to someone else.
 
 ## Pictures
@@ -48,7 +49,7 @@ The rules this site follows, and the lessons from building it. Read before chang
 ## Search and AI
 - What AI assistants read: `public/llms.txt` (the "who is Kirsah" answer and key facts) and the
   `application/ld+json` profile in the page head. Every fact must match her current resume; update both
-  together when the resume changes. Never add a phone number.
+  together when the resume changes. Keep the phone number out of these two (it is only on the resume page).
 - Project cards, the tools row and the proof wall are plain HTML (not built by JavaScript), so crawlers
   that don't run code can read them. Keep it that way.
 - `robots.txt` allows everyone; Cloudflare adds its own lines on top. `sitemap.xml` lists the page.
@@ -81,7 +82,7 @@ The rules this site follows, and the lessons from building it. Read before chang
   when you reach the end of the page; footer at the bottom. Checked at ±4% of screen height on three sizes.
 - **Resume page** at `/resume/` (folder + index.html so the local test server and Cloudflare both serve it). The PDF
   lives on the site, but `_headers` sends `X-Robots-Tag: noindex` for it, because the PDF has her phone number and
-  Google indexes PDFs. The web page itself never shows the phone number.
+  Google indexes PDFs. (Round 10: the resume page now shows the phone too, her choice.)
 - **Tab icon:** her orange K picture. At 16–48 px the soft orange-on-orange K disappears, so the tab sizes use the same
   picture with the K's edges strengthened; phone sizes use it exactly as she made it. She picked this ("Clearer K").
 - **Privacy check on every picture she sends:** the TeamPit mock-up showed her phone number and PromptPay QR on the
@@ -121,3 +122,25 @@ L checked on her phone: "it's totally the same". Fitting the layout is not enoug
 - **Let's talk on phones:** two equal buttons side by side, 48px tall (still easy to tap), smaller text.
 - Checks: even steps at 1440/991/768/572/390/320, stack under the title at five sizes, no empty gap bigger than one
   line at seven sizes with fonts arriving late, no floating photo on touch, photo loaded when it follows the mouse.
+
+## Round 10: resume contact and quick look (20 Nov 2026)
+
+- **Contact on the resume page:** phone with tap-to-call (her choice, she overruled "no phone"), email, and both towns
+  at district level only: "Prasat, Surin 32140 and Makkasan, Ratchathewi, Bangkok 10400 · willing to work hybrid
+  between Surin and Bangkok". She picked district + province over full addresses: no street, house or room number on
+  the site or the PDF. A check guards it.
+- **Copy buttons are plain icons** (no text, no frame); the icon turns into an orange tick for a moment, and screen
+  readers hear what was copied.
+- **Quick look:** every name in Work experience opens a panel (right side on a computer, from the bottom on a phone)
+  with her own picture, 2–3 real numbers from the resume and a Visit button; Previous / Next go through all 7.
+  She wanted the real sites to scroll inside kirsah.com, but airplusauto.com, about.gogocash.co, Shopee and Facebook
+  forbid being shown inside another site (only formulal.cc allows it), so she chose to keep this panel. Check a
+  site's `X-Frame-Options` / `frame-ancestors` before promising to show it inside the page.
+- **Links she gave:** Den Air = its Facebook page, AirPlus Auto = shopee.co.th/air.plus.auto, GoGoCash =
+  about.gogocash.co/th (also on the home page card and in llms.txt). TeamPit (sign-in only) and the AI agents (no
+  public page) get a short note instead of a Visit button.
+- **PDF:** the address line says "Makkasan, Ratchathewi, Bangkok 10400 (hybrid with Surin)". Made from her resume file
+  (`L Life/resume/resume-pi-r-square.html`) with `~/.claude/skills/prepare-papers/scripts/html_sheet_to_pdf.py`;
+  re-print the unchanged file first and compare the text, so only the intended line changes. `_headers` adds
+  `Content-Disposition: attachment`, so Download PDF saves the file in every browser.
+
