@@ -27,6 +27,11 @@ test.describe('resume page', () => {
     await expect(page.locator('.meta')).toContainText('Prasat, Surin 32140 and Makkasan, Ratchathewi, Bangkok 10400 · willing to work hybrid between Surin and Bangkok');
   });
 
+  test('real page > carries no notes left over from the drawing', async ({ request }) => {
+    const html = await (await request.get('/resume/')).text();
+    expect(html).not.toMatch(/Drawing only|in this drawing/i);
+  });
+
   test('privacy > shows no street address or room number', async ({ request }) => {
     const html = await (await request.get('/resume/')).text();
     expect(html).not.toMatch(/339\/281|Life Asoke|Chaturathit|Kung-ann|Chongchom|\b88,/i);
@@ -114,7 +119,8 @@ test.describe('resume page', () => {
   test('download buttons > get the one-page PDF from this site', async ({ page, request }) => {
     await page.goto('/resume/');
     const hrefs = await page.locator('a', { hasText: 'Download PDF' }).evaluateAll((els) => els.map((a) => a.getAttribute('href')));
-    expect(hrefs).toEqual([PDF, PDF]);
+    // top bar, under my name and at the end of the page
+    expect(hrefs).toEqual([PDF, PDF, PDF]);
     const res = await request.get(PDF);
     expect(res.ok()).toBe(true);
     expect(res.headers()['content-type']).toBe('application/pdf');
@@ -131,14 +137,26 @@ test.describe('resume page', () => {
     expect(rules).toMatch(new RegExp(`^${PDF.replace(/\./g, '\\.')}\\n\\s+X-Robots-Tag: noindex$`, 'm'));
   });
 
-  test('nav > Resume is marked as this page and the logo goes home', async ({ page }) => {
+  test('top bar > the round back button and the logo both go home', async ({ page }) => {
     await page.goto('/resume/');
-    await expect(page.locator('.nav-link[aria-current="page"]')).toHaveText('Resume');
+    expect(await page.locator('.bar').getByRole('link', { name: 'Back to home' }).getAttribute('href')).toBe('/');
     expect(await page.locator('.logo').getAttribute('href')).toBe('/');
   });
 
-  for (const size of [{ width: 390, height: 844 }, { width: 1440, height: 900 }]) {
-    test(`at ${size.width}px wide > never scrolls sideways`, async ({ page }) => {
+  // The resume page moved to the Folder room look with the home page (her drawing, 25 Nov 2026).
+  test('look > Folder room: warm grey page, Inter Tight name, work as folder cards with their pictures', async ({ page }) => {
+    await page.goto('/resume/');
+    await page.waitForLoadState('networkidle');
+    expect(await page.evaluate(() => getComputedStyle(document.body).backgroundColor)).toBe('rgb(238, 236, 232)');
+    expect(await page.locator('h1').evaluate((h) => getComputedStyle(h).fontFamily)).toMatch(/^"Inter Tight"/);
+    // pictures on the page itself (the quick-look picture is filled in when a folder opens)
+    for (const img of await page.locator('main img:not(#peek-img)').all()) {
+      expect(await img.evaluate((i) => i.complete && i.naturalWidth > 0), await img.getAttribute('src')).toBe(true);
+    }
+  });
+
+  for (const size of [{ width: 390, height: 844 }, { width: 390, height: 667 }, { width: 700, height: 500 }, { width: 768, height: 1024 }, { width: 1280, height: 720 }, { width: 1440, height: 900 }]) {
+    test(`at ${size.width}x${size.height} > never scrolls sideways`, async ({ page }) => {
       await page.setViewportSize(size);
       await page.goto('/resume/');
       await page.waitForLoadState('networkidle');

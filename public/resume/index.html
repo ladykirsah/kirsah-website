@@ -6,7 +6,7 @@
 <title>Resume · Kirsah Tiathawornchai · AI Project Manager</title>
 <meta name="description" content="Resume of Kirsah Tiathawornchai, AI project manager in Bangkok: Den Air Service, TeamPit, the AirPlus web store, GoGoCash. One-page PDF to download.">
 <link rel="canonical" href="https://kirsah.com/resume/">
-<meta name="theme-color" content="#faf3e4">
+<meta name="theme-color" content="#eeece8">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
@@ -22,214 +22,223 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Playfair:opsz,wdth,wght@5..1200,87.5..112.5,300..900&family=Yellowtail&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800;900&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap">
 <style>
-/* Layout: same nav + cream/tomato look as the home page → name, title and Download PDF up top → section names in a left column, entries on the right (stacks on phones).
-   One deliberate light look, the same as the live site, so no dark-mode swap. */
+/* Layout: the resume as a stack of work folders on the warm grey Folder room desk; tap a name and its folder opens (same look as the home page). Single light look, like the site. */
 :root{
-  --cream:#faf3e4; --ink:#141110; --muted:rgba(20,17,16,.62); --line:rgba(20,17,16,.13);
-  --tomato:#ef4a23; --tomato-hover:#d93d18; --tomato-press:#c23514; --chip:rgba(255,250,240,.85); --white:#ffffff;
-  --f-grot:"Archivo","Arial Narrow",Arial,sans-serif;
-  --f-serif:"Playfair","Playfair Display",Georgia,serif;
-  --f-script:"Yellowtail","Brush Script MT",cursive;
+  --bg:#eeece8; --bg2:#e6e3dd; --ink:#161616; --muted:#8b8884; --text:#3a3a3a; --line:rgba(22,22,22,.10); --card:#fbfaf8;
+  --lime:#cdf24a;
+  --f-display:"Inter Tight","Helvetica Neue",Arial,sans-serif;
+  --f-text:"Inter","Helvetica Neue",Arial,sans-serif;
+  --f-serif:"Instrument Serif",Georgia,serif;
   --ease:cubic-bezier(.65,.05,0,1);
   color-scheme:light;
 }
-html{font-size:clamp(15px,calc(100vw / 90),19px);background:var(--cream)}
-@media (max-width:600px){html{font-size:16px}}
-*,*::before,*::after{box-sizing:border-box}
-body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--f-serif);overflow-x:clip;-webkit-font-smoothing:antialiased}
-a{color:inherit;text-decoration:none}
+*{box-sizing:border-box}
+html{background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-text);overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:70;background:var(--bg)}
 button{font:inherit;color:inherit}
-:focus-visible{outline:2px solid var(--tomato);outline-offset:3px}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:10px}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 
-/* ---------- nav (same as the home page) ---------- */
-.nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:flex-start;padding:calc(1.25rem + env(safe-area-inset-top,0px)) calc(1.5rem + env(safe-area-inset-right,0px)) 1.25rem calc(1.5rem + env(safe-area-inset-left,0px));pointer-events:none}
-.nav>*{pointer-events:auto}
-.logo{position:relative;display:block;margin:-.4rem 0 0 -.7rem;padding:.4rem 1.2rem .6rem .95rem}
-.logo::before,.nav-pill::before,.nav-cta::before{content:"";position:absolute;inset:-1.1rem -1.6rem;z-index:-1;pointer-events:none;background:rgba(250,243,228,.55);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);-webkit-mask-image:radial-gradient(closest-side,#000 40%,transparent);mask-image:radial-gradient(closest-side,#000 40%,transparent)}
-.logo-text{display:block;font-family:var(--f-script);font-size:3.6rem;line-height:1;color:var(--tomato);transform:rotate(-8deg);transform-origin:0 50%}
-.nav-pill{position:absolute;left:50%;top:calc(1.25rem + env(safe-area-inset-top,0px));translate:-50% 0;height:3rem;padding:0 1.5rem;gap:1.6rem;display:flex;align-items:center}
-.nav-link{position:relative;font-family:var(--f-grot);font-weight:700;font-variation-settings:"wght" 700,"wdth" 72;text-transform:uppercase;font-size:1.05rem;letter-spacing:-.01em;color:var(--ink)}
-.nav-link[aria-current="page"]::after{content:"";position:absolute;left:0;right:0;bottom:-.3rem;height:2px;border-radius:2px;background:var(--tomato)}
-.nav-cta{position:relative;height:3rem;padding:0 1.3rem;gap:.5rem;display:flex;align-items:center}
-.dot{width:.45rem;height:.45rem;border-radius:50%;background:var(--tomato);flex:none}
-@media (max-width:991px){.nav-pill{display:none}}
-@media (max-width:600px){.nav{padding:calc(1rem + env(safe-area-inset-top,0px)) calc(1rem + env(safe-area-inset-right,0px)) 1rem calc(1rem + env(safe-area-inset-left,0px))}.logo-text{font-size:2.6rem}.nav-cta{height:2.5rem;padding:0 .9rem}.nav-cta .nav-link{font-size:.95rem}}
+/* pills, like the home page */
+.pill{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px;border-radius:999px;border:0;background:var(--card);
+  box-shadow:0 0 0 1px var(--line),0 4px 14px -8px rgba(0,0,0,.2);font-size:13px;font-weight:600;text-decoration:none;color:var(--ink);cursor:pointer;white-space:nowrap}
+.pill:hover{background:#fff}
+.pill.dark{background:var(--ink);color:#fff;box-shadow:0 10px 24px -10px rgba(0,0,0,.5)}
+.pill.dark:hover{background:#2b2b2b}
+.pill.big{height:48px;padding:0 24px;font-size:14px}
+.pill .badge{display:inline-grid;place-items:center;min-width:20px;height:20px;border-radius:99px;background:#fff;color:var(--ink);font-size:11px;padding:0 6px}
+.round{width:44px;height:44px;padding:0;justify-content:center;font-size:17px}
 
-/* ---------- page ---------- */
-.page{max-width:76rem;margin:0 auto;padding-block:10rem 2rem;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-@media (min-width:601px){.page{padding-left:max(2.5rem,env(safe-area-inset-left,0px));padding-right:max(2.5rem,env(safe-area-inset-right,0px))}}
-@media (max-width:600px){.page{padding-top:7.5rem}}
+/* top bar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:60;background:rgba(238,236,232,.86);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+.bar .wrap{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;padding-block:12px}
+.bar .wrap > :last-child{justify-self:end}
+.logo{font-family:var(--f-display);font-weight:800;font-size:15px;line-height:.92;letter-spacing:-.03em;text-align:center;text-decoration:none}
 
 /* header */
-.head{display:flex;flex-direction:column;gap:1.6rem;padding-bottom:3.5rem}
-.eyebrow{margin:0;font-family:var(--f-serif);font-weight:500;font-variation-settings:"wght" 500,"wdth" 87.5,"opsz" 40;font-size:1.5rem;letter-spacing:-.03em;line-height:1;opacity:.72}
-.name{margin:0;font-family:var(--f-grot);font-weight:800;font-variation-settings:"wght" 800,"wdth" 72;text-transform:uppercase;font-size:5.2rem;line-height:.88;letter-spacing:-.02em;text-wrap:balance}
-.hl{color:var(--tomato)}
-.role{margin:0;font-family:var(--f-serif);font-weight:500;font-variation-settings:"wght" 500,"wdth" 87.5,"opsz" 40;font-size:1.6rem;line-height:1.15;letter-spacing:-.03em;max-width:46rem;text-wrap:balance}
-.meta{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;font-size:1.05rem;color:var(--muted)}
-.meta li{display:flex;align-items:center;gap:.5rem}
-.meta li+li::before{content:"";width:.3rem;height:.3rem;border-radius:50%;background:var(--tomato);margin-right:.9rem;margin-left:-.4rem}
-.meta a{color:var(--ink);text-decoration:underline;text-decoration-color:rgba(239,74,35,.5);text-underline-offset:.2em}
-.meta .em{color:var(--ink)}
-.meta a.em{text-decoration:none}
-/* copy: a plain icon button; it turns into an orange tick for a moment once copied */
-.copy{display:inline-grid;place-items:center;flex:none;width:2rem;height:2rem;margin-left:-.2rem;padding:0;border:0;border-radius:50%;background:transparent;color:var(--muted);cursor:pointer;transition:color .15s ease-out,background-color .15s ease-out}
-.copy svg{width:1.1rem;height:1.1rem;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.copy:hover{color:var(--ink);background:rgba(20,17,16,.06)}
-.copy:active{background:rgba(20,17,16,.11)}
-.copy .ic-done,.copy.done .ic-copy{display:none}
+.head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(24px,5vw,64px);align-items:center;padding-block:clamp(36px,7vw,88px) clamp(40px,6vw,72px)}
+.eyebrow{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:500;margin:0 0 16px}
+h1{margin:0;font-family:var(--f-display);font-weight:600;font-size:clamp(48px,8.4vw,112px);line-height:.92;letter-spacing:-.055em;text-wrap:balance}
+h1 em{display:block;font-family:var(--f-serif);font-weight:400;font-style:italic;letter-spacing:-.025em}
+.role{margin:20px 0 0;font-size:clamp(15px,1.4vw,18px);line-height:1.45;color:var(--text);max-width:46ch}
+.meta{list-style:none;margin:24px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.meta li{display:inline-flex;align-items:center;gap:4px;min-height:34px;padding:6px 8px 6px 14px;border-radius:17px;background:var(--card);box-shadow:0 0 0 1px var(--line);font-size:13px;line-height:1.35;color:var(--text)}
+.meta li:not(:has(.copy)){padding-right:14px}
+.meta .em{font-weight:600;color:var(--ink);text-decoration:none}
+.meta a{font-weight:600;color:var(--ink)}
+.copy{display:inline-grid;place-items:center;width:28px;height:28px;border:0;border-radius:50%;background:transparent;cursor:pointer;color:var(--muted)}
+.copy:hover{color:var(--ink);background:var(--bg)}
+.copy svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.copy .ic-done{display:none}
+.copy.done{color:#1f4b3b}
+.copy.done .ic-copy{display:none}
 .copy.done .ic-done{display:block}
-.copy.done{color:var(--tomato)}
-.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
-.btn-row{display:flex;flex-wrap:wrap;gap:.75rem;align-items:center}
-/* small buttons: the resume is the main content */
-.cta-main{display:inline-flex;align-items:center;gap:.6rem;height:2.9rem;padding:0 .45rem 0 1.25rem;border-radius:999px;background:var(--tomato);color:var(--white);font-family:var(--f-grot);font-weight:700;font-variation-settings:"wght" 700,"wdth" 72;text-transform:uppercase;font-size:1.05rem;letter-spacing:-.01em;white-space:nowrap;box-shadow:0 .7rem 1.4rem -.8rem rgba(239,74,35,.6);transition:background-color .15s ease-out,box-shadow .3s var(--ease)}
-.cta-main:hover{background:var(--tomato-hover)}
-.cta-main:active{background:var(--tomato-press);box-shadow:inset 0 2px 4px rgba(0,0,0,.2)}
-.cta-arrow{display:inline-grid;place-items:center;flex:none;width:2rem;height:2rem;border-radius:50%;background:rgba(255,255,255,.2);line-height:0;transition:transform .35s var(--ease)}
-.cta-arrow svg{display:block;width:.95rem;height:.95rem;rotate:90deg}
-.cta-main:hover .cta-arrow{transform:translateY(.2rem)}
-.cta-ghost{display:inline-flex;align-items:center;height:2.9rem;padding:0 1.2rem;border-radius:999px;border:1.5px solid rgba(20,17,16,.22);background:transparent;cursor:pointer;font-family:var(--f-grot);font-weight:700;font-variation-settings:"wght" 700,"wdth" 72;text-transform:uppercase;font-size:1.05rem;letter-spacing:-.01em;color:var(--ink);white-space:nowrap;transition:border-color .15s ease-out,background-color .15s ease-out}
-.cta-ghost:hover{border-color:var(--ink);background:rgba(255,250,240,.8)}
-.cta-ghost:active{background:rgba(20,17,16,.06)}
-.cta-main:focus-visible,.cta-ghost:focus-visible,.copy:focus-visible{outline:2px solid var(--tomato);outline-offset:4px}
-@media (max-width:600px){
-  .name{font-size:min(3.4rem,12.6vw)}
-  .role{font-size:1.3rem}
-  .eyebrow{font-size:1.2rem}
-  .meta{font-size:.95rem;flex-direction:column;gap:.35rem}
-  .meta li+li::before{display:none}
-  .copy{width:2.75rem;height:2.75rem;margin-block:-.4rem}
-}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.btn-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
 
-/* sections: name on the left, entries on the right */
-.sec{display:grid;grid-template-columns:13rem minmax(0,1fr);gap:3rem;padding-block:3.5rem;border-top:1px solid var(--line)}
-.sec-h{margin:0;position:sticky;top:7.5rem;align-self:start;font-family:var(--f-grot);font-weight:700;font-variation-settings:"wght" 700,"wdth" 72;text-transform:uppercase;font-size:1.5rem;line-height:.95;letter-spacing:-.01em}
-.entries{display:flex;flex-direction:column;gap:3rem;min-width:0}
-@media (max-width:820px){.sec{grid-template-columns:1fr;gap:1.6rem}.sec-h{position:static}}
+/* the About folder from the home page, beside the name */
+.folder{position:relative;width:clamp(200px,26vw,320px);aspect-ratio:300/215;font-size:calc(clamp(200px,26vw,320px) / 19);transform:rotate(6deg);flex:none}
+.folder .tab{position:absolute;inset:0;width:100%;height:100%;filter:drop-shadow(0 1.4em 1.6em rgba(0,0,0,.2))}
+.folder .tab path{fill:var(--c2)}
+.folder .paper{position:absolute;left:8%;right:8%;top:5%;height:66%;border-radius:.4em;background:#fff;padding:.3em;box-shadow:0 .2em .6em rgba(0,0,0,.18);
+  transform:translateY(-22%) rotate(-3deg);transition:transform .8s var(--ease)}
+.folder .paper img{display:block;width:100%;height:100%;object-fit:cover;border-radius:.25em}
+.folder .front{position:absolute;left:0;right:0;bottom:0;height:80%;border-radius:1em;overflow:hidden;background:var(--c);transform-origin:50% 100%;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 1.2em 2em -.8em rgba(0,0,0,.35);transition:transform .8s var(--ease)}
+.folder .front::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgba(255,255,255,.28) 0%,rgba(255,255,255,0) 32%,rgba(255,255,255,0) 64%,rgba(0,0,0,.1) 100%)}
+.head .folder:hover .paper{transform:translateY(-40%) rotate(-3deg)}
+.cv{position:absolute;line-height:.86;letter-spacing:-.05em;font-weight:800;font-family:var(--f-display)}
+.cs{position:absolute;font-size:.62em;font-weight:500;line-height:1.25}
+.sunball{position:absolute;right:-1.2em;bottom:-1.6em;width:6.2em;height:6.2em;border-radius:50%;background:#f6d13a}
 
-.job{display:flex;flex-direction:column;gap:.7rem;min-width:0}
-.job-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:.3rem 1.5rem}
-.org{margin:0;font-family:var(--f-grot);font-weight:800;font-variation-settings:"wght" 800,"wdth" 72;text-transform:uppercase;font-size:2.2rem;line-height:.95;letter-spacing:-.015em}
-.when{font-family:var(--f-grot);font-weight:600;font-variation-settings:"wght" 600,"wdth" 88;font-size:1rem;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
-.tagline{margin:0;font-size:1.05rem;color:var(--muted);line-height:1.4}
-.title-line{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:.2rem 1.5rem}
-.title{margin:0;font-weight:600;font-variation-settings:"wght" 600,"wdth" 95,"opsz" 30;font-size:1.3rem;line-height:1.25;letter-spacing:-.015em}
-.place{font-size:1rem;color:var(--muted)}
-.pts{list-style:none;margin:.3rem 0 0;padding:0;display:flex;flex-direction:column;gap:.6rem;max-width:46rem}
-.pts li{position:relative;padding-left:1.5rem;font-weight:400;font-variation-settings:"wght" 400,"wdth" 100,"opsz" 20;font-size:1.12rem;line-height:1.5}
-.pts li::before{content:"";position:absolute;left:0;top:.74em;width:.65rem;height:2px;border-radius:2px;background:var(--tomato)}
-.pts b{font-weight:700;font-variation-settings:"wght" 700,"wdth" 100,"opsz" 20}
+/* sections */
+.sec{padding-block:clamp(48px,8vw,104px) 0}
+.sec-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 24px;margin-bottom:clamp(22px,3vw,36px)}
+.sec-h{margin:0;font-family:var(--f-display);font-weight:600;font-size:clamp(36px,5.4vw,72px);line-height:.95;letter-spacing:-.055em}
+.sec-head p{margin:0;max-width:34ch;color:var(--muted);font-size:14px;line-height:1.5}
 
-/* projects that sit under Formula L */
-.subs{display:flex;flex-direction:column;gap:2.2rem;margin-top:1.2rem;padding-left:1.6rem;border-left:1px solid var(--line)}
-.proj-top{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem .8rem}
-.label{display:inline-flex;align-items:center;height:1.55rem;padding:0 .6rem;border:1.5px solid var(--tomato);border-radius:999px;color:var(--tomato);font-family:var(--f-grot);font-weight:700;font-variation-settings:"wght" 700,"wdth" 80;text-transform:uppercase;font-size:.78rem;letter-spacing:.05em;white-space:nowrap}
-.proj{margin:0;font-family:var(--f-grot);font-weight:800;font-variation-settings:"wght" 800,"wdth" 72;text-transform:uppercase;font-size:1.6rem;line-height:.95;letter-spacing:-.01em}
-.proj-top .when{margin-left:auto}
-@media (max-width:600px){
-  .org{font-size:1.8rem}.proj{font-size:1.35rem}.pts li{font-size:1.02rem}
-  .subs{padding-left:1rem}
-  .proj-top .when{margin-left:0;flex-basis:100%}
-}
-
-/* quick look: each name in Work experience opens a panel with pictures, numbers and the link, without leaving the page */
-.peek-hint{margin:0;font-size:1rem;color:var(--muted)}
-.peek{all:unset;display:inline-flex;align-items:center;gap:.55rem;cursor:pointer;border-radius:.3rem;transition:color .15s ease-out}
-.peek:hover{color:var(--tomato)}
-.peek:focus-visible{outline:2px solid var(--tomato);outline-offset:4px}
-.peek-ic{display:inline-grid;place-items:center;flex:none;width:1.75rem;height:1.75rem;border-radius:50%;border:1.5px solid var(--tomato);color:var(--tomato);transition:background-color .15s ease-out,color .15s ease-out}
-.peek-ic svg{width:1rem;height:1rem;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
-.proj .peek-ic{width:1.5rem;height:1.5rem}
-.proj .peek-ic svg{width:.85rem;height:.85rem}
-.peek:hover .peek-ic{background:var(--tomato);color:var(--white)}
-html:has(.peek-panel[open]){overflow:hidden}
-.peek-panel{position:fixed;inset:0 0 0 auto;margin:0;width:min(32rem,100vw);height:100%;max-width:none;max-height:none;padding:0;border:0;background:var(--cream);color:var(--ink);box-shadow:-2rem 0 4rem -2rem rgba(20,17,16,.4);overflow-y:auto;overscroll-behavior:contain}
-.peek-panel::backdrop{background:rgba(20,17,16,.4);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
-.peek-panel[open]{display:flex;flex-direction:column;animation:peek-in .5s var(--ease)}
-@keyframes peek-in{from{transform:translateX(100%)}}
-.peek-bar{position:sticky;top:0;z-index:1;display:flex;justify-content:space-between;align-items:center;padding:1rem 1rem .6rem 1.6rem;background:var(--cream)}
-.peek-count{font-family:var(--f-grot);font-weight:600;font-variation-settings:"wght" 600,"wdth" 88;font-size:.95rem;color:var(--muted);font-variant-numeric:tabular-nums}
-.peek-x{display:inline-grid;place-items:center;width:2.75rem;height:2.75rem;padding:0;border:0;border-radius:50%;background:transparent;color:var(--ink);cursor:pointer;transition:background-color .15s ease-out}
-.peek-x svg{width:1.2rem;height:1.2rem;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
-.peek-x:hover{background:rgba(20,17,16,.07)}
-.peek-x:active{background:rgba(20,17,16,.12)}
-.peek-body{flex:1;display:flex;flex-direction:column;gap:1rem;padding:.2rem 1.6rem 1.6rem}
-.peek-shot{margin:0 0 .4rem;aspect-ratio:16/9;border-radius:1rem;overflow:hidden;background:rgba(20,17,16,.06);box-shadow:0 0 0 1px var(--line)}
-.peek-shot img{display:block;width:100%;height:100%;object-fit:cover}
-.peek-when{margin:0;font-family:var(--f-grot);font-weight:600;font-variation-settings:"wght" 600,"wdth" 88;font-size:1rem;color:var(--muted)}
-.peek-title{margin:-.4rem 0 0;font-family:var(--f-grot);font-weight:800;font-variation-settings:"wght" 800,"wdth" 72;text-transform:uppercase;font-size:2.4rem;line-height:.92;letter-spacing:-.015em}
-.peek-tag{margin:0;font-size:1.08rem;line-height:1.45;color:var(--muted)}
-.peek-stats{list-style:none;margin:.3rem 0 0;padding:1rem 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(7.5rem,1fr));gap:1rem;border-block:1px solid var(--line)}
-.peek-stats b{display:block;font-family:var(--f-grot);font-weight:800;font-variation-settings:"wght" 800,"wdth" 72;font-size:2rem;line-height:1;letter-spacing:-.01em;color:var(--tomato)}
-.peek-stats span{display:block;margin-top:.35rem;font-size:.95rem;line-height:1.35;color:var(--muted)}
-.peek-go{margin-top:.3rem}
-.peek-go .cta-main .cta-arrow svg{rotate:-45deg}
-.peek-private{margin:0;font-size:1rem;color:var(--muted)}
-.peek-nav{position:sticky;bottom:0;display:flex;justify-content:space-between;gap:.75rem;padding:.9rem 1.6rem calc(1rem + env(safe-area-inset-bottom,0px));background:var(--cream);border-top:1px solid var(--line)}
-.peek-nav .cta-ghost{height:2.6rem;font-size:.98rem}
-@media (max-width:600px){
-  .peek-panel{inset:auto 0 0 0;width:100%;height:auto;max-height:92svh;border-radius:1.4rem 1.4rem 0 0;box-shadow:0 -2rem 4rem -2rem rgba(20,17,16,.4)}
-  .peek-panel[open]{animation-name:peek-up}
-  .peek-bar{padding-left:1.1rem}.peek-body,.peek-nav{padding-inline:1.1rem}
-  .peek-title{font-size:2rem}.peek-stats b{font-size:1.7rem}
-  .peek-ic{width:1.6rem;height:1.6rem}
-}
-@keyframes peek-up{from{transform:translateY(100%)}}
+/* work: each job is a folder card */
+.entries{display:grid;gap:14px}
+.job{position:relative;border-radius:24px;background:var(--card);box-shadow:0 0 0 1px var(--line),0 18px 30px -26px rgba(0,0,0,.4);padding:clamp(20px,3vw,32px)}
+.job-top,.proj-top{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.thumb{position:relative;flex:none;width:46px;aspect-ratio:300/215}
+.thumb::before{content:"";position:absolute;left:0;top:0;width:42%;height:22%;border-radius:4px 6px 0 0;background:var(--c2)}
+.thumb::after{content:"";position:absolute;left:0;right:0;bottom:0;top:12%;border-radius:6px;background:var(--c);box-shadow:0 6px 12px -6px rgba(0,0,0,.35)}
+.org,.proj{margin:0;font-family:var(--f-display);font-weight:600;letter-spacing:-.04em;line-height:1.05;min-width:0}
+.org{font-size:clamp(24px,2.8vw,36px)}
+.proj{font-size:clamp(20px,2.2vw,26px)}
+.when{margin-left:auto;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.peek{display:inline-flex;align-items:center;gap:8px;border:0;background:none;padding:0;font:inherit;letter-spacing:inherit;color:inherit;cursor:pointer;text-align:left}
+.peek-ic{display:inline-grid;place-items:center;width:1.1em;height:1.1em;border-radius:50%;background:var(--ink);color:#fff;transition:transform .35s var(--ease)}
+.peek-ic svg{width:.62em;height:.62em;fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.peek:hover .peek-ic{transform:rotate(45deg) scale(1.08)}
+.peek:hover{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:.18em}
+.tagline{margin:12px 0 0;font-size:15px;line-height:1.5;color:var(--text)}
+.tagline a{font-weight:600;color:var(--ink)}
+.title-line{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 16px;margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
+.title{margin:0;font-size:14px;font-weight:600}
+.place{font-size:12px;color:var(--muted)}
+.pts{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:9px}
+.pts li{position:relative;padding-left:20px;font-size:14.5px;line-height:1.55;color:var(--text);max-width:78ch}
+.pts li::before{content:"";position:absolute;left:2px;top:.58em;width:8px;height:6px;border-radius:2px;background:var(--c);box-shadow:0 0 0 1px rgba(0,0,0,.08)}
+.pts b{color:var(--ink);font-weight:600}
+.subs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:20px}
+.subs .job{background:var(--bg);box-shadow:0 0 0 1px var(--line);border-radius:18px;padding:clamp(16px,2.2vw,22px)}
+.subs .job .pts li{font-size:14px}
+.label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--ink);background:var(--card);box-shadow:0 0 0 1px var(--line);padding:4px 9px;border-radius:99px}
+.proj-top .label{order:3;flex-basis:auto}
+.proj-top .when{order:4;flex-basis:100%;margin:-6px 0 0 60px}
 
 /* skills */
-.skills{display:flex;flex-direction:column;gap:1.5rem}
-.sk{display:grid;grid-template-columns:12rem minmax(0,1fr);gap:1rem;align-items:start}
-.sk-name{margin:0;font-weight:600;font-variation-settings:"wght" 600,"wdth" 95,"opsz" 30;font-size:1.15rem;line-height:1.3;padding-top:.3rem}
-.chips{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.45rem}
-.chips li{padding:.35rem .85rem;border-radius:999px;background:var(--chip);border:1px solid var(--line);font-size:1rem;line-height:1.3}
-@media (max-width:820px){.sk{grid-template-columns:1fr;gap:.5rem}}
+.skills{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.sk{border-radius:22px;background:var(--card);box-shadow:0 0 0 1px var(--line);padding:22px}
+.sk-name{margin:0 0 14px;font-family:var(--f-display);font-weight:600;font-size:20px;letter-spacing:-.03em}
+.chips{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.chips li{height:32px;display:inline-flex;align-items:center;padding:0 13px;border-radius:999px;background:var(--bg);box-shadow:0 0 0 1px var(--line);font-size:13px;font-weight:500}
 
-/* closing */
-.end{display:flex;justify-content:center;padding-block:3rem;border-top:1px solid var(--line)}
-.foot{display:flex;flex-direction:column;gap:.4rem;padding-bottom:2rem;font-family:var(--f-grot);font-variation-settings:"wght" 500,"wdth" 90;font-size:.85rem;opacity:.7;text-align:center}
+/* education + awards: rows, like the home work list */
+.rows{border-top:1px solid var(--line)}
+.rowi{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 20px;align-items:baseline;padding:20px 4px;border-bottom:1px solid var(--line)}
+.rowi .org,.rowi .title{grid-column:1}
+.rowi .title{font-family:var(--f-display);font-weight:600;font-size:clamp(20px,2.2vw,26px);letter-spacing:-.035em;line-height:1.15}
+.rowi .when{grid-column:2;grid-row:1;margin:0}
+.rowi .tagline,.rowi .sub2{grid-column:1/-1;margin:0}
+.rowi .sub2{font-size:14px;color:var(--text)}
 
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.end{display:flex;flex-wrap:wrap;gap:10px;padding-block:clamp(56px,8vw,96px) 0}
+footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;padding-block:28px 36px;font-size:12px;color:var(--muted)}
+
+/* quick look: the folder opens, like on the home page */
+.peek-panel{width:min(1040px,calc(100vw - 48px));max-width:none;max-height:calc(100svh - 48px);padding:0;border:0;border-radius:28px;color:var(--ink);overflow:auto;
+  background:radial-gradient(90% 75% at 40% 45%,#f4f2ef 0%,var(--bg) 60%,var(--bg2) 100%);box-shadow:0 40px 80px -30px rgba(0,0,0,.45)}
+.peek-panel::backdrop{background:rgba(22,22,22,.38);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.peek-panel[open]{animation:pop .5s var(--ease)}
+@keyframes pop{from{opacity:0;transform:translateY(18px) scale(.98)}}
+.peek-bar{position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:space-between;padding:16px 18px 0}
+.peek-count{font-size:12px;font-weight:600;color:var(--muted);font-variant-numeric:tabular-nums;padding-left:6px}
+.peek-x svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+.peek-body{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:center;padding:8px clamp(24px,4vw,48px) 12px}
+.peek-fold{display:grid;place-items:center;padding-top:clamp(80px,9vw,120px);padding-bottom:12px}
+.peek-fold .folder{width:clamp(240px,34vw,420px);font-size:calc(clamp(240px,34vw,420px) / 19);transform:none}
+.peek-fold .paper{transform:translateY(-6%) rotate(-1.5deg)}
+.peek-fold.open .paper{transform:translateY(-58%) rotate(-2deg)}
+.peek-fold.open .front{transform:perspective(60em) rotateX(20deg)}
+.peek-fold .paper[hidden]{display:none}
+.peek-when{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.peek-title{margin:.3em 0 0;font-family:var(--f-display);font-weight:600;font-size:clamp(32px,4.2vw,58px);line-height:.98;letter-spacing:-.05em;text-wrap:balance}
+.peek-tag{margin:14px 0 0;font-size:15px;line-height:1.55;color:var(--text);max-width:46ch}
+.peek-stats{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:20px 0 0;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.peek-stats b{display:block;font-family:var(--f-display);font-size:clamp(20px,2vw,26px);font-weight:700;letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1.05}
+.peek-stats span{display:block;margin-top:4px;font-size:11px;color:var(--muted);line-height:1.3}
+.peek-go{margin-top:20px}
+.peek-private{margin:0;font-size:13px;line-height:1.5;color:var(--muted);max-width:44ch}
+.peek-nav{display:flex;justify-content:center;gap:8px;padding:8px 18px 22px}
+
+@media (max-width:759px){
+  .head{grid-template-columns:minmax(0,1fr);padding-top:20px}
+  .head .folder{order:-1;justify-self:center;width:min(60vw,240px);font-size:calc(min(60vw,240px) / 19);margin-top:24px}
+  .subs,.skills{grid-template-columns:minmax(0,1fr)}
+  .when{margin-left:0;flex-basis:100%;order:5}
+  .job-top .when{padding-left:60px}
+  .peek-panel{width:100vw;max-height:88svh;margin:auto 0 0;border-radius:24px 24px 0 0}
+  .peek-panel[open]{animation:sheet .45s var(--ease)}
+  .peek-body{grid-template-columns:minmax(0,1fr);gap:8px;padding:0 20px 8px}
+  .peek-fold{padding-top:72px}
+  .bar .dl{width:44px;padding:0;justify-content:center}
+  .bar .dl .t{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .peek-fold .folder{width:min(72vw,280px);font-size:calc(min(72vw,280px) / 19)}
+  .peek-nav{padding-bottom:max(20px,env(safe-area-inset-bottom,0px))}
+}
+@keyframes sheet{from{transform:translateY(40%);opacity:.4}}
+@media (prefers-reduced-motion:reduce){
+  .folder .paper,.folder .front,.peek-ic{transition:none}
+  .peek-panel[open]{animation:none}
+}
 </style>
 </head>
 <body>
-<nav class="nav" aria-label="Main">
-  <a class="logo" href="/" aria-label="Kirsah, home page"><span class="logo-text">Kirsah</span></a>
-  <div class="nav-pill">
-    <a class="nav-link" href="/#work">Work</a>
-    <a class="nav-link" href="/#wall">About</a>
-    <a class="nav-link" href="/resume/" aria-current="page">Resume</a>
+<header class="bar">
+  <div class="wrap">
+    <a class="pill round" href="/" aria-label="Back to home">←</a>
+    <a class="logo" href="/">Kirsah<br>Folders</a>
+    <a class="pill dark dl" href="/Kirsah_Tiathawornchai_AI_Project_Manager.pdf" download><span class="t">Download PDF</span> <span class="badge" aria-hidden="true">↓</span></a>
   </div>
-  <a class="nav-cta" href="/#contact"><span class="dot"></span><span class="nav-link">Contact</span></a>
-</nav>
+</header>
 
-<main class="page" id="top">
+<main class="wrap" id="top">
   <header class="head">
-    <p class="eyebrow">Resume · updated November 2026</p>
-    <h1 class="name">Kirsah <span class="hl">Tiathawornchai</span></h1>
-    <p class="role">AI Project Manager | AI Automation &amp; Business Process Analyst</p>
-    <ul class="meta">
-      <li>Prasat, Surin 32140 and Makkasan, Ratchathewi, Bangkok 10400 · willing to work hybrid between Surin and Bangkok</li>
-      <li><a class="em" id="phone" href="tel:+66639261445">+66 63 926 1445</a><button class="copy" type="button" data-copy="phone" data-copy-name="Phone number" aria-label="Copy phone number"><svg class="ic-copy" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="8.5" y="8.5" width="11.5" height="11.5" rx="2.5"/><path d="M15.5 8.5V6.5a2.5 2.5 0 0 0-2.5-2.5H6.5A2.5 2.5 0 0 0 4 6.5V13a2.5 2.5 0 0 0 2.5 2.5h2"/></svg><svg class="ic-done" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button></li>
-      <li><span class="em" id="email">lady.kirsah@gmail.com</span><button class="copy" type="button" data-copy="email" data-copy-name="Email address" aria-label="Copy email address"><svg class="ic-copy" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="8.5" y="8.5" width="11.5" height="11.5" rx="2.5"/><path d="M15.5 8.5V6.5a2.5 2.5 0 0 0-2.5-2.5H6.5A2.5 2.5 0 0 0 4 6.5V13a2.5 2.5 0 0 0 2.5 2.5h2"/></svg><svg class="ic-done" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button></li>
-      <li>Company: <a href="https://formulal.cc/" target="_blank" rel="noopener">formulal.cc</a></li>
-      <li>English: TOEIC 735</li>
-    </ul>
-    <span class="sr" id="copy-status" aria-live="polite"></span>
-    <div class="btn-row">
-      <a class="cta-main" href="/Kirsah_Tiathawornchai_AI_Project_Manager.pdf" download><span>Download PDF</span><span class="cta-arrow" aria-hidden="true"><svg viewBox="0 0 256 256" fill="currentColor" focusable="false"><path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"/></svg></span></a>
+    <div>
+      <p class="eyebrow">Resume · updated November 2026</p>
+      <h1>Kirsah <em>Tiathawornchai</em></h1>
+      <p class="role">AI Project Manager | AI Automation &amp; Business Process Analyst</p>
+      <ul class="meta">
+        <li>Prasat, Surin 32140 and Makkasan, Ratchathewi, Bangkok 10400 · willing to work hybrid between Surin and Bangkok</li>
+        <li><a class="em" id="phone" href="tel:+66639261445">+66 63 926 1445</a><button class="copy" type="button" data-copy="phone" data-copy-name="Phone number" aria-label="Copy phone number"><svg class="ic-copy" viewBox="0 0 24 24" aria-hidden="true"><rect x="8.5" y="8.5" width="11.5" height="11.5" rx="2.5"/><path d="M15.5 8.5V6.5a2.5 2.5 0 0 0-2.5-2.5H6.5A2.5 2.5 0 0 0 4 6.5V13a2.5 2.5 0 0 0 2.5 2.5h2"/></svg><svg class="ic-done" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button></li>
+        <li><span class="em" id="email">lady.kirsah@gmail.com</span><button class="copy" type="button" data-copy="email" data-copy-name="Email address" aria-label="Copy email address"><svg class="ic-copy" viewBox="0 0 24 24" aria-hidden="true"><rect x="8.5" y="8.5" width="11.5" height="11.5" rx="2.5"/><path d="M15.5 8.5V6.5a2.5 2.5 0 0 0-2.5-2.5H6.5A2.5 2.5 0 0 0 4 6.5V13a2.5 2.5 0 0 0 2.5 2.5h2"/></svg><svg class="ic-done" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button></li>
+        <li>Company:&nbsp;<a href="https://formulal.cc/" target="_blank" rel="noopener">formulal.cc</a></li>
+        <li>English: TOEIC 735</li>
+      </ul>
+      <span class="sr" id="copy-status" aria-live="polite"></span>
+      <div class="btn-row">
+        <a class="pill dark big" href="/Kirsah_Tiathawornchai_AI_Project_Manager.pdf" download>Download PDF <span class="badge" aria-hidden="true">↓</span></a>
+      </div>
+    </div>
+    <div class="folder" aria-hidden="true" style="--c:#cbb9f2;--c2:#a995dc">
+      <svg class="tab" viewBox="0 0 300 215" preserveAspectRatio="none"><path d="M0 46Q0 26 20 26H38Q52 26 58 14L62 8Q67 0 80 0H128Q141 0 147 10L153 20Q157 26 170 26H280Q300 26 300 46V195Q300 215 280 215H20Q0 215 0 195Z"/></svg>
+      <span class="paper"><img alt="" src="/img/hero-laptop.webp"></span>
+      <span class="front"><span class="sunball"></span><span class="cv" style="left:.7em;top:.7em;font-size:2.6em;color:#161616">Hi, I’m<br>Kirsah</span><span class="cs" style="left:1.15em;bottom:1em;color:#161616">Tech / AI Project Manager</span></span>
     </div>
   </header>
 
   <section class="sec" aria-labelledby="h-work">
-    <h2 class="sec-h" id="h-work">Work experience</h2>
+    <div class="sec-head"><h2 class="sec-h" id="h-work">Work experience</h2><p class="peek-hint">Tap a name for a quick look: pictures, numbers and the link.</p></div>
     <div class="entries">
-      <p class="peek-hint">Tap a name for a quick look: pictures, numbers and the link.</p>
-
-      <article class="job">
-        <div class="job-top"><h3 class="org"><button class="peek" type="button" data-peek="denair" aria-haspopup="dialog">Den Air Service<span class="peek-ic"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 16L16 8M9.5 8H16v6.5"/></svg></span></button></h3><span class="when">May 2021 – Present</span></div>
+      <article class="job" style="--c:#b9b8b4;--c2:#9d9c98">
+        <div class="job-top"><span class="thumb" aria-hidden="true"></span><h3 class="org"><button class="peek" type="button" data-peek="denair" aria-haspopup="dialog">Den Air Service<span class="peek-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 16L16 8M9.5 8H16v6.5"/></svg></span></button></h3><span class="when">May 2021 – Present</span></div>
         <p class="tagline">DENSO Service Partner, one of two in Surin province</p>
         <div class="title-line"><p class="title">General Manager · family car A/C service shop</p><span class="place">Surin, Thailand</span></div>
         <ul class="pts">
@@ -239,15 +248,13 @@ html:has(.peek-panel[open]){overflow:hidden}
           <li>Built TikTok “Daughter of the A/C Shop”: best video <b>45.9K views</b>, about 70× the follower count.</li>
         </ul>
       </article>
-
-      <article class="job">
-        <div class="job-top"><h3 class="org"><button class="peek" type="button" data-peek="formulal" aria-haspopup="dialog">Formula L<span class="peek-ic"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 16L16 8M9.5 8H16v6.5"/></svg></span></button></h3><span class="when">Sep 2026 – Present</span></div>
+      <article class="job" style="--c:#161616;--c2:#000">
+        <div class="job-top"><span class="thumb" aria-hidden="true"></span><h3 class="org"><button class="peek" type="button" data-peek="formulal" aria-haspopup="dialog">Formula L<span class="peek-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 16L16 8M9.5 8H16v6.5"/></svg></span></button></h3><span class="when">Sep 2026 – Present</span></div>
         <p class="tagline">Software, AI and automation company, set up to develop Den Air Service</p>
         <div class="title-line"><p class="title">Founder</p><span class="place">Surin, Thailand</span></div>
-
         <div class="subs">
-          <div class="job">
-            <div class="proj-top"><span class="label">AI project</span><h4 class="proj"><button class="peek" type="button" data-peek="teampit" aria-haspopup="dialog">TeamPit<span class="peek-ic"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 16L16 8M9.5 8H16v6.5"/></svg></span></button></h4><span class="when">Jun 2026 – Present</span></div>
+          <div class="job" style="--c:#ff5a1f;--c2:#d8410c">
+            <div class="proj-top"><span class="thumb" aria-hidden="true"></span><h4 class="proj"><button class="peek" type="button" data-peek="teampit" aria-haspopup="dialog">TeamPit<span class="peek-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 16L16 8M9.5 8H16v6.5"/></svg></span></button></h4><span class="label">AI project</span><span class="when">Jun 2026 – Present</span></div>
             <p class="tagline">AI solution design and delivery: the shop’s back office and POS</p>
             <ul class="pts">
               <li>Digital transformation: mapped the paper workflow (as-is → to-be); business and functional requirements, roadmap.</li>
@@ -257,9 +264,8 @@ html:has(.peek-panel[open]){overflow:hidden}
               <li>Phone + computer app rebuilt in <b>10 days</b>, live since Nov 2026; compared 11 garage systems; next: team pilot.</li>
             </ul>
           </div>
-
-          <div class="job">
-            <div class="proj-top"><span class="label">AI project</span><h4 class="proj"><button class="peek" type="button" data-peek="airplus" aria-haspopup="dialog">AirPlus web store<span class="peek-ic"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 16L16 8M9.5 8H16v6.5"/></svg></span></button></h4><span class="when">Jul 2026 – Present</span></div>
+          <div class="job" style="--c:#2350e6;--c2:#1a3bb0">
+            <div class="proj-top"><span class="thumb" aria-hidden="true"></span><h4 class="proj"><button class="peek" type="button" data-peek="airplus" aria-haspopup="dialog">AirPlus web store<span class="peek-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 16L16 8M9.5 8H16v6.5"/></svg></span></button></h4><span class="label">AI project</span><span class="when">Jul 2026 – Present</span></div>
             <p class="tagline"><a href="https://airplusauto.com/" target="_blank" rel="noopener">airplusauto.com</a>, web development with AI agents</p>
             <ul class="pts">
               <li>First version (MVP) live in <b>9 days</b>; 109 parts online at about <b>3× the Shopee margin</b>.</li>
@@ -267,9 +273,8 @@ html:has(.peek-panel[open]){overflow:hidden}
               <li>Sales tools and analytics: coupons, flash sales, visitor insights; search-ready for Google and AI assistants.</li>
             </ul>
           </div>
-
-          <div class="job">
-            <div class="proj-top"><span class="label">AI project</span><h4 class="proj"><button class="peek" type="button" data-peek="agents" aria-haspopup="dialog">AI agents and workflow automation<span class="peek-ic"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 16L16 8M9.5 8H16v6.5"/></svg></span></button></h4><span class="when">Sep 2026 – Present</span></div>
+          <div class="job" style="--c:#cdf24a;--c2:#a8cc2c">
+            <div class="proj-top"><span class="thumb" aria-hidden="true"></span><h4 class="proj"><button class="peek" type="button" data-peek="agents" aria-haspopup="dialog">AI agents and workflow automation<span class="peek-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 16L16 8M9.5 8H16v6.5"/></svg></span></button></h4><span class="label">AI project</span><span class="when">Sep 2026 – Present</span></div>
             <p class="tagline">Claude Code skills that run AirPlus Auto</p>
             <ul class="pts">
               <li>Built <b>6 AI agent skills</b> (step-by-step SOPs): repricing, campaigns, competitor research, sales analysis, paperwork.</li>
@@ -277,9 +282,8 @@ html:has(.peek-panel[open]){overflow:hidden}
               <li>Tool calling via MCP connectors (Google Sheets, Drive, Gmail) and browser automation; every output checked.</li>
             </ul>
           </div>
-
-          <div class="job">
-            <div class="proj-top"><h4 class="proj"><button class="peek" type="button" data-peek="shopee" aria-haspopup="dialog">AirPlus Auto<span class="peek-ic"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 16L16 8M9.5 8H16v6.5"/></svg></span></button></h4><span class="when">Jul 2024 – Present</span></div>
+          <div class="job" style="--c:#f2e03a;--c2:#d3bf17">
+            <div class="proj-top"><span class="thumb" aria-hidden="true"></span><h4 class="proj"><button class="peek" type="button" data-peek="shopee" aria-haspopup="dialog">AirPlus Auto<span class="peek-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 16L16 8M9.5 8H16v6.5"/></svg></span></button></h4><span class="when">Jul 2024 – Present</span></div>
             <p class="tagline">Car A/C parts shop on Shopee and TikTok Shop</p>
             <ul class="pts">
               <li>Grew Shopee net sales organically (no paid ads): ฿2.6K first month (Jul 2024) to a ฿68K record (Mar 2026), <b>26×</b>.</li>
@@ -290,9 +294,8 @@ html:has(.peek-panel[open]){overflow:hidden}
           </div>
         </div>
       </article>
-
-      <article class="job">
-        <div class="job-top"><h3 class="org"><button class="peek" type="button" data-peek="ggc" aria-haspopup="dialog">GoGoCash.co<span class="peek-ic"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 16L16 8M9.5 8H16v6.5"/></svg></span></button></h3><span class="when">Jun 2025 – Present</span></div>
+      <article class="job" style="--c:#1f4b3b;--c2:#143428">
+        <div class="job-top"><span class="thumb" aria-hidden="true"></span><h3 class="org"><button class="peek" type="button" data-peek="ggc" aria-haspopup="dialog">GoGoCash.co<span class="peek-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 16L16 8M9.5 8H16v6.5"/></svg></span></button></h3><span class="when">Jun 2025 – Present</span></div>
         <p class="tagline">Cashback app backed by TED Fund · 1,035 users, ฿13M sales volume (GMV)</p>
         <div class="title-line"><p class="title">Admin · Forward Deployed Engineer · UX/UI Designer</p><span class="place">Bangkok – Surin, Thailand</span></div>
         <ul class="pts">
@@ -306,7 +309,7 @@ html:has(.peek-panel[open]){overflow:hidden}
   </section>
 
   <section class="sec" aria-labelledby="h-skills">
-    <h2 class="sec-h" id="h-skills">Skills</h2>
+    <div class="sec-head"><h2 class="sec-h" id="h-skills">Skills</h2></div>
     <div class="skills">
       <div class="sk"><p class="sk-name">AI &amp; automation</p><ul class="chips"><li>AI agents</li><li>Workflow automation</li><li>Prompt engineering</li><li>Tool calling (MCP)</li><li>LLMs (Claude, GPT, Gemini)</li></ul></div>
       <div class="sk"><p class="sk-name">Business analysis</p><ul class="chips"><li>Process mapping</li><li>Process improvement</li><li>Business requirements</li><li>Acceptance criteria</li><li>KPI</li><li>ROI</li></ul></div>
@@ -316,60 +319,63 @@ html:has(.peek-panel[open]){overflow:hidden}
   </section>
 
   <section class="sec" aria-labelledby="h-edu">
-    <h2 class="sec-h" id="h-edu">Education</h2>
-    <div class="entries">
-      <article class="job">
-        <div class="job-top"><h3 class="org">Burapha University</h3><span class="when">2016 – 2020</span></div>
+    <div class="sec-head"><h2 class="sec-h" id="h-edu">Education</h2></div>
+    <div class="rows">
+      <article class="rowi">
+        <h3 class="org">Burapha University</h3><span class="when">2016 – 2020</span>
         <p class="tagline">International College · Chonburi, Thailand</p>
-        <p class="title">Bachelor’s degree, International Business Management · GPA 3.62</p>
+        <p class="sub2">Bachelor’s degree, International Business Management · GPA 3.62</p>
       </article>
     </div>
   </section>
 
   <section class="sec" aria-labelledby="h-awards">
-    <h2 class="sec-h" id="h-awards">Awards and training</h2>
-    <div class="entries">
-      <article class="job">
-        <div class="title-line"><p class="title">1st Place, Startup Competition (pitch presentation)</p><span class="when">Apr 2024</span></div>
+    <div class="sec-head"><h2 class="sec-h" id="h-awards">Awards and training</h2></div>
+    <div class="rows">
+      <article class="rowi">
+        <p class="title">1st Place, Startup Competition (pitch presentation)</p><span class="when">Apr 2024</span>
         <p class="tagline">฿100,000 fund for an early-stage concept</p>
       </article>
-      <article class="job">
-        <div class="title-line"><p class="title">NLP Trainer, 200 hours</p><span class="when">Nov 2025</span></div>
+      <article class="rowi">
+        <p class="title">NLP Trainer, 200 hours</p><span class="when">Nov 2025</span>
       </article>
     </div>
   </section>
 
   <div class="end">
-    <div class="btn-row">
-      <a class="cta-main" href="/Kirsah_Tiathawornchai_AI_Project_Manager.pdf" download><span>Download PDF</span><span class="cta-arrow" aria-hidden="true"><svg viewBox="0 0 256 256" fill="currentColor" focusable="false"><path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"/></svg></span></a>
-      <a class="cta-ghost" href="/">Back to home</a>
-    </div>
+    <a class="pill dark big" href="/Kirsah_Tiathawornchai_AI_Project_Manager.pdf" download>Download PDF <span class="badge" aria-hidden="true">↓</span></a>
+    <a class="pill big" href="/">Back to home</a>
   </div>
 
   <dialog class="peek-panel" id="peek" aria-labelledby="peek-title">
-    <div class="peek-bar"><span class="peek-count" id="peek-count"></span><button class="peek-x" type="button" id="peek-x" aria-label="Close quick look"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+    <div class="peek-bar"><span class="peek-count" id="peek-count"></span><button class="pill round peek-x" type="button" id="peek-x" aria-label="Close quick look"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
     <div class="peek-body">
-      <figure class="peek-shot" id="peek-shot"><img id="peek-img" alt="" width="1280" height="720"></figure>
-      <p class="peek-when" id="peek-when"></p>
-      <h2 class="peek-title" id="peek-title"></h2>
-      <p class="peek-tag" id="peek-tag"></p>
-      <ul class="peek-stats" id="peek-stats"></ul>
-      <div class="peek-go" id="peek-go"></div>
+      <div class="peek-fold" id="peek-fold">
+        <div class="folder" id="peek-folder">
+          <svg class="tab" viewBox="0 0 300 215" preserveAspectRatio="none" aria-hidden="true"><path d="M0 46Q0 26 20 26H38Q52 26 58 14L62 8Q67 0 80 0H128Q141 0 147 10L153 20Q157 26 170 26H280Q300 26 300 46V195Q300 215 280 215H20Q0 215 0 195Z"/></svg>
+          <figure class="paper" id="peek-shot" style="margin:0"><img id="peek-img" alt="" width="1280" height="720"></figure>
+          <span class="front"><span class="cv" id="peek-cover" style="left:.6em;top:.6em;font-size:2.6em"></span></span>
+        </div>
+      </div>
+      <div>
+        <p class="peek-when" id="peek-when"></p>
+        <h2 class="peek-title" id="peek-title"></h2>
+        <p class="peek-tag" id="peek-tag"></p>
+        <ul class="peek-stats" id="peek-stats"></ul>
+        <div class="peek-go" id="peek-go"></div>
+      </div>
     </div>
-    <div class="peek-nav"><button class="cta-ghost" type="button" id="peek-prev">‹ Previous</button><button class="cta-ghost" type="button" id="peek-next">Next ›</button></div>
+    <div class="peek-nav"><button class="pill" type="button" id="peek-prev">‹ Previous</button><button class="pill" type="button" id="peek-next">Next ›</button></div>
   </dialog>
-
-  <footer class="foot">
-    <span>© 2026 Kirsah Tiathawornchai · Surin and Bangkok, Thailand</span>
-  </footer>
 </main>
-
+<footer class="wrap"><span>© 2026 Kirsah Tiathawornchai · Surin and Bangkok, Thailand</span></footer>
 
 <script>
 (() => {
+  "use strict";
   /* copy buttons: the icon turns into a tick, and screen readers hear what was copied */
   const status = document.getElementById("copy-status");
-  document.querySelectorAll(".copy").forEach(btn => {
+  document.querySelectorAll(".copy").forEach((btn) => {
     const target = document.getElementById(btn.dataset.copy);
     const text = target.textContent.trim();
     let timer = 0;
@@ -379,15 +385,19 @@ html:has(.peek-panel[open]){overflow:hidden}
     };
     const fallback = () => {
       const range = document.createRange(); range.selectNodeContents(target);
-      const sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(range);
+      const sel = getSelection(); sel.removeAllRanges(); sel.addRange(range);
       status.textContent = btn.dataset.copyName + " selected, press copy";
     };
-    btn.addEventListener("click", () => {
-      try { navigator.clipboard.writeText(text).then(done, fallback); } catch (e) { fallback(); }
-    });
+    btn.addEventListener("click", () => { try { navigator.clipboard.writeText(text).then(done, fallback); } catch (e) { fallback(); } });
   });
 
-  /* quick look: real numbers from the resume, her own pictures, and the link when the site is public */
+  /* quick look: each work name opens its folder */
+  const LOOK = {
+    denair: { c: "#b9b8b4", c2: "#9d9c98", fg: "#2b2b2a" }, formulal: { c: "#161616", c2: "#000", fg: "#f3f1ec" },
+    teampit: { c: "#ff5a1f", c2: "#d8410c", fg: "#fff" }, airplus: { c: "#2350e6", c2: "#1a3bb0", fg: "#fff" },
+    agents: { c: "#cdf24a", c2: "#a8cc2c", fg: "#161616" }, shopee: { c: "#f2e03a", c2: "#d3bf17", fg: "#161616" },
+    ggc: { c: "#1f4b3b", c2: "#143428", fg: "#efe6d2" },
+  };
   const PEEK = {
     denair: { img: "/img/work-denair.webp", when: "May 2021 – Present · General Manager", title: "Den Air Service",
       tag: "Our family car A/C shop in Surin. I run the business side: purchasing, prices, B2B customers and the shop's TikTok.",
@@ -415,15 +425,19 @@ html:has(.peek-panel[open]){overflow:hidden}
       stats: [["1,035", "users"], ["฿13M", "sales volume (GMV)"], ["180+", "code changes shipped"]], link: "https://about.gogocash.co/th", label: "about.gogocash.co" },
   };
   const dlg = document.getElementById("peek");
-  const $ = id => document.getElementById(id);
-  const order = [...document.querySelectorAll(".peek")].map(b => b.dataset.peek);
-  const ARROW = '<span class="cta-arrow" aria-hidden="true"><svg viewBox="0 0 256 256" fill="currentColor" focusable="false"><path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"/></svg></span>';
-  const esc = t => t.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const $ = (id) => document.getElementById(id);
+  const order = [...document.querySelectorAll(".peek")].map((b) => b.dataset.peek);
+  const esc = (t) => t.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   let cur = 0;
-  const show = i => {
+  const show = (i) => {
     cur = (i + order.length) % order.length;
-    const d = PEEK[order[cur]];
+    const key = order[cur], d = PEEK[key], look = LOOK[key];
     $("peek-count").textContent = (cur + 1) + " / " + order.length;
+    const folder = $("peek-folder");
+    folder.style.setProperty("--c", look.c); folder.style.setProperty("--c2", look.c2);
+    $("peek-cover").textContent = d.title; $("peek-cover").style.color = look.fg;
+    $("peek-cover").style.fontSize = d.title.length > 16 ? "1.7em" : "2.6em";
     $("peek-shot").hidden = !d.img;
     if (d.img) { $("peek-img").src = d.img; $("peek-img").alt = d.title + ", a picture of the work"; }
     $("peek-when").textContent = d.when;
@@ -431,8 +445,12 @@ html:has(.peek-panel[open]){overflow:hidden}
     $("peek-tag").textContent = d.tag;
     $("peek-stats").innerHTML = d.stats.map(([n, l]) => "<li><b>" + esc(n) + "</b><span>" + esc(l) + "</span></li>").join("");
     $("peek-go").innerHTML = d.link
-      ? '<a class="cta-main" href="' + d.link + '" target="_blank" rel="noopener"><span>Visit ' + esc(d.label) + "</span>" + ARROW + "</a>"
+      ? '<a class="pill dark big" href="' + d.link + '" target="_blank" rel="noopener">Visit ' + esc(d.label) + ' <span class="badge" aria-hidden="true">↗</span></a>'
       : '<p class="peek-private">' + esc(d.note) + "</p>";
+    // the folder opens: closed for a moment, then the picture slides up
+    const fold = $("peek-fold");
+    fold.classList.remove("open");
+    if (reduce) fold.classList.add("open"); else requestAnimationFrame(() => setTimeout(() => fold.classList.add("open"), 120));
     dlg.scrollTop = 0;
   };
   document.querySelectorAll(".peek").forEach((b, i) => b.addEventListener("click", () => { show(i); if (!dlg.open) dlg.showModal(); }));
@@ -440,11 +458,11 @@ html:has(.peek-panel[open]){overflow:hidden}
   $("peek-prev").addEventListener("click", () => show(cur - 1));
   $("peek-next").addEventListener("click", () => show(cur + 1));
   // a click on the dimmed page around the panel closes it
-  dlg.addEventListener("click", e => {
+  dlg.addEventListener("click", (e) => {
     const r = dlg.getBoundingClientRect();
     if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) dlg.close();
   });
-  dlg.addEventListener("keydown", e => { if (e.key === "ArrowLeft") show(cur - 1); if (e.key === "ArrowRight") show(cur + 1); });
+  dlg.addEventListener("keydown", (e) => { if (e.key === "ArrowLeft") show(cur - 1); if (e.key === "ArrowRight") show(cur + 1); });
 })();
 </script>
 </body>

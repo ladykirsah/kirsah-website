@@ -3,8 +3,8 @@
   "short_name": "Kirsah",
   "start_url": "/",
   "display": "browser",
-  "background_color": "#faf3e4",
-  "theme_color": "#ef4a23",
+  "background_color": "#eeece8",
+  "theme_color": "#eeece8",
   "icons": [
     {
       "src": "/icon-192.png",

@@ -108,7 +108,9 @@ button,input{font:inherit;color:inherit}
 :focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:10px}
 
 .stage{position:relative;height:100vh;height:100svh;min-height:440px;overflow:hidden;overflow:clip;touch-action:pan-y;user-select:none;-webkit-user-select:none;
-  background:radial-gradient(90% 75% at 50% 48%, #f4f2ef 0%, var(--bg) 60%, var(--bg2) 100%)}
+  background:linear-gradient(to bottom, transparent 70%, var(--bg)), radial-gradient(90% 75% at 50% 48%, #f4f2ef 0%, var(--bg) 60%, var(--bg2) 100%)}
+/* folders are drawn whole: they may hang below the room (her call, 25 Nov); --spill keeps them off the next heading */
+.js .stage{overflow:visible;overflow-x:clip;margin-bottom:var(--spill,0px)}
 
 /* top + bottom bars */
 .bar{position:absolute;left:0;right:0;display:flex;align-items:center;justify-content:space-between;gap:12px;z-index:60;pointer-events:none;
@@ -518,6 +520,11 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;paddin
       FW = Math.max(120, Math.min(W * .52, 240, (Math.min(top, bottom) - 8) * 300 / 215));
     } else FW = Math.max(150, Math.min(W * .195, H * .36, 330));
     items.forEach((it) => { it.el.style.width = FW + 'px'; it.el.style.setProperty('--w', FW + 'px'); });
+    // Folders are drawn whole. Where the circle dips below the room, add just enough space under it
+    // (beyond the next part's own top padding, less a 28 px gap) so no folder reaches the next heading.
+    const E = ellipse(), reach = E.cy + E.ry + FW * 215 / 300 * .66 - H;
+    const free = parseFloat(getComputedStyle(stage.nextElementSibling).paddingTop) - 28;
+    stage.style.setProperty('--spill', Math.max(0, Math.ceil(reach - free)) + 'px');
     layoutPanel();
   }
   function ellipse() {
@@ -542,7 +549,10 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;paddin
     return items.map((_, i) => ({ x: 16 + cw * (i % cols + .5), y: top + ch * (Math.floor(i / cols) + .5) + w * .03, s: w / FW }));
   }
 
-  // open / close
+  // open / close (byKey: the last thing the visitor used was the keyboard, not a tap or click)
+  let byKey = false;
+  addEventListener('keydown', () => { byKey = true; }, true);
+  addEventListener('pointerdown', () => { byKey = false; }, true);
   function copyText(btn, text, node) {
     const done = () => { btn.textContent = 'Copied'; };
     const select = () => { const r = document.createRange(); r.selectNodeContents(node); const s = getSelection(); s.removeAllRanges(); s.addRange(r); };
@@ -562,7 +572,7 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;paddin
   function openAt(i) {
     document.body.classList.add('locked'); state.open = i; follow.classList.remove('on');
     stage.classList.add('is-open'); items.forEach((it) => it.el.classList.toggle('open', it.i === i));
-    renderPanel(i); layoutPanel(); $('#close').focus({ preventScroll: true });
+    renderPanel(i); layoutPanel(); if (byKey) $('#close').focus({ preventScroll: true });
   }
   // From further down the page: glide back to the folders first, then open.
   function openFromAnywhere(i) {
@@ -577,7 +587,9 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;paddin
   function closeAll() {
     document.body.classList.remove('locked'); const was = state.open; state.open = -1;
     stage.classList.remove('is-open'); items.forEach((it) => it.el.classList.remove('open'));
-    if (was >= 0) items[was].el.focus({ preventScroll: true });
+    // Keyboard users get focus back on their folder; after a tap or click nothing keeps focus,
+    // so iPhone Safari draws no outline on the folder.
+    if (was >= 0 && byKey) items[was].el.focus({ preventScroll: true }); else document.activeElement.blur();
   }
   function step(d) { if (state.open < 0) return openAt(0); openAt((state.open + d + items.length) % items.length); }
   $('#close').addEventListener('click', closeAll);

@@ -37,8 +37,16 @@ The rules this site follows, and the lessons from building it. Read before chang
   Checked at 1440×900, 1280×720, 390×844, 390×667 and 700×500.
 - Lesson (25 Nov 2026): the draft was only looked at on desktop and a tall phone, so the short-phone and short-window
   problems above only showed when building. Look at every draft at 390×667 and 700×500 too before she approves it.
-- Still in the V1 look (open, needs her pick): the tab icons and the colours in `site.webmanifest`.
-  The `/resume/` page is unchanged (its new design is drawn, waiting for her).
+- Folder room bottom edge (her call, 26 Nov 2026): folders are always drawn whole, never cut and never faded.
+  The room clips only sideways (`overflow-x: clip`); where the circle dips below it, the folders hang into the space
+  under it, and `--spill` adds just enough space so they stay clear of "Real numbers from real work". The room's
+  colour fades into the page colour at the bottom, so there is no line. Checks spin the ring at 4 sizes.
+- Lesson (26 Nov 2026): I offered a soft fade as my pick; she wanted the folders whole. For things that move across
+  a section edge, offer "whole, with room made for it" first; a fade or a cut is a last resort.
+- Focus after a tap (26 Nov 2026): putting focus back on the folder after closing it made iPhone Safari draw a black
+  outline on it, which looked like a design mistake. Focus moves (to the back button, back to the folder) only when
+  the visitor used the keyboard; after a tap or click nothing keeps focus.
+- The whole site is in the Folder room look, including `/resume/` (her drawing, 26 Nov 2026) and the icons.
 
 ## Decisions (V1 design, kept where they still apply)
 - Nav: no frame. Logo and nav text sit on a soft glow that fades out at the edges, so a photo
@@ -75,8 +83,12 @@ The rules this site follows, and the lessons from building it. Read before chang
   Source: `L Life/kirsah-website/share-preview/folder-room/` (`make.py` builds the page, `render.mjs` takes the
   picture). The V1 card (headline plus 9 days / 26× / 4,267 on cream) was replaced.
 - `og:image:alt` on both pages describes the picture; change it whenever the card changes (a check holds it).
-- Icons: orange square with the Yellowtail "K" from the logo (`favicon.ico`, `apple-touch-icon.png`,
-  `icon-192.png`, `icon-512.png`). The old blocky Arial "K" (`favicon.svg`) is gone.
+- Icons (her pick, 26 Nov 2026): "Mix C", a lilac folder with a black "k." in front of a yellow folder, on the
+  page's warm grey (`favicon.ico`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png`; manifest colours #eeece8).
+  Flat colours and the site's real folder shape only: she called a shaded, glowing version "so AI". She picked it by
+  mixing my options herself (C5 pile + C3 "k." signature, then yellow back folder and black dot). Source:
+  `L Life/kirsah-website/tab-icon-mix-c/` (`mix-c.html` is the drawing, `render.mjs` saves each size). The orange K
+  from the V1 look was replaced.
 - After changing the share card, social apps keep the old one for a while; refresh with each platform's
   debugger (Facebook Sharing Debugger, LinkedIn Post Inspector).
 
