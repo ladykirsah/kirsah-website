@@ -5,6 +5,7 @@ import { test, expect } from '@playwright/test';
 
 const SITE = 'https://kirsah.com/';
 const SHARE_IMAGE = 'https://kirsah.com/og.png';
+const SHARE_ALT = 'Kirsah Folders: Ideas that go live. Kirsah Tiathawornchai, Tech / AI Project Manager, kirsah.com, with project folders: 45.9K, TeamPit, Hi, I’m Kirsah, 9 days and 26×.';
 
 function pngSize(buffer) {
   // PNG header: 8-byte signature, then the IHDR chunk with width and height.
@@ -41,7 +42,8 @@ test.describe('search and share', () => {
     expect(meta(html, 'property', 'og:image')).toBe(SHARE_IMAGE);
     expect(meta(html, 'property', 'og:image:width')).toBe('1200');
     expect(meta(html, 'property', 'og:image:height')).toBe('630');
-    expect(meta(html, 'property', 'og:image:alt')?.length).toBeGreaterThan(10);
+    // The share card shows the Folder room look (25 Nov 2026): the words must describe that picture.
+    expect(meta(html, 'property', 'og:image:alt')).toBe(SHARE_ALT);
     expect(meta(html, 'name', 'twitter:card')).toBe('summary_large_image');
   });
 
@@ -109,6 +111,7 @@ test.describe('search and share', () => {
     expect(html).toContain(`<link rel="canonical" href="${SITE}resume/">`);
     expect(meta(html, 'property', 'og:url')).toBe(`${SITE}resume/`);
     expect(meta(html, 'property', 'og:image')).toBe(SHARE_IMAGE);
+    expect(meta(html, 'property', 'og:image:alt')).toBe(SHARE_ALT);
     expect(html).toContain('<link rel="icon" href="/favicon.ico" sizes="48x48">');
     expect(html).toContain('<html lang="en">');
   });

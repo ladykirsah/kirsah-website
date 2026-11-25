@@ -223,30 +223,62 @@ test.describe('home page', () => {
     await expect(page.getByText('Every folder')).toHaveCount(0);
   });
 
-  // Her iPhone (440 wide) showed the 26× folder over "Ideas that". Spin the ring step by step and check that no
-  // folder (with its photo) ever covers the headline, the sentence, the button or the chips.
-  for (const size of [{ width: 440, height: 860 }, { width: 390, height: 844 }, { width: 390, height: 667 }, { width: 1280, height: 720 }]) {
-    test(`folders > at ${size.width}x${size.height}, spinning the ring never puts a folder over the headline`, async ({ browser }) => {
-      const { context, page } = await stillPage(browser, size);
-      for (let turn = 0; turn < 10; turn++) {
-        const hits = await page.evaluate(() => {
-          const parts = ['h1', '.sub', '#start', '#chips'].map((s) => document.querySelector(s)).filter((e) => e && e.offsetHeight);
-          const rs = parts.map((e) => e.getBoundingClientRect());
-          const copy = { left: Math.min(...rs.map((r) => r.left)), right: Math.max(...rs.map((r) => r.right)), top: Math.min(...rs.map((r) => r.top)), bottom: Math.max(...rs.map((r) => r.bottom)) };
-          return [...document.querySelectorAll('.folder')].filter((f) => {
-            const a = f.getBoundingClientRect(), b = f.querySelector('.paper').getBoundingClientRect();
-            const box = { left: Math.min(a.left, b.left), right: Math.max(a.right, b.right), top: Math.min(a.top, b.top), bottom: Math.max(a.bottom, b.bottom) };
-            return box.left < copy.right && box.right > copy.left && box.top < copy.bottom && box.bottom > copy.top;
-          }).map((f) => f.getAttribute('aria-label'));
+  // Spin the ring step by step (drag along the top band) and record, for each folder, its box (cover + photo),
+  // how faded it is, and which of the words it covers.
+  async function spinAndLook(page, size, turns = 12) {
+    const looks = [];
+    for (let turn = 0; turn < turns; turn++) {
+      looks.push(await page.evaluate(() => {
+        const words = ['h1', '.sub', '#start', '#chips'].map((s) => document.querySelector(s)).filter((e) => e && e.offsetHeight)
+          .map((e) => e.getBoundingClientRect());
+        const copy = { top: Math.min(...words.map((r) => r.top)), bottom: Math.max(...words.map((r) => r.bottom)) };
+        return [...document.querySelectorAll('.folder')].map((f) => {
+          const a = f.querySelector('.front').getBoundingClientRect(), b = f.querySelector('.paper').getBoundingClientRect();
+          const box = { left: Math.min(a.left, b.left), right: Math.max(a.right, b.right), top: Math.min(a.top, b.top), bottom: Math.max(a.bottom, b.bottom) };
+          // a real cover-up, not a brush past: at least 24 px across and 18 px down of one word block
+          const covers = words.some((w) => Math.min(box.right, w.right) - Math.max(box.left, w.left) > 24
+            && Math.min(box.bottom, w.bottom) - Math.max(box.top, w.top) > 18);
+          const anyOverlap = words.some((w) => box.left < w.right && box.right > w.left && box.top < w.bottom && box.bottom > w.top);
+          const midY = (a.top + a.bottom) / 2;
+          return { name: f.getAttribute('aria-label'), covers, anyOverlap, opacity: Number(getComputedStyle(f).opacity),
+            besideWords: midY > copy.top && midY < copy.bottom && a.right > 0 && a.left < innerWidth };
         });
-        expect(hits, `turn ${turn}`).toEqual([]);
-        // drag the ring a little, along the empty band at the top
-        await page.mouse.move(size.width * 0.3, 70);
-        await page.mouse.down();
-        await page.mouse.move(size.width * 0.3 + 40, 70, { steps: 4 });
-        await page.mouse.up();
-        await page.waitForTimeout(1600);
-      }
+      }));
+      await page.mouse.move(size.width * 0.3, 70);
+      await page.mouse.down();
+      await page.mouse.move(size.width * 0.3 + 40, 70, { steps: 4 });
+      await page.mouse.up();
+      await page.waitForTimeout(1600);
+    }
+    return looks.flat();
+  }
+
+  // Computers: the ring swings out beside the text, so no folder (with its photo) ever covers the words.
+  test('folders > at 1280x720, spinning the ring never puts a folder over the headline', async ({ browser }) => {
+    const size = { width: 1280, height: 720 };
+    const { context, page } = await stillPage(browser, size);
+    const hits = (await spinAndLook(page, size, 10)).filter((f) => f.anyOverlap).map((f) => f.name);
+    expect(hits).toEqual([]);
+    await context.close();
+  });
+
+  // Phones (her pick, 25 Nov): the folders go round in a full circle again, down the sides past the words,
+  // and the words stay on top: a folder fades while it passes behind them.
+  for (const size of [{ width: 440, height: 860 }, { width: 390, height: 844 }, { width: 390, height: 667 }]) {
+    test(`folders > at ${size.width}x${size.height}, the ring is a circle that passes beside the words`, async ({ browser }) => {
+      const { context, page } = await stillPage(browser, size);
+      const looks = await spinAndLook(page, size);
+      expect(looks.some((f) => f.besideWords), 'some folder comes down the side, level with the words').toBe(true);
+      await context.close();
+    });
+
+    test(`folders > at ${size.width}x${size.height}, a folder behind the words is faded so they stay readable`, async ({ browser }) => {
+      const { context, page } = await stillPage(browser, size);
+      const z = await page.evaluate(() => [getComputedStyle(document.querySelector('.copy')).zIndex, getComputedStyle(document.querySelector('#ring')).zIndex].map(Number));
+      expect(z[0], 'the words sit above the folders').toBeGreaterThan(z[1]);
+      const looks = await spinAndLook(page, size);
+      const loud = looks.filter((f) => f.covers && f.opacity > 0.4).map((f) => `${f.name} (${f.opacity})`);
+      expect(loud).toEqual([]);
       await context.close();
     });
   }

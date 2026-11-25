@@ -22,19 +22,23 @@ The rules this site follows, and the lessons from building it. Read before chang
   adds the motion and the opening. Without JavaScript the folders show as a plain grid.
 - 4,267 tests and 180+ code changes are labelled "Engineering" until she confirms which project they come from.
 - Polish inside this design. Do not swap fonts, colours or layout without her OK.
-- Every size: folders never pass over the headline, sentence, button or chips (a check spins the ring and looks).
-  On phones the ring becomes two rows, one above the headline moving right and one below moving left, turning the
-  corner off screen at the sides; their size comes from the free space. A plain ring on a phone always crossed the
-  text at its corners (her iPhone showed the 26× folder over "Ideas that"). On computers a folder whose path would
-  cross the text swings out sideways. Short phones drop the sentence under the headline.
+- Every size, computers: folders never pass over the headline, sentence, button or chips (a check spins the ring
+  and looks). A folder whose path would cross the text swings out sideways.
+- Phones (her pick, 25 Nov 2026): the folders go round in one big circle, like her first draft, and come down the
+  sides past the words. The words sit above the folders, and a folder fades to 25% while it covers a real part of
+  them (a brush past does not count), so the text stays readable. She tried "two rows" first (PR 14) and asked for
+  the circle back; she chose "words on top" over the old circle at full strength. Checks: the circle passes
+  beside the words, and any folder behind them is faded. Short phones drop the sentence under the headline.
+- Lesson (25 Nov 2026): the motion's shape is part of the approved design. Fix a bug (here: folders over the
+  words) without changing how the motion looks; if the only fix changes it, show her the options first.
 - The folder area clips with `overflow: clip`, not `hidden`: with `hidden`, focusing a folder that sat off screen
   scrolled the whole area sideways. On short
   screens the open folder is smaller and the details scroll inside their panel, between the top and bottom buttons.
   Checked at 1440×900, 1280×720, 390×844, 390×667 and 700×500.
 - Lesson (25 Nov 2026): the draft was only looked at on desktop and a tall phone, so the short-phone and short-window
   problems above only showed when building. Look at every draft at 390×667 and 700×500 too before she approves it.
-- Still in the V1 look (open, needs her pick): the share card `og.png`, the tab icons and the colours in
-  `site.webmanifest`. The `/resume/` page is unchanged.
+- Still in the V1 look (open, needs her pick): the tab icons and the colours in `site.webmanifest`.
+  The `/resume/` page is unchanged (its new design is drawn, waiting for her).
 
 ## Decisions (V1 design, kept where they still apply)
 - Nav: no frame. Logo and nav text sit on a soft glow that fades out at the edges, so a photo
@@ -64,10 +68,13 @@ The rules this site follows, and the lessons from building it. Read before chang
   needs the `"previews": {}` block in `wrangler.jsonc`; without it the "Workers Builds" check on
   each PR fails. Keep the block when editing that file.
 
-## Share card and icons (19 Nov 2026)
-- Share card `public/og.png` (1200 × 630): headline plus the proof numbers 9 days / 26× / 4,267, the same
-  three as the contact section. Picked by Kirsah's own rules (proof with real numbers, keep the site's look).
-  Source: `L Life/kirsah-website/share-preview/cards.html` (rendered with headless Chrome).
+## Share card and icons
+- Share card `public/og.png` (1200 × 630), Folder room look since 25 Nov 2026 (her approval): "Ideas that go live."
+  with her name, title and kirsah.com on the left, five real folders on the right (45.9K, TeamPit, Hi, I'm Kirsah,
+  9 days, 26×). Built from the home page's own styles and folder covers, rendered with headless Chrome.
+  Source: `L Life/kirsah-website/share-preview/folder-room/` (`make.py` builds the page, `render.mjs` takes the
+  picture). The V1 card (headline plus 9 days / 26× / 4,267 on cream) was replaced.
+- `og:image:alt` on both pages describes the picture; change it whenever the card changes (a check holds it).
 - Icons: orange square with the Yellowtail "K" from the logo (`favicon.ico`, `apple-touch-icon.png`,
   `icon-192.png`, `icon-512.png`). The old blocky Arial "K" (`favicon.svg`) is gone.
 - After changing the share card, social apps keep the old one for a while; refresh with each platform's
