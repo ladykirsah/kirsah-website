@@ -22,7 +22,7 @@
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Kirsah: Ideas that go live. 9 days idea to live web store, 26× Shopee sales, 4,267 automated tests.">
+<meta property="og:image:alt" content="Kirsah Folders: Ideas that go live. Kirsah Tiathawornchai, Tech / AI Project Manager, kirsah.com, with project folders: 45.9K, TeamPit, Hi, I’m Kirsah, 9 days and 26×.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Kirsah Tiathawornchai · Tech / AI Project Manager">
 <meta name="twitter:description" content="Tech / AI project manager in Bangkok. I turn ideas into live products with AI agents: a web store live in 9 days, 26× Shopee sales, 4,267 automated tests.">
@@ -493,12 +493,13 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;paddin
   const matches = (it) => !state.filter || it.group === state.filter;
 
   // sizes
-  let W = 0, H = 0, FW = 0, narrow = false, band = null, copy = null;
+  let W = 0, H = 0, FW = 0, narrow = false, band = null, copy = null, words = [];
   // How far a tilted folder (and the photo peeking out of it) reaches from its centre, in folder heights / widths.
   const REACH = { up: .8, down: .67, side: .57 }, GAP = 8;
-  // The headline, sentence, button and chips: folders never pass over this box.
+  // The headline, sentence, button and chips. On computers folders never pass over this box.
+  const wordParts = () => ['.copy h1', '.copy .sub', '#start', '#chips'].map($).filter((e) => e && e.offsetHeight);
   function copyBox() {
-    const parts = ['.copy h1', '.copy .sub', '#start', '#chips'].map($).filter((e) => e && e.offsetHeight);
+    const parts = wordParts();
     return {
       top: Math.min(...parts.map((e) => e.offsetTop)), bottom: Math.max(...parts.map((e) => e.offsetTop + e.offsetHeight)),
       left: Math.min(...parts.map((e) => e.offsetLeft)), right: Math.max(...parts.map((e) => e.offsetLeft + e.offsetWidth)),
@@ -508,20 +509,20 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;paddin
     const r = stage.getBoundingClientRect(); W = r.width; H = r.height;
     narrow = W < 760 && H >= W * .9;
     copy = copyBox();
+    words = wordParts().map((e) => ({ t: e.offsetTop, b: e.offsetTop + e.offsetHeight, l: e.offsetLeft, r: e.offsetLeft + e.offsetWidth }));
     if (narrow) {
-      // On phones the folders orbit in the free bands above and below the headline, sized so a tilted folder fits.
-      const span = REACH.up + REACH.down;
-      const fh = Math.min((copy.top - 52 - GAP) / span, (H - 56 - copy.bottom - GAP) / span);
-      FW = Math.max(110, Math.min(W * .52, 240, fh * 300 / 215));
-      const h = FW * 215 / 300;
-      band = { t: copy.top - GAP - REACH.down * h, b: copy.bottom + GAP + REACH.up * h };
+      // On phones the folders go round in one big circle: across the free space above and below the words,
+      // and down the sides, where they pass behind the words (see behindWords).
+      const top = copy.top - 100, bottom = H - 60 - copy.bottom;
+      band = { t: 100 + top / 2, b: copy.bottom + bottom / 2 };
+      FW = Math.max(120, Math.min(W * .52, 240, (Math.min(top, bottom) - 8) * 300 / 215));
     } else FW = Math.max(150, Math.min(W * .195, H * .36, 330));
     items.forEach((it) => { it.el.style.width = FW + 'px'; it.el.style.setProperty('--w', FW + 'px'); });
     layoutPanel();
   }
   function ellipse() {
     const fh = FW * 215 / 300;
-    if (narrow) return { cx: W / 2, cy: (band.t + band.b) / 2, rx: (W + 2 * rowEdge()) / Math.PI, ry: Math.max(80, (band.b - band.t) / 2) };
+    if (narrow) return { cx: W / 2, cy: (band.t + band.b) / 2, rx: W * .8, ry: Math.max(80, (band.b - band.t) / 2) };
     return { cx: W / 2, cy: H / 2 + 10, rx: W / 2 - FW * .22, ry: H / 2 - fh * .16 };
   }
   function openSpot() {
@@ -622,14 +623,13 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;paddin
     e.preventDefault(); state.vel = Math.max(-.004, Math.min(.004, state.vel + e.deltaX * .0000045));
   }, { passive: false });
 
-  // Phones: the ring becomes two rows, one above the headline (moving right) and one below (moving left);
-  // folders turn the corner off screen at the sides. A gentle arc keeps the orbit feel.
-  const rowEdge = () => REACH.side * FW + GAP;
-  function onRows(a) {
-    const m = rowEdge(), len = W + 2 * m, u = ((a / (2 * Math.PI)) % 1 + 1) % 1;
-    const top = u < .5, t = top ? u * 2 : (u - .5) * 2;
-    const x = top ? -m + t * len : W + m - t * len, rise = 12 * (1 - Math.pow((x - W / 2) / (len / 2), 2));
-    return { x, y: top ? band.t - rise : band.b + rise };
+  // Phones: the words sit above the folders. A folder that covers a real part of them (cover plus the photo
+  // peeking out, not just a brush past) fades so the words stay easy to read.
+  const FADE = .25;
+  // The tilt (deg) widens the box: a tipped folder's corners reach further.
+  function behindWords(x, y, h, tilt) {
+    const t = Math.abs(Math.sin(tilt * Math.PI / 180)), dx = FW / 2 + h * .5 * t, up = h * .55 + FW * .5 * t, dn = h * .5 + FW * .5 * t;
+    return words.some((w) => Math.min(x + dx, w.r) - Math.max(x - dx, w.l) > 14 && Math.min(y + dn, w.b) - Math.max(y - up, w.t) > 10);
   }
   // A folder whose path crosses the headline's rows swings out sideways so it passes beside the text, not over it.
   function clearOfCopy(x, y, h) {
@@ -652,8 +652,9 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;paddin
       else if (state.open >= 0) { tx = E.cx + Math.cos(a) * E.rx * 1.6; ty = E.cy + Math.sin(a) * E.ry * 1.7; tr = it.tilt * 1.6; ts = .85; to = 0; }
       else if (grid) { tx = grid[it.i].x; ty = grid[it.i].y; tr = it.tilt * .12; ts = grid[it.i].s; }
       else {
-        if (narrow) ({ x: tx, y: ty } = onRows(a)); else { tx = clearOfCopy(E.cx + Math.cos(a) * E.rx, ty = E.cy + Math.sin(a) * E.ry, h); }
         tr = it.tilt + (reduce ? 0 : Math.sin(now / 1800 + it.i) * 2); ts = 1;
+        tx = E.cx + Math.cos(a) * E.rx; ty = E.cy + Math.sin(a) * E.ry;
+        if (!narrow) tx = clearOfCopy(tx, ty, h); else if (behindWords(tx, ty, h, tr)) to = FADE;
       }
       if (state.open < 0 && state.hover === it.i && !down) { ts *= 1.05; tr *= .4; }
       if (state.open < 0 && !matches(it)) { to = .18; ts *= .94; }
