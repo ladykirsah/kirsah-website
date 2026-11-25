@@ -2,14 +2,32 @@
 
 The rules this site follows, and the lessons from building it. Read before changing the design.
 
-## The design
-- Base: the V1 "Kolibrie" design Kirsah picked (cream, tomato orange, black; Archivo headlines,
-  Playfair reading text, Yellowtail logo; scribble opening, letters rising, 3D card stack,
-  dark proof wall with number stickers).
-- Change it by polishing inside this design. Do not swap fonts, colours or layout on our own
-  (a full redesign was rejected: "i told you to develop, not change design").
+## The design: Folder room (since 25 Nov 2026)
+- Kirsah chose a completely new look herself on 25 Nov 2026 ("i want everything in new design too font and
+  everything"), inspired by the MotionSites "Book Library" prompt, with her work projects as folders instead of books.
+  It replaces the V1 "Kolibrie" design and its old "do not change the design" rule.
+- Approved draft: artifact https://claude.ai/artifact/8JwAZoEkYBVzw9crqxXsHa (version 4, "draft 3"); readable source
+  in `L Life/kirsah-website/folder-room-draft/draft3-source.html`. Compare with it before changing the look.
+- Look: warm grey `#eeece8`, ink `#161616`; Inter Tight headlines, Inter text, Instrument Serif accents; each folder
+  has its own poster colour.
+- Top screen: 8 folders orbit "Ideas that go live." Drag to throw, scroll spins, click opens (the folder flies to the
+  middle, its photo slides up, details on the right, below it on phones); arrows and Esc; Ring / Grid; search with
+  the "/" key; chips Built / Grown / Run / About; the cursor label is for a mouse only. As in the draft, a closed
+  folder shows no back tab; the tab appears when it opens.
+- Below: "Every folder, one list." (a row scrolls up and opens its folder), "The proof wall." (6 number cards),
+  tools row, black "Let's talk." card with email, Copy and resume, footer.
+- Folders, their details, list rows, number cards, tools and contact are plain HTML in the page; JavaScript only
+  adds the motion and the opening. Without JavaScript the folders show as a plain grid.
+- 4,267 tests and 180+ code changes are labelled "Engineering" until she confirms which project they come from.
+- Polish inside this design. Do not swap fonts, colours or layout without her OK.
+- Every size: on phones the folders orbit in the free space above and below the headline (their size comes from
+  the headline's box), so they never slide behind it; short phones drop the sentence under the headline. On short
+  screens the open folder is smaller and the details scroll inside their panel, between the top and bottom buttons.
+  Checked at 1440×900, 1280×720, 390×844, 390×667 and 700×500.
+- Still in the V1 look (open, needs her pick): the share card `og.png`, the tab icons and the colours in
+  `site.webmanifest`. The `/resume/` page is unchanged.
 
-## Decisions
+## Decisions (V1 design, kept where they still apply)
 - Nav: no frame. Logo and nav text sit on a soft glow that fades out at the edges, so a photo
   passing behind never shows a hard shape ("make it smoother").
 - Stickers: professional over playful. Titan One was "catchy but not professional".
@@ -50,11 +68,12 @@ The rules this site follows, and the lessons from building it. Read before chang
 - What AI assistants read: `public/llms.txt` (the "who is Kirsah" answer and key facts) and the
   `application/ld+json` profile in the page head. Every fact must match her current resume; update both
   together when the resume changes. Keep the phone number out of these two (it is only on the resume page).
-- Project cards, the tools row and the proof wall are plain HTML (not built by JavaScript), so crawlers
-  that don't run code can read them. Keep it that way.
+- The folders and their details, the work list, the tools row and the proof wall are plain HTML (not built by
+  JavaScript), so crawlers that don't run code can read them. Keep it that way.
 - `robots.txt` allows everyone; Cloudflare adds its own lines on top. `sitemap.xml` lists the page.
 - Open: LinkedIn link and Thai spelling of her name (add to `sameAs` / `alternateName` when she gives them).
-- Open (design change, needs her OK): Lighthouse accessibility notes on text contrast and one ARIA attribute.
+- Open (design change, needs her OK): Lighthouse notes low contrast on the small grey text of the new design
+  (Grid button, small labels). Accessibility still scores 96; making the grey darker changes her approved look.
 
 ## Checks and deploys
 - Every pull request: `site-checks` (Playwright, `tests/`) and `lighthouse` (SEO ≥ 95, best practices ≥ 90,
@@ -64,12 +83,16 @@ The rules this site follows, and the lessons from building it. Read before chang
 - Dependabot proposes tool updates every Monday; they go through the same checks.
 
 ## Proof wall colour (19 Nov 2026)
+
+_V1 design (replaced 25 Nov 2026). The general lessons still apply._
 - Dark chocolate `#2e1d15` (`--night`), picked from 5 browns because the proof numbers must pop
   (cream text 14.6:1, orange headline 4.4:1). Walnut felt warmer but its orange sat near the 3:1 minimum.
 - The same brown is used, see-through, for the soft glow behind the logo and menu on the dark section
   and for the title panel on phones. Change all three together.
 
 ## Round 6: her own photos, resume page, icon (19 Nov 2026)
+
+_V1 design (replaced 25 Nov 2026). The general lessons still apply._
 
 - **Work cards:** six cards, one per picture in her Desktop "Work" folder (Den Air card added). The picture fills
   the card edge to edge; a frame of card colour around it looked like a mistake to her ("fix the popup background").
@@ -90,6 +113,8 @@ The rules this site follows, and the lessons from building it. Read before chang
 
 ## Round 7: every screen size gets its best version (19 Nov 2026)
 
+_V1 design (replaced 25 Nov 2026). The general lessons still apply._
+
 L: "if the full desktop design / layout / motion is the best version > make all sizes the best version of itself too."
 - **Text size must not jump between breakpoints.** The phone scale (100vw/24.375) grew to 24.6px at 600px and the
   tablet scale started at 10px at 601px: a narrow desktop window got oversized phone text. Now phone ≤ 17px, tablet ≥ 13px.
@@ -104,6 +129,8 @@ L: "if the full desktop design / layout / motion is the best version > make all 
 - Checks cover 390, 572, 768, 1024, 1280 and 1440 wide, touch and mouse, and a wide-to-narrow resize.
 
 ## Rounds 8 and 9: the same motion on every size (19 Nov 2026)
+
+_V1 design (replaced 25 Nov 2026). The general lessons still apply._
 
 L checked on her phone: "it's totally the same". Fitting the layout is not enough; the motion must match desktop too.
 - **Work cards:** the same pinned card stack on every size (no plain list on phones). Each card behind is the same

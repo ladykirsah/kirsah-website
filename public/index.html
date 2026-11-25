@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Kirsah Tiathawornchai · Tech / AI Project Manager</title>
 <meta name="description" content="Tech / AI project manager in Bangkok. I turn ideas into live products with AI agents: a web store live in 9 days, 26× Shopee sales, 4,267 automated tests.">
 <link rel="canonical" href="https://kirsah.com/">
-<meta name="theme-color" content="#faf3e4">
+<meta name="theme-color" content="#eeece8">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -85,629 +85,626 @@
   ]
  }
 }</script>
+<script>document.documentElement.className='js'</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Playfair:opsz,wdth,wght@5..1200,87.5..112.5,300..900&family=Yellowtail&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800;900&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap">
 <style>
-[hidden]{display:none!important}
-img{max-width:100%}
-/* Layout: cream hero with cursor photo cards → pinned 3D card stack of 5 real projects → sticky "wall" that turns the page dark while 6 photos rise past → contact strip.
-   One deliberate look (cream + tomato, dark wall), so no light/dark token swap. */
+/* Folder room (Kirsah's pick, 25 Nov 2026): poster-like work folders orbit the headline; click one and it opens in the middle. */
 :root{
-  --cream:#faf3e4; --ink:#141110; --tomato:#ef4a23; --butter:#ffd46e; --sky:#8fc6e8;
-  --pink:#f6a9c2; --sage:#b9c48a; --white:#ffffff; --night:#2e1d15; /* proof wall: dark chocolate (L, 2026-11-19) */ --placeholder:#e9dcc6;
-  --page:var(--cream);
-  --f-grot:"Archivo","Arial Narrow",Arial,sans-serif;
-  --f-serif:"Playfair","Playfair Display",Georgia,serif;
-  --f-script:"Yellowtail","Brush Script MT",cursive;
-  --f-sticker:"Titan One","Arial Rounded MT Bold",Arial,sans-serif;
+  --bg:#eeece8; --bg2:#e6e3dd; --ink:#161616; --muted:#8b8884; --line:rgba(22,22,22,.10); --card:#fbfaf8;
+  --lime:#cdf24a;
+  --f-display:"Inter Tight","Helvetica Neue",Arial,sans-serif;
+  --f-text:"Inter","Helvetica Neue",Arial,sans-serif;
+  --f-serif:"Instrument Serif",Georgia,serif;
   --ease:cubic-bezier(.65,.05,0,1);
   color-scheme:light;
 }
-html{font-size:calc(100vw / 90);background:var(--page)}
-@media (max-width:991px){html{font-size:max(13px,calc(100vw / 60))}}
-@media (max-width:600px){html{font-size:min(17px,calc(100vw / 24.375))}}
-html[data-theme="dark"]{--page:var(--night)}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-a{color:inherit;text-decoration:none}
-img{display:block}
-button{font:inherit;color:inherit}
-body{background:var(--page);transition:background-color .7s var(--ease);color:var(--ink);font-family:var(--f-grot);overflow-x:clip}
-html.lenis,html.lenis body{height:auto}
-.lenis.lenis-smooth{scroll-behavior:auto!important}
-main{visibility:hidden}
-html[data-page-ready] main{visibility:visible}
-[data-text-reveal],[data-scroll-reveal]{visibility:hidden}
-:focus-visible{outline:2px solid var(--tomato);outline-offset:3px}
+*{box-sizing:border-box}
+html{background:var(--bg);-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-text);overflow-x:hidden}
+body.locked{overflow:hidden}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:10px}
 
-/* ---------- type ---------- */
-.h-hero,.h-sec{font-family:var(--f-grot);font-weight:700;font-variation-settings:"wght" 700,"wdth" 72;text-transform:uppercase;letter-spacing:-.02em;line-height:.8em;text-wrap:balance}
-.h-hero{font-size:9rem}
-.h-sec{font-size:8rem}
-.hl{color:var(--tomato)}
-.alt{font-family:var(--f-serif);font-weight:300;font-variation-settings:"wght" 300,"wdth" 87.5,"opsz" 120;letter-spacing:-.035em}
-.eyebrow-m,.eyebrow-s{font-family:var(--f-serif);font-weight:500;font-variation-settings:"wght" 500,"wdth" 87.5,"opsz" 40;letter-spacing:-.03em;line-height:1em}
-.eyebrow-m{font-size:2.5rem}
-.eyebrow-s{font-size:2rem}
-.para{font-family:var(--f-serif);font-weight:400;font-variation-settings:"wght" 400,"wdth" 100,"opsz" 20;font-size:1.25rem;line-height:1.35;letter-spacing:-.01em}
-.line,.line-mask{padding-bottom:.06em;margin-bottom:-.06em}
-@media (max-width:991px){.h-hero{font-size:6.4rem}.h-sec{font-size:6rem}}
-@media (max-width:600px){.h-hero{font-size:4rem}.h-sec{font-size:4.2rem}.eyebrow-m{font-size:1.75rem}.eyebrow-s{font-size:1.5rem}}
+.stage{position:relative;height:100vh;height:100svh;min-height:440px;overflow:hidden;touch-action:pan-y;user-select:none;-webkit-user-select:none;
+  background:radial-gradient(90% 75% at 50% 48%, #f4f2ef 0%, var(--bg) 60%, var(--bg2) 100%)}
 
-/* ---------- load wipe ---------- */
-/* part of the page, not a floating layer: iPhone Safari only draws page content under its clock and bottom bar.
-   Taller than the screen, and the shape wider than it (trimmed at the sides, so the page never gets wider on a phone):
-   the orange reaches all four edges. */
-.wipe{position:absolute;left:0;right:0;top:-12vh;top:-12lvh;height:130vh;height:130lvh;z-index:1000;pointer-events:none;overflow:clip}
-.wipe svg{position:absolute;top:0;left:-15%;width:130%;height:100%}
-.wipe path{fill:none;stroke:var(--tomato);stroke-linecap:round;stroke-linejoin:round;stroke-width:0}
-.wipe[data-transition-ready]{display:none}
+/* top + bottom bars */
+.bar{position:absolute;left:0;right:0;display:flex;align-items:center;justify-content:space-between;gap:12px;z-index:60;pointer-events:none;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.bar > *{pointer-events:auto}
+.top{top:0;padding-block:14px;align-items:flex-start}
+.bottom{bottom:0;padding-block:14px}
+.center-top{position:absolute;left:50%;top:12px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:10px;width:min(360px,calc(100% - 140px))}
+.logo{font-family:var(--f-display);font-weight:800;font-size:15px;line-height:.92;letter-spacing:-.03em;text-align:center;text-decoration:none;color:var(--ink)}
+.search{display:flex;align-items:center;gap:10px;width:100%;height:42px;padding:0 10px 0 14px;border-radius:14px;background:var(--card);
+  box-shadow:0 1px 0 rgba(255,255,255,.8) inset,0 6px 20px -8px rgba(0,0,0,.18),0 0 0 1px var(--line)}
+.search svg{flex:none;width:16px;height:16px}
+.search input{flex:1;min-width:0;border:0;outline:0;background:transparent;font-size:14px;color:var(--ink)}
+.search input::placeholder{color:var(--muted)}
+.search kbd{flex:none;font-family:var(--f-text);font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:1px 6px}
+.search:focus-within{box-shadow:0 6px 20px -8px rgba(0,0,0,.18),0 0 0 2px var(--ink)}
+@media (hover:none){.search kbd{display:none}}
+.pill{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px;border-radius:999px;border:0;background:var(--card);
+  box-shadow:0 0 0 1px var(--line),0 4px 14px -8px rgba(0,0,0,.2);font-size:13px;font-weight:600;text-decoration:none;color:var(--ink);cursor:pointer;white-space:nowrap}
+.pill:hover{background:#fff}
+.pill .badge{display:inline-grid;place-items:center;min-width:20px;height:20px;border-radius:99px;background:var(--ink);color:#fff;font-size:11px;padding:0 6px}
+.round{width:44px;height:44px;padding:0;justify-content:center;font-size:17px}
+.dark{background:var(--ink);color:#fff;box-shadow:0 10px 24px -10px rgba(0,0,0,.5)}
+.dark:hover{background:#2b2b2b}
+.start{height:46px;padding:0 24px;font-size:14px}
+.hint{font-size:11px;color:var(--muted)}
+.hint b{color:var(--ink);font-weight:600}
+.hint .touch{display:none}
+@media (hover:none){.hint .mouse{display:none}.hint .touch{display:inline}}
+.toggle{display:inline-flex;padding:3px;border-radius:999px;background:var(--card);box-shadow:0 0 0 1px var(--line)}
+.toggle button{border:0;background:transparent;height:30px;padding:0 14px;border-radius:999px;font-size:12px;font-weight:600;cursor:pointer;color:var(--muted)}
+.toggle button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.nav{position:absolute;left:50%;transform:translateX(-50%);display:flex;gap:8px;opacity:0;pointer-events:none;transition:opacity .4s}
+.is-open .nav{opacity:1;pointer-events:auto}
+.close{opacity:0;pointer-events:none;transition:opacity .4s}
+.is-open .close{opacity:1;pointer-events:auto}
+.is-open .hint,.is-open .toggle,.is-open .search{opacity:0;pointer-events:none}
+.hint,.toggle,.search{transition:opacity .4s}
 
-/* ---------- cursor label ---------- */
+/* centre copy */
+.copy{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:clamp(12px,2.2vh,22px);
+  z-index:40;pointer-events:none;transition:opacity .5s var(--ease), transform .6s var(--ease);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.copy > *{pointer-events:auto}
+.is-open .copy,.is-grid .copy{opacity:0;transform:scale(.96);pointer-events:none}
+.is-open .copy > *,.is-grid .copy > *{pointer-events:none}
+h1{margin:0;font-family:var(--f-display);font-weight:600;font-size:clamp(44px,min(7.4vw,11vh),118px);line-height:.98;letter-spacing:-.055em;text-wrap:balance;color:var(--ink)}
+.mini{display:inline-block;position:relative;width:.62em;height:.48em;margin:0 .1em 0 .06em;vertical-align:.04em;transform:rotate(4deg)}
+.mini i{position:absolute;inset:0;border-radius:.08em;background:linear-gradient(160deg,#cfcecb,#a9a8a4);box-shadow:0 .06em .12em rgba(0,0,0,.25)}
+.mini i::before{content:"";position:absolute;left:0;top:-.08em;width:.26em;height:.12em;border-radius:.04em .06em 0 0;background:#a9a8a4}
+.mini i::after{content:"";position:absolute;left:50%;top:50%;width:.04em;height:.04em;border-radius:50%;background:#555;transform:translate(-50%,-50%);box-shadow:0 0 0 .07em rgba(85,85,85,.25),0 0 0 .13em rgba(85,85,85,.15)}
+.sub{margin:0;max-width:40ch;font-size:clamp(14px,1.25vw,17px);line-height:1.5;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+.chip{border:0;background:var(--card);box-shadow:0 0 0 1px var(--line);border-radius:999px;height:32px;padding:0 14px;font-size:13px;font-weight:500;cursor:pointer;color:var(--ink)}
+.chip span{color:var(--muted);font-size:11px;margin-left:5px}
+.chip[aria-pressed="true"]{background:var(--ink);color:#fff;box-shadow:none}
+.chip[aria-pressed="true"] span{color:#bbb}
+@media (max-height:620px){.sub{display:none}}
+@media (max-width:759px) and (max-height:700px){.sub{display:none}}
+@media (max-height:520px){.chips{display:none}}
 
-/* ---------- nav ---------- */
-.nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:flex-start;padding:1.25rem calc(1.5rem + env(safe-area-inset-right,0px)) 1.25rem calc(1.5rem + env(safe-area-inset-left,0px));pointer-events:none}
-.nav>*{pointer-events:auto}
-.logo{position:relative;display:block;margin:-.4rem 0 0 -.7rem;padding:.4rem 1.2rem .6rem .95rem}
-/* soft glow behind logo + nav text: blur that fades out at the edges, so photos passing behind never show a hard shape */
-.logo::before,.nav-pill::before,.nav-cta::before{content:"";position:absolute;inset:-1.1rem -1.6rem;z-index:-1;pointer-events:none;background:rgba(250,243,228,.55);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);-webkit-mask-image:radial-gradient(closest-side,#000 40%,transparent);mask-image:radial-gradient(closest-side,#000 40%,transparent);transition:background-color .7s var(--ease)}
-html[data-theme="dark"] .logo::before,html[data-theme="dark"] .nav-pill::before,html[data-theme="dark"] .nav-cta::before{background:rgba(46,29,21,.55)}
-.logo-text{display:block;font-family:var(--f-script);font-size:3.6rem;line-height:1;color:var(--tomato);transform:rotate(-8deg);transform-origin:0 50%}
-.nav-pill{position:absolute;left:50%;top:1.25rem;translate:-50% 0;height:3rem;padding:0 1.5rem;gap:1.6rem;display:flex;align-items:center}
-.nav-link{position:relative;display:flex;flex-direction:column;font-family:var(--f-grot);font-weight:700;font-variation-settings:"wght" 700,"wdth" 72;text-transform:uppercase;font-size:1.05rem;letter-spacing:-.01em;color:var(--ink)}
-.nav-cta{position:relative;height:3rem;padding:0 1.3rem;gap:.5rem;display:flex;align-items:center;color:var(--ink);transition:color .7s var(--ease)}
-.nav-link{transition:color .7s var(--ease)}
-html[data-theme="dark"] .nav-link,html[data-theme="dark"] .nav-cta{color:var(--cream)}
-.dot{width:.45rem;height:.45rem;border-radius:50%;background:var(--tomato);flex:none}
-.draw-box{position:absolute;left:0;top:100%;width:100%;height:.5em;color:var(--tomato);pointer-events:none}
-.draw-box svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
-@media (max-width:991px){.nav-pill{display:none}}
-@media (max-width:600px){.nav{padding:1rem calc(1rem + env(safe-area-inset-right,0px)) 1rem calc(1rem + env(safe-area-inset-left,0px))}.logo-text{font-size:2.6rem}.nav-cta{height:2.5rem;padding:0 .9rem}.nav-cta .nav-link{font-size:.95rem}}
+/* cursor label (mouse only) */
+.follow{position:fixed;left:0;top:0;z-index:80;pointer-events:none;background:var(--ink);color:#fff;font-size:12px;font-weight:500;padding:7px 12px;border-radius:999px;
+  opacity:0;transform:translate(-50%,0) scale(.9);transition:opacity .2s, transform .2s;white-space:nowrap}
+.follow.on{opacity:1;transform:translate(-50%,0) scale(1)}
+@media (hover:none){.follow{display:none}}
 
-/* ---------- hero ---------- */
-.hero{position:relative;height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center}
-.hero-card{position:absolute;left:50%;top:50%;width:16rem;height:16rem;translate:-50% -50%;overflow:hidden;z-index:1;visibility:hidden;opacity:0}
-.hero-card-media{position:absolute;inset:0;scale:1.2}
-.crop{position:relative;overflow:hidden;background:var(--placeholder)}
-.crop img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.hero-card .crop{position:absolute;inset:0;visibility:hidden}
-.hero-card .crop.on{visibility:visible}
-.hero-content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:2rem;margin-top:-3rem;text-align:center;padding-inline:1.5rem}
-.hero-role{font-size:1.3rem;opacity:.72}
-.hero-link{position:relative;display:inline-flex;align-items:center;gap:.375em;font-family:var(--f-serif);font-weight:500;font-variation-settings:"wght" 500,"wdth" 87.5,"opsz" 40;font-size:2.1rem;letter-spacing:-.03em;line-height:1}
-.hero-link .txt{position:relative;display:flex;flex-direction:column}
-.hero-link .draw-box{top:118%;height:.6em}
-.marquee{position:absolute;left:0;right:0;bottom:1.5rem;z-index:2;overflow:hidden}
-.marquee-scroll{display:flex;width:100%}
-.marquee-collection{display:flex;flex:none}
-.m-item{flex:none;height:7rem;margin:0 2.5rem;display:flex;align-items:center;gap:.9rem;color:var(--tomato);font-family:var(--f-grot);font-weight:800;font-variation-settings:"wght" 800,"wdth" 72;text-transform:uppercase;font-size:1.7rem;letter-spacing:-.01em;white-space:nowrap}
-.m-item svg{width:1.4rem;height:1.4rem;flex:none}
-@media (max-width:991px){.hero{height:100vh;height:100svh}.hero-card{width:13rem;height:13rem}}
-@media (hover:none),(pointer:coarse){.hero-card{display:none}} /* touch phones and tablets: no cursor, so no cursor card */
-@media (max-width:600px){
-  .hero-content{gap:1.4rem;padding-inline:1rem}
-  .hero-role{font-size:1.05rem}
-  .hero-link{font-size:1.6rem}
-  .m-item{height:5rem;margin:0 1rem;font-size:1.1rem}
-  .hero-card{width:9.5rem;height:9.5rem}
+/* folders */
+.ring{position:absolute;inset:0;z-index:10}
+.folder{position:absolute;left:0;top:0;border:0;padding:0;background:none;cursor:pointer;will-change:transform,opacity;opacity:0;
+  aspect-ratio:300/215;transform-origin:50% 50%;font-size:calc(var(--w) / 19);-webkit-tap-highlight-color:transparent;font-family:var(--f-display);text-align:left}
+.folder .fback{position:absolute;inset:0;width:100%;height:100%;overflow:visible;filter:drop-shadow(0 1.4em 1.6em rgba(0,0,0,.22));opacity:0;transition:opacity .4s}
+.folder.open .fback{opacity:1}
+.folder .fback path{fill:var(--c2)}
+.folder .paper{position:absolute;left:8%;right:8%;top:5%;height:66%;border-radius:.4em;background:#fff;padding:.3em;
+  box-shadow:0 .2em .6em rgba(0,0,0,.18);transform:translateY(-6%) rotate(-1.5deg);transition:transform .7s var(--ease)}
+.folder .paper img{display:block;width:100%;height:100%;object-fit:cover;border-radius:.25em}
+.folder .paper.letter{display:flex;align-items:center;justify-content:center;font-family:var(--f-serif);font-style:italic;font-size:2em;color:var(--ink)}
+.folder .front{position:absolute;left:0;right:0;bottom:0;height:80%;border-radius:1em;transform-origin:50% 100%;overflow:hidden;background:var(--c);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.35), 0 1.2em 2em -.8em rgba(0,0,0,.35);transition:transform .8s var(--ease)}
+.folder .front::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(115deg, rgba(255,255,255,.28) 0%, rgba(255,255,255,0) 32%, rgba(255,255,255,0) 64%, rgba(0,0,0,.10) 100%)}
+@media (hover:hover){ .folder:hover .paper{transform:translateY(-18%) rotate(-3deg)} }
+.folder.open .paper{transform:translateY(-64%) rotate(-2deg)}
+.folder.open .front{transform:perspective(60em) rotateX(22deg)}
+.folder.open{cursor:default}
+.folder.dim{pointer-events:none}
+
+/* cover type (sizes in em of the folder width / 19) */
+.cv{position:absolute;line-height:.86;letter-spacing:-.05em;font-weight:800}
+.cs{position:absolute;font-family:var(--f-text);font-size:.62em;font-weight:500;letter-spacing:0;line-height:1.25}
+.sunball{position:absolute;right:-1.2em;bottom:-1.6em;width:6.2em;height:6.2em;border-radius:50%;background:#f6d13a}
+.dots{position:absolute;inset:0;background-image:radial-gradient(circle, rgba(0,0,0,.85) 28%, transparent 30%);background-size:.62em .62em;
+  -webkit-mask-image:radial-gradient(circle at 78% 60%, #000 0 20%, transparent 62%);mask-image:radial-gradient(circle at 78% 60%, #000 0 20%, transparent 62%)}
+.contour{position:absolute;inset:-20%;background:repeating-radial-gradient(circle at 30% 120%, transparent 0 .9em, rgba(255,255,255,.22) .9em 1em)}
+.gridpat{position:absolute;inset:0;background-image:linear-gradient(rgba(0,0,0,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.12) 1px,transparent 1px);background-size:1.1em 1.1em}
+.fan{position:absolute;right:1.4em;top:50%;width:6.4em;height:6.4em;border-radius:50%;transform:translateY(-50%);
+  background:radial-gradient(circle,#3a3a38 0 .18em,transparent .2em),repeating-radial-gradient(circle,rgba(0,0,0,.0) 0 .75em,rgba(0,0,0,.18) .75em .8em);
+  box-shadow:inset 0 0 0 .08em rgba(0,0,0,.2)}
+.halfmoon{position:absolute;width:3.2em;height:3.2em;border-radius:50%;background:#efe6d2}
+
+/* detail panel (filled from the folder's details below when a folder opens) */
+.details{display:none}
+.panel{position:absolute;z-index:45;opacity:0;pointer-events:none;transform:translateY(14px);transition:opacity .45s var(--ease), transform .6s var(--ease);
+  left:55%;width:min(38%,520px);top:76px;bottom:76px;display:flex;flex-direction:column;overflow-y:auto;overscroll-behavior:contain}
+.panel > .pin{margin-block:auto}
+@media (max-width:999px){.panel{left:50%;width:calc(50% - 16px)}}
+@media (max-height:640px){.panel h2{font-size:clamp(28px,4.2vw,40px)}.panel .role{font-size:13px}.stats{margin-top:14px;padding:10px 0}
+  .panel .desc{margin-top:12px;font-size:14px;line-height:1.5}.actions{margin-top:14px}}
+.is-open .panel{opacity:1;pointer-events:auto;transform:none;transition-delay:.18s}
+.panel .k{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.panel h2{margin:.3em 0 0;font-family:var(--f-display);font-weight:600;font-size:clamp(34px,4.6vw,66px);line-height:.98;letter-spacing:-.05em;text-wrap:balance}
+.panel .role{margin:.6em 0 0;font-size:14px;color:var(--muted)}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:22px 0 0;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stats div{min-width:0}
+.stats b{display:block;font-family:var(--f-display);font-size:clamp(18px,1.8vw,24px);font-weight:700;letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1.05}
+.stats span{display:block;margin-top:4px;font-size:11px;color:var(--muted);line-height:1.3}
+.panel .desc{margin:18px 0 0;font-size:15px;line-height:1.55;max-width:44ch;color:#3a3a3a}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.mail{font-size:12px;color:var(--muted);align-self:center;user-select:all;-webkit-user-select:all}
+.panel.narrow{left:max(16px,env(safe-area-inset-left,0px));right:max(16px,env(safe-area-inset-right,0px));width:auto;bottom:72px;display:block;padding-bottom:20px;
+  -webkit-mask-image:linear-gradient(#000 calc(100% - 22px),transparent);mask-image:linear-gradient(#000 calc(100% - 22px),transparent)}
+.panel.narrow > .pin{margin:0}
+@media (max-height:740px){.panel.narrow{bottom:64px}.panel.narrow h2{font-size:30px}.panel.narrow .k{font-size:10px}.panel.narrow .role{margin-top:.4em}}
+.panel.narrow h2{font-size:clamp(30px,9vw,44px)}
+.panel.narrow .stats{margin-top:14px}
+.panel.narrow .desc{margin-top:12px}
+.panel.narrow .actions{margin-top:14px;padding-bottom:4px}
+
+@media (max-width:759px){
+  .center-top{width:calc(100% - 120px)}
+  .stats b{font-size:18px}
+  .hint{max-width:46%;line-height:1.35}
+  .panel .desc{font-size:14px}
 }
 
-/* ---------- work stack ---------- */
-.work .pin{height:100vh;display:grid;grid-template-columns:38fr 62fr;gap:2rem;padding:0 3rem 0 5rem;align-items:center;overflow:hidden}
-.work-copy{display:flex;flex-direction:column;gap:1.5rem;justify-content:center;min-width:0}
-.work-copy .eyebrow-s{max-width:24rem;font-size:1.55rem;opacity:.72}
-.stage{position:relative;height:100%;perspective:1400px;min-width:0}
-.stack{position:absolute;inset:0;transform-style:preserve-3d}
-.slide{position:absolute;display:flex;flex-direction:column;gap:1.5vh;width:min(76vh,50vw);max-width:100%;left:50%;top:calc(50% - 3vh);translate:-50% -50%;padding:0 0 1.4vh;overflow:hidden;border-radius:2.4vh;background:#fffaf0;box-shadow:0 2.5vh 5vh -2.8vh rgba(20,17,16,.38),0 0 0 1px rgba(20,17,16,.06)}
-.slide .crop{width:100%;aspect-ratio:16/9}
-.slide-body{display:flex;align-items:baseline;justify-content:space-between;gap:1.5rem;padding:.4vh 2.6vh 1vh}
-.slide .ttl{font-family:var(--f-grot);font-weight:800;font-variation-settings:"wght" 800,"wdth" 72;text-transform:uppercase;font-size:4.4vh;line-height:.9;letter-spacing:-.02em;color:var(--ink);white-space:nowrap}
-.slide .sub{font-family:var(--f-serif);font-weight:400;font-variation-settings:"wght" 400,"wdth" 100,"opsz" 20;font-size:1.9vh;line-height:1.3;color:rgba(20,17,16,.68);text-align:right;max-width:26vh}
-.slide .tag{position:absolute;top:calc(1.75vh + .8rem);left:calc(1.75vh + .8rem);background:var(--cream);color:var(--ink);font-family:var(--f-grot);font-weight:700;font-variation-settings:"wght" 700,"wdth" 72;text-transform:uppercase;font-size:.9rem;line-height:1;padding:.3rem .5rem}
-.badge{position:absolute;right:1rem;bottom:1rem;width:9rem;height:9rem;z-index:5}
-.badge svg{width:100%;height:100%;display:block}
-@media (max-width:991px){
-  .work .pin{height:100vh;height:100svh;grid-template-columns:1fr;grid-template-rows:auto 1fr;align-items:stretch;padding:6.5rem 1.25rem 1.5rem;gap:1.4rem}
-  .work-copy{gap:.9rem}
-  .stage{height:100%}
-  .slide{width:min(100%,64svh);top:52%;padding:0 0 .8rem;border-radius:1.4rem;gap:.9rem;container-type:inline-size}
-  .slide-body{padding:.2rem 1.3rem .6rem}
-  .slide .sub{font-size:1.05rem;max-width:18rem}
-  /* a narrow card puts the text under the title instead of squeezing it beside it */
-  @container (max-width:34rem){.slide-body{flex-direction:column;align-items:flex-start;gap:.35rem}.slide .sub{text-align:left;max-width:none}}
-  .slide .tag{top:1.8rem;left:1.8rem}
-  .slide .ttl{font-size:2.6rem}
-  .badge{display:none}
+/* without JavaScript: the folders sit in a plain grid under the headline */
+.no-js .stage{height:auto;min-height:0;overflow:visible;display:flex;flex-direction:column;padding:130px max(16px,env(safe-area-inset-left,0px)) 40px}
+.no-js .copy{position:static;order:-1;padding-bottom:48px}
+.no-js .ring{position:static;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:56px 24px;max-width:1180px;width:100%;margin:40px auto 0}
+.no-js .folder{position:relative;width:100%;opacity:1;font-size:12px;cursor:default}
+.no-js .search,.no-js .start,.no-js .chips,.no-js .bar.bottom,.no-js .panel{display:none}
+
+/* ---------- below the folders ---------- */
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.sec{padding-block:clamp(72px,11vw,140px) 0}
+.sec-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:clamp(28px,4vw,48px)}
+.sec-head h2{margin:0;font-family:var(--f-display);font-weight:600;font-size:clamp(40px,6vw,84px);line-height:.95;letter-spacing:-.055em;text-wrap:balance}
+.sec-head p{margin:0;max-width:36ch;color:var(--muted);font-size:15px;line-height:1.5}
+.eyebrow2{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:14px}
+/* work index */
+.index{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.row{width:100%;display:grid;grid-template-columns:72px minmax(0,1.1fr) minmax(0,1.4fr) auto 28px;align-items:center;gap:20px;padding:18px 4px;border:0;border-bottom:1px solid var(--line);
+  background:none;text-align:left;cursor:pointer;transition:background .25s, padding .35s var(--ease);border-radius:0}
+.row:hover{background:var(--card);padding-left:14px;padding-right:14px}
+.row .thumb{position:relative;width:64px;aspect-ratio:300/215}
+.row .thumb::before{content:"";position:absolute;left:0;top:0;width:42%;height:22%;border-radius:4px 6px 0 0;background:var(--c2)}
+.row .thumb::after{content:"";position:absolute;left:0;right:0;bottom:0;top:12%;border-radius:6px;background:var(--c);box-shadow:0 6px 12px -6px rgba(0,0,0,.35)}
+.row .nm{font-family:var(--f-display);font-weight:600;font-size:clamp(20px,2.2vw,28px);letter-spacing:-.04em;line-height:1.05}
+.row .nm small{display:block;font-family:var(--f-text);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-top:6px}
+.row .ln{color:#3a3a3a;font-size:15px;line-height:1.45}
+.row .big{font-family:var(--f-display);font-weight:700;font-size:clamp(22px,2.4vw,32px);letter-spacing:-.04em;font-variant-numeric:tabular-nums;text-align:right}
+.row .arr{font-size:18px;color:var(--muted);transition:transform .35s var(--ease)}
+.row:hover .arr{transform:translateX(4px);color:var(--ink)}
+@media (max-width:759px){
+  .row{grid-template-columns:56px minmax(0,1fr) auto;gap:14px}
+  .row .thumb{width:52px}
+  .row .ln,.row .arr{display:none}
 }
-@media (max-width:600px){.work-copy .eyebrow-s{font-size:1.15rem}.slide .ttl{font-size:2.1rem}}
+/* numbers */
+.nums{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.num{position:relative;overflow:hidden;border-radius:22px;padding:22px 22px 20px;min-height:200px;display:flex;flex-direction:column;justify-content:space-between;background:var(--c);color:var(--fg,#161616);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 18px 30px -22px rgba(0,0,0,.45)}
+.num b{font-family:var(--f-display);font-weight:800;font-size:clamp(52px,7vw,96px);line-height:.85;letter-spacing:-.06em;font-variant-numeric:tabular-nums;position:relative}
+.num span{font-size:14px;line-height:1.35;position:relative;max-width:22ch}
+.num .from{font-size:11px;letter-spacing:.1em;text-transform:uppercase;opacity:.7;position:relative}
+.num .pat{position:absolute;inset:0;pointer-events:none}
+@media (max-width:900px){.nums{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.nums{grid-template-columns:minmax(0,1fr)}.num{min-height:160px}}
+/* tools */
+.tools{margin-top:clamp(56px,8vw,96px);overflow:hidden;border-block:1px solid var(--line);padding-block:18px;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.track{display:flex;gap:10px;width:max-content;margin:0;padding:0;list-style:none;animation:slide 38s linear infinite}
+.track li{flex:none;height:38px;display:inline-flex;align-items:center;padding:0 16px;border-radius:999px;background:var(--card);box-shadow:0 0 0 1px var(--line);font-size:14px;font-weight:500}
+@keyframes slide{to{transform:translateX(calc(-50% - 5px))}}
+/* contact */
+.talk{margin-top:clamp(72px,11vw,140px);border-radius:28px;background:var(--ink);color:#f3f1ec;overflow:hidden;position:relative;
+  padding:clamp(28px,5vw,64px) clamp(22px,5vw,64px)}
+.talk .eyebrow2{color:#9a968f}
+.talk h2{margin:0;font-family:var(--f-display);font-weight:600;font-size:clamp(56px,10vw,150px);line-height:.88;letter-spacing:-.06em}
+.talk h2 em{font-family:var(--f-serif);font-weight:400;font-style:italic;letter-spacing:-.02em;color:var(--lime)}
+.talk p{margin:18px 0 0;max-width:40ch;color:#b9b6b0;font-size:16px;line-height:1.5}
+.talk .mailrow{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:28px}
+.talk .addr{font-family:var(--f-display);font-weight:600;font-size:clamp(20px,2.6vw,32px);letter-spacing:-.03em;user-select:all;-webkit-user-select:all;word-break:break-all}
+.talk .pill{background:#f3f1ec;color:var(--ink)}
+.talk .pill.ghost{background:transparent;color:#f3f1ec;box-shadow:0 0 0 1px rgba(255,255,255,.25)}
+.talk .facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:clamp(32px,5vw,56px);padding-top:20px;border-top:1px solid rgba(255,255,255,.14)}
+.talk .facts b{display:block;font-family:var(--f-display);font-size:clamp(22px,3vw,34px);font-weight:700;letter-spacing:-.04em}
+.talk .facts span{font-size:12px;color:#9a968f}
+.talk .deco{position:absolute;right:-50px;top:22px;width:260px;aspect-ratio:300/215;transform:rotate(14deg);opacity:.95}
+.talk .deco i{position:absolute;inset:12% 0 0 0;border-radius:18px;background:var(--lime)}
+.talk .deco i::before{content:"";position:absolute;left:0;top:-14%;width:42%;height:22%;border-radius:8px 12px 0 0;background:#a8cc2c}
+@media (max-width:620px){.talk .deco{width:96px;right:-30px;top:10px}.talk .eyebrow2{max-width:78%}.talk .facts{grid-template-columns:minmax(0,1fr)}}
+footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;padding-block:28px 36px;font-size:12px;color:var(--muted)}
 
-/* ---------- wall (proof wall / timeline) ---------- */
-.wall{position:relative;height:170vh;color:var(--ink);transition:color .7s var(--ease);overflow-x:clip}
-html[data-theme="dark"] .wall{color:var(--cream)}
-.wall-sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;z-index:1}
-.wall-title{position:relative;display:flex;flex-direction:column;align-items:center;gap:1.4rem;text-align:center}
-.wall-title .h-sec{font-size:6.2rem}
-.wall-title .para{max-width:26rem}
-.wall-title .eyebrow-m{font-size:1.7rem;opacity:.72}
-.photos{position:absolute;inset:0;z-index:2;pointer-events:none}
-.ph{position:absolute;top:var(--top);width:var(--w)}
-.ph.l{left:var(--off)}
-.ph.r{right:var(--off)}
-.ph-inner{position:relative;rotate:var(--rot);pointer-events:auto}
-.ph .crop{aspect-ratio:4/5}
-.sticker{position:absolute;left:50%;bottom:-.9rem;translate:-50% 0;rotate:var(--srot);font-family:var(--f-grot);font-weight:800;font-variation-settings:"wght" 800,"wdth" 75;text-transform:uppercase;letter-spacing:-.01em;font-size:3.6rem;line-height:1;color:var(--tomato);-webkit-text-stroke:.32rem var(--cream);paint-order:stroke fill;white-space:nowrap}
-.ph-photo{position:relative}
-.cap{display:block;margin-top:1.8rem;padding-inline:.2rem;font-family:var(--f-serif);font-weight:400;font-variation-settings:"wght" 400,"wdth" 100,"opsz" 20;font-size:1rem;line-height:1.3;opacity:.75;text-align:center}
-@media (max-width:991px){.wall{height:180vh}}
-@media (max-width:600px){
-  .wall-title .h-sec{font-size:4.2rem}
-  .wall-sticky{padding-inline:1.5rem}
-  .ph{width:8rem;top:var(--mtop)}
-  .ph.l{left:var(--moff)}
-  .ph.r{right:var(--moff)}
-  .sticker{font-size:1.9rem;-webkit-text-stroke:.22rem var(--cream)}
-  .cap{font-size:.72rem;margin-top:1.1rem}
-}
-
-/* ---------- contact ---------- */
-.contact{display:grid;grid-template-rows:1fr auto 1fr;justify-items:center;gap:2.2rem;min-height:100vh;min-height:100svh;text-align:center;padding-block:5rem 2rem;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-.contact-inner{grid-row:2;display:flex;flex-direction:column;align-items:center;gap:2.2rem}
-.contact .eyebrow-s{max-width:32rem}
-.email{font-family:var(--f-serif);font-weight:500;font-variation-settings:"wght" 500,"wdth" 87.5,"opsz" 40;font-size:1.9rem;opacity:.85;letter-spacing:-.03em;line-height:1;user-select:all;word-break:break-all}
- .btn-row{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;align-items:center}
-.contact-eyebrow{opacity:.72;max-width:34rem}
-.proof-pills{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:.75rem;max-width:62rem}
-.proof-pills li{display:flex;align-items:baseline;gap:.55rem;padding:.75rem 1.3rem;border-radius:999px;background:rgba(255,250,240,.85);border:1px solid rgba(20,17,16,.08);font-family:var(--f-serif);font-weight:400;font-variation-settings:"wght" 400,"wdth" 100,"opsz" 20;font-size:1.05rem;line-height:1.2}
-.proof-pills b{font-family:var(--f-grot);font-weight:800;font-variation-settings:"wght" 800,"wdth" 72;font-size:1.55rem;letter-spacing:-.01em;color:var(--tomato)}
-.cta-main{display:inline-flex;align-items:center;gap:1rem;height:4.4rem;padding:0 .7rem 0 2.1rem;border-radius:999px;background:var(--tomato);color:var(--white);font-family:var(--f-grot);font-weight:700;font-variation-settings:"wght" 700,"wdth" 72;text-transform:uppercase;font-size:1.5rem;letter-spacing:-.01em;white-space:nowrap;box-shadow:0 1.1rem 2.4rem -1.1rem rgba(239,74,35,.7);transition:background-color .15s ease-out,box-shadow .3s var(--ease)}
-.cta-main:hover{background:#d93d18;box-shadow:0 1.4rem 2.8rem -1.1rem rgba(239,74,35,.8)}
-.cta-main:active{background:#c23514;box-shadow:inset 0 2px 5px rgba(0,0,0,.22)}
-.cta-arrow{display:inline-grid;place-items:center;flex:none;width:3rem;height:3rem;border-radius:50%;background:rgba(255,255,255,.2);line-height:0;transition:transform .35s var(--ease)}
-.cta-arrow svg{display:block;width:1.3rem;height:1.3rem}
-.cta-main:hover .cta-arrow{transform:translateX(.35rem)}
-.cta-ghost{height:4.4rem;padding:0 2rem;border-radius:999px;border:1.5px solid rgba(20,17,16,.22);background:transparent;cursor:pointer;font-family:var(--f-grot);font-weight:700;font-variation-settings:"wght" 700,"wdth" 72;text-transform:uppercase;font-size:1.3rem;letter-spacing:-.01em;color:var(--ink);white-space:nowrap;transition:border-color .15s ease-out,background-color .15s ease-out}
-.cta-ghost:hover{border-color:var(--ink);background:rgba(255,250,240,.8)}
-.cta-ghost:active{background:rgba(20,17,16,.06)}
-.cta-main:focus-visible,.cta-ghost:focus-visible{outline:2px solid var(--tomato);outline-offset:4px}
-.btn{display:inline-flex;align-items:center;gap:.6rem;height:3.4rem;padding:0 1.5rem;border:0;cursor:pointer;font-family:var(--f-grot);font-weight:700;font-variation-settings:"wght" 700,"wdth" 72;text-transform:uppercase;font-size:1.15rem;letter-spacing:-.01em}
-.foot{grid-row:3;align-self:end;display:flex;flex-direction:column;gap:.4rem;font-family:var(--f-grot);font-variation-settings:"wght" 500,"wdth" 90;font-size:.85rem;opacity:.7}
-@media (max-width:600px){.contact-inner{gap:1.5rem}.email{font-size:1.3rem}.btn{height:3rem;font-size:1rem}.btn-row{width:100%;max-width:24rem;display:grid;grid-template-columns:1fr 1fr;gap:.6rem}.cta-main{height:3rem;font-size:1rem;padding:0 .4rem 0 1rem;gap:.5rem;justify-content:space-between;box-shadow:0 .8rem 1.6rem -1rem rgba(239,74,35,.7)}.cta-arrow{width:2.2rem;height:2.2rem}.cta-arrow svg{width:.95rem;height:.95rem}.cta-ghost{height:3rem;font-size:1rem;padding:0 .8rem}.proof-pills li{font-size:.85rem;padding:.5rem .9rem}.proof-pills b{font-size:1.1rem}}
-
-/* ---------- reduced motion ---------- */
 @media (prefers-reduced-motion:reduce){
-  .wall{height:auto}
-  .wall-sticky{position:relative;height:auto;padding:8rem 1.5rem 4rem}
-  .photos{position:relative;inset:auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(14rem,1fr));gap:2rem;padding:2rem}
-  .ph,.ph.l,.ph.r{position:relative;top:auto;left:auto;right:auto;width:auto}
+  .track{animation:none}
+  .folder .paper,.folder .front,.folder .fback,.copy,.panel,.row,.row .arr{transition:none}
 }
 </style>
 </head>
 <body>
-<div class="wipe" aria-hidden="true"><svg viewBox="0 0 1000 1000" preserveAspectRatio="none"><path d="M43 259C296 11.5688 994 -3 922.994 498.259C851.988 999.517 281.229 1004.28 123 767C-35.2287 529.721 179 259 472 259C765 259 792 498.259 659 654C526 809.741 319 755 285 669.001C251 583.001 299 452 496 452C693 452 876.073 639.171 935 937.001"/></svg></div>
-
-
 <main>
-  <nav class="nav" aria-label="Main">
-    <a class="logo" href="#top" aria-label="Kirsah, back to top"><span class="logo-text">Kirsah</span></a>
-    <div class="nav-pill">
-      <a class="nav-link" href="#work" data-draw-line>Work<span class="draw-box"></span></a>
-      <a class="nav-link" href="#wall" data-draw-line>About<span class="draw-box"></span></a>
-      <a class="nav-link" href="/resume/" data-resume data-draw-line>Resume<span class="draw-box"></span></a>
+<section class="stage" id="top" aria-label="Kirsah's work folders">
+  <div class="bar top">
+    <button class="pill round close" id="close" type="button" aria-label="Close folder">←</button>
+    <div class="center-top">
+      <a class="logo" href="/">Kirsah<br>Folders</a>
+      <label class="search" for="q"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="q" type="search" placeholder="Search 8 work folders" autocomplete="off" aria-label="Search work folders"><kbd>/</kbd></label>
     </div>
-    <a class="nav-cta" href="#contact"><span class="dot"></span><span class="nav-link" data-draw-line>Contact<span class="draw-box"></span></span></a>
-  </nav>
-
-  <section class="hero" id="top" data-cursor-cards data-threshold="300">
-    <div class="hero-card" aria-hidden="true"><div class="hero-card-media" id="heroMedia"><div class="crop on"><img src="/img/hero-laptop.webp" alt="" loading="lazy" decoding="async"></div><div class="crop "><img src="/img/hero-airplus.webp" alt="" loading="lazy" decoding="async"></div><div class="crop "><img src="/img/hero-teampit.webp" alt="" loading="lazy" decoding="async"></div><div class="crop "><img src="/img/hero-shop.webp" alt="" loading="lazy" decoding="async"></div><div class="crop "><img src="/img/hero-mechanics.webp" alt="" loading="lazy" decoding="async"></div><div class="crop "><img src="/img/hero-packing.webp" alt="" loading="lazy" decoding="async"></div><div class="crop "><img src="/img/hero-demo.webp" alt="" loading="lazy" decoding="async"></div><div class="crop "><img src="/img/hero-denso.webp" alt="" loading="lazy" decoding="async"></div></div></div>
-    <div class="hero-content" data-text-reveal-group>
-      <p class="eyebrow-s hero-role" data-text-reveal="lines">Kirsah Tiathawornchai · Tech / AI Project Manager</p>
-      <h1 class="h-hero" data-text-reveal="chars" data-font-weight-hover data-fw-rest="700" data-fw-near="200" data-fw-radius="400">Ideas that<br>go <span class="hl">live</span></h1>
-      <a class="hero-link" href="#work"><span class="txt">See my work<span class="draw-box" data-draw-target></span></span></a>
-    </div>
-    <div class="marquee" data-marquee aria-label="Tools I work with">
-      <div class="marquee-scroll"><div class="marquee-collection" id="mCollection"><div class="m-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 0c.6 6.6 5.4 11.4 12 12-6.6.6-11.4 5.4-12 12-.6-6.6-5.4-11.4-12-12C6.6 11.4 11.4 6.6 12 0z"></path></svg><span>Claude Code</span></div><div class="m-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 0c.6 6.6 5.4 11.4 12 12-6.6.6-11.4 5.4-12 12-.6-6.6-5.4-11.4-12-12C6.6 11.4 11.4 6.6 12 0z"></path></svg><span>Cursor</span></div><div class="m-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 0c.6 6.6 5.4 11.4 12 12-6.6.6-11.4 5.4-12 12-.6-6.6-5.4-11.4-12-12C6.6 11.4 11.4 6.6 12 0z"></path></svg><span>Cloudflare</span></div><div class="m-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 0c.6 6.6 5.4 11.4 12 12-6.6.6-11.4 5.4-12 12-.6-6.6-5.4-11.4-12-12C6.6 11.4 11.4 6.6 12 0z"></path></svg><span>GitHub</span></div><div class="m-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 0c.6 6.6 5.4 11.4 12 12-6.6.6-11.4 5.4-12 12-.6-6.6-5.4-11.4-12-12C6.6 11.4 11.4 6.6 12 0z"></path></svg><span>Figma</span></div><div class="m-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 0c.6 6.6 5.4 11.4 12 12-6.6.6-11.4 5.4-12 12-.6-6.6-5.4-11.4-12-12C6.6 11.4 11.4 6.6 12 0z"></path></svg><span>Shopee</span></div><div class="m-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 0c.6 6.6 5.4 11.4 12 12-6.6.6-11.4 5.4-12 12-.6-6.6-5.4-11.4-12-12C6.6 11.4 11.4 6.6 12 0z"></path></svg><span>TikTok Shop</span></div><div class="m-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 0c.6 6.6 5.4 11.4 12 12-6.6.6-11.4 5.4-12 12-.6-6.6-5.4-11.4-12-12C6.6 11.4 11.4 6.6 12 0z"></path></svg><span>LINE OA</span></div></div></div>
-    </div>
-  </section>
-
-  <section class="work" id="work" data-featured-stack data-scroll-factor="1.2">
-    <div class="pin">
-      <div class="work-copy" data-scroll-reveal-group>
-        <p class="eyebrow-s" data-scroll-reveal="lines">Real projects, live today. Each one planned, built and run by me.</p>
-        <h2 class="h-sec" data-scroll-reveal="chars" data-font-weight-hover data-fw-rest="700" data-fw-near="200" data-fw-radius="400">Latest <span class="hl">work</span></h2>
-      </div>
-      <div class="stage">
-        <div class="stack" id="stack"><a class="slide" href="#work"><div class="crop "><img src="/img/work-teampit.webp" alt="" loading="lazy" decoding="async"></div><span class="slide-body"><span class="ttl">TeamPit</span><span class="sub">Back office and POS for our A/C shop, built with AI agents</span></span></a><a class="slide" href="https://airplusauto.com" target="_blank" rel="noopener"><div class="crop "><img src="/img/work-airplus.webp" alt="" loading="lazy" decoding="async"></div><span class="slide-body"><span class="ttl">AirPlus store</span><span class="sub">Our own parts store, live in 9 days</span></span></a><a class="slide" href="#work"><div class="crop "><img src="/img/work-shopee.webp" alt="" loading="lazy" decoding="async"></div><span class="slide-body"><span class="ttl">26× on Shopee</span><span class="sub">AirPlus Auto, grown with no paid ads</span></span></a><a class="slide" href="https://about.gogocash.co/th" target="_blank" rel="noopener"><div class="crop "><img src="/img/work-ggc.webp" alt="" loading="lazy" decoding="async"></div><span class="slide-body"><span class="ttl">GoGoCash</span><span class="sub">Admin, forward deployed engineer and UX/UI</span></span></a><a class="slide" href="#work"><div class="crop "><img src="/img/work-social.webp" alt="" loading="lazy" decoding="async"></div><span class="slide-body"><span class="ttl">45.9K views</span><span class="sub">Den Air TikTok, about 70× my followers</span></span></a><a class="slide" href="#work"><div class="crop "><img src="/img/work-denair.webp" alt="" loading="lazy" decoding="async"></div><span class="slide-body"><span class="ttl">Den Air Service</span><span class="sub">Our family DENSO A/C shop, which I have run since 2021</span></span></a></div>
-        <div class="badge" aria-hidden="true">
-          <svg viewBox="0 0 200 200">
-            <defs><path id="badgeCircle" d="M100,100 m-70,0 a70,70 0 1,1 140,0 a70,70 0 1,1 -140,0"/></defs>
-            <circle cx="100" cy="100" r="98" fill="#ef4a23"/>
-            <text fill="#faf3e4" style="font-family:'Archivo',Arial,sans-serif;font-variation-settings:'wght' 800,'wdth' 80;font-weight:800;font-size:24px"><textPath href="#badgeCircle" textLength="436" lengthAdjust="spacing">IDEA · BUILD · TEST · SHIP ·</textPath></text>
-            <g fill="none" stroke="#faf3e4" stroke-width="5" stroke-linecap="round"><circle cx="100" cy="100" r="17"/><path d="M100 70v-8M100 130v8M70 100h-8M130 100h8M78.8 78.8l-5.7-5.7M121.2 121.2l5.7 5.7M78.8 121.2l-5.7 5.7M121.2 78.8l5.7-5.7"/></g>
-          </svg>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div id="wall">
-    <section class="wall" data-wall="proof" data-page-theme="dark">
-      <div class="wall-sticky">
-        <div class="wall-title" data-scroll-reveal-group>
-          <p class="eyebrow-m" data-scroll-reveal="lines">Real numbers from real work</p>
-          <h2 class="h-sec" data-scroll-reveal="chars" data-font-weight-hover data-fw-rest="700" data-fw-near="200" data-fw-radius="400">The proof <span class="hl">wall</span></h2>
-          <p class="para" data-scroll-reveal="lines">Every sticker is a number from my resume, across Den Air, AirPlus, TeamPit and GoGoCash.</p>
-        </div>
-      </div>
-      <div class="photos"><div class="ph l" data-speed="1" style="--off:2.5vw;--top:4%;--w:14rem;--rot:-4deg;--mtop:2%;--moff:.6rem"><div class="ph-inner"><div class="ph-photo"><div class="crop "><img src="/img/wall-denair-2.webp" alt="" loading="lazy" decoding="async"></div><span class="sticker" style="--srot:-7deg">5 yrs</span></div><span class="cap">Running Den Air</span></div></div><div class="ph l" data-speed="0.8" style="--off:9.5vw;--top:37%;--w:12.5rem;--rot:-3deg;--mtop:35%;--moff:4rem"><div class="ph-inner"><div class="ph-photo"><div class="crop "><img src="/img/wall-airplus-teampit.webp" alt="" loading="lazy" decoding="async"></div><span class="sticker" style="--srot:-5deg">4,267</span></div><span class="cap">Automated tests</span></div></div><div class="ph l" data-speed="0.7" style="--off:4vw;--top:70%;--w:13rem;--rot:4deg;--mtop:68%;--moff:.6rem"><div class="ph-inner"><div class="ph-photo"><div class="crop "><img src="/img/wall-ggc.webp" alt="" loading="lazy" decoding="async"></div><span class="sticker" style="--srot:6deg">1,035</span></div><span class="cap">GoGoCash users</span></div></div><div class="ph r" data-speed="0.75" style="--off:3vw;--top:20%;--w:13.5rem;--rot:4deg;--mtop:18%;--moff:.6rem"><div class="ph-inner"><div class="ph-photo"><div class="crop "><img src="/img/wall-shopee.webp" alt="" loading="lazy" decoding="async"></div><span class="sticker" style="--srot:5deg">26×</span></div><span class="cap">Shopee sales growth</span></div></div><div class="ph r" data-speed="1.4" style="--off:9.5vw;--top:53%;--w:12.5rem;--rot:5deg;--mtop:51%;--moff:4rem"><div class="ph-inner"><div class="ph-photo"><div class="crop "><img src="/img/wall-denair-1.webp" alt="" loading="lazy" decoding="async"></div><span class="sticker" style="--srot:4deg">45.9K</span></div><span class="cap">TikTok views</span></div></div><div class="ph r" data-speed="1.05" style="--off:4vw;--top:86%;--w:13rem;--rot:-4deg;--mtop:84%;--moff:.6rem"><div class="ph-inner"><div class="ph-photo"><div class="crop "><img src="/img/wall-laptop.webp" alt="" loading="lazy" decoding="async"></div><span class="sticker" style="--srot:-4deg">180+</span></div><span class="cap">Code changes shipped</span></div></div></div>
-    </section>
+    <a class="pill" href="/resume/" data-resume>Resume <span class="badge" aria-hidden="true">↗</span></a>
   </div>
 
-  <section class="contact" id="contact">
-    <div class="contact-inner" data-scroll-reveal-group>
-      <p class="eyebrow-s contact-eyebrow" data-scroll-reveal="lines">Open to AI project manager roles. Bangkok or remote.</p>
-      <h2 class="h-sec" data-scroll-reveal="chars" data-font-weight-hover data-fw-rest="700" data-fw-near="200" data-fw-radius="400">Let’s <span class="hl">talk</span></h2>
-      <p class="email" id="email" data-scroll-reveal="element">lady.kirsah@gmail.com</p>
-      <ul class="proof-pills" data-scroll-reveal="element">
-        <li><b>9 days</b><span>from idea to a live web store</span></li>
-        <li><b>26×</b><span>Shopee sales growth, no paid ads</span></li>
-        <li><b>4,267</b><span>automated tests before release</span></li>
-      </ul>
-      <div class="btn-row" data-scroll-reveal="element">
-        <a class="cta-main" href="/resume/" data-resume><span>Get my resume</span><span class="cta-arrow" aria-hidden="true"><svg viewBox="0 0 256 256" fill="currentColor" focusable="false"><path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"/></svg></span></a>
-        <button class="cta-ghost" type="button" id="copyBtn">Copy email</button>
-      </div>
+  <div class="ring" id="ring">
+    <button class="folder" type="button" aria-label="Open About me" data-group="me" style="--c:#cbb9f2;--c2:#a995dc">
+      <svg class="fback" viewBox="0 0 300 215" preserveAspectRatio="none" aria-hidden="true"><path d="M0 46Q0 26 20 26H38Q52 26 58 14L62 8Q67 0 80 0H128Q141 0 147 10L153 20Q157 26 170 26H280Q300 26 300 46V195Q300 215 280 215H20Q0 215 0 195Z"/></svg>
+      <span class="paper"><img src="/img/hero-laptop.webp" alt="" width="800" height="800" decoding="async"></span>
+      <span class="front"><span class="sunball"></span><span class="cv" style="left:.7em;top:.7em;font-size:2.6em;color:#161616">Hi, I’m<br>Kirsah</span><span class="cs" style="left:1.15em;bottom:1em;color:#161616">Tech / AI Project Manager</span></span>
+    </button>
+    <button class="folder" type="button" aria-label="Open TeamPit" data-group="build" style="--c:#ff5a1f;--c2:#d8410c">
+      <svg class="fback" viewBox="0 0 300 215" preserveAspectRatio="none" aria-hidden="true"><path d="M0 46Q0 26 20 26H38Q52 26 58 14L62 8Q67 0 80 0H128Q141 0 147 10L153 20Q157 26 170 26H280Q300 26 300 46V195Q300 215 280 215H20Q0 215 0 195Z"/></svg>
+      <span class="paper"><img src="/img/work-teampit.webp" alt="" width="1920" height="1080" decoding="async"></span>
+      <span class="front"><span class="cv" style="left:.6em;top:.55em;font-size:3.3em;color:#fff">Team<br>Pit</span><span class="cs" style="left:1em;bottom:1em;color:#fff">Back office + POS<br>for our A/C shop</span></span>
+    </button>
+    <button class="folder" type="button" aria-label="Open AirPlus store" data-group="build" style="--c:#2350e6;--c2:#1a3bb0">
+      <svg class="fback" viewBox="0 0 300 215" preserveAspectRatio="none" aria-hidden="true"><path d="M0 46Q0 26 20 26H38Q52 26 58 14L62 8Q67 0 80 0H128Q141 0 147 10L153 20Q157 26 170 26H280Q300 26 300 46V195Q300 215 280 215H20Q0 215 0 195Z"/></svg>
+      <span class="paper"><img src="/img/work-airplus.webp" alt="" width="1920" height="1080" decoding="async"></span>
+      <span class="front"><span class="contour"></span><span class="cv" style="left:.6em;top:.6em;font-size:3.4em;color:#fff">9 days</span><span class="cs" style="left:1em;bottom:1em;color:#fff">Idea to a live web store<br>AirPlus · car A/C parts</span></span>
+    </button>
+    <button class="folder" type="button" aria-label="Open AirPlus Auto" data-group="grow" style="--c:#f2e03a;--c2:#d3bf17">
+      <svg class="fback" viewBox="0 0 300 215" preserveAspectRatio="none" aria-hidden="true"><path d="M0 46Q0 26 20 26H38Q52 26 58 14L62 8Q67 0 80 0H128Q141 0 147 10L153 20Q157 26 170 26H280Q300 26 300 46V195Q300 215 280 215H20Q0 215 0 195Z"/></svg>
+      <span class="paper"><img src="/img/work-shopee.webp" alt="" width="1920" height="1080" decoding="async"></span>
+      <span class="front"><span class="dots"></span><span class="cv" style="left:.45em;top:.35em;font-size:4.6em;color:#161616">26×</span><span class="cs" style="left:1em;bottom:1em;color:#161616">Shopee sales growth<br>No paid ads</span></span>
+    </button>
+    <button class="folder" type="button" aria-label="Open GoGoCash" data-group="build" style="--c:#1f4b3b;--c2:#143428">
+      <svg class="fback" viewBox="0 0 300 215" preserveAspectRatio="none" aria-hidden="true"><path d="M0 46Q0 26 20 26H38Q52 26 58 14L62 8Q67 0 80 0H128Q141 0 147 10L153 20Q157 26 170 26H280Q300 26 300 46V195Q300 215 280 215H20Q0 215 0 195Z"/></svg>
+      <span class="paper"><img src="/img/work-ggc.webp" alt="" width="1920" height="1080" decoding="async"></span>
+      <span class="front"><span class="halfmoon" style="right:1.2em;bottom:-1.6em"></span><span class="halfmoon" style="right:4.2em;bottom:-1.6em;background:#d8cdb4"></span><span class="cv" style="left:.7em;top:.6em;font-family:var(--f-serif);font-weight:400;letter-spacing:-.02em;font-size:3em;line-height:.9;color:#efe6d2">GoGo<br><i>Cash</i></span><span class="cs" style="left:1.15em;bottom:1em;color:#efe6d2">Admin · FDE · UX/UI</span></span>
+    </button>
+    <button class="folder" type="button" aria-label="Open Den Air TikTok" data-group="grow" style="--c:#141414;--c2:#000">
+      <svg class="fback" viewBox="0 0 300 215" preserveAspectRatio="none" aria-hidden="true"><path d="M0 46Q0 26 20 26H38Q52 26 58 14L62 8Q67 0 80 0H128Q141 0 147 10L153 20Q157 26 170 26H280Q300 26 300 46V195Q300 215 280 215H20Q0 215 0 195Z"/></svg>
+      <span class="paper"><img src="/img/work-social.webp" alt="" width="1920" height="1080" decoding="async"></span>
+      <span class="front"><span class="cv" style="right:.5em;top:.25em;font-size:1.9em;color:#cdf24a;transform:rotate(14deg)">▶</span><span class="cv" style="left:.55em;top:.9em;font-size:3.6em;color:#cdf24a;transform:rotate(-5deg)">45.9K</span><span class="cs" style="left:1em;bottom:1em;color:#cdf24a">Views on one video<br>Den Air TikTok</span></span>
+    </button>
+    <button class="folder" type="button" aria-label="Open Den Air Service" data-group="run" style="--c:#b9b8b4;--c2:#9d9c98">
+      <svg class="fback" viewBox="0 0 300 215" preserveAspectRatio="none" aria-hidden="true"><path d="M0 46Q0 26 20 26H38Q52 26 58 14L62 8Q67 0 80 0H128Q141 0 147 10L153 20Q157 26 170 26H280Q300 26 300 46V195Q300 215 280 215H20Q0 215 0 195Z"/></svg>
+      <span class="paper"><img src="/img/work-denair.webp" alt="" width="1920" height="1080" decoding="async"></span>
+      <span class="front"><span class="fan"></span><span class="cs" style="left:1.15em;top:1.1em;color:#2b2b2a;font-size:.72em;font-weight:600">Den Air Service</span><span class="cs" style="left:1.15em;bottom:1em;color:#2b2b2a">DENSO car A/C<br>Since 2021</span></span>
+    </button>
+    <button class="folder" type="button" aria-label="Open Let’s talk" data-group="me" style="--c:#f6f4ef;--c2:#d9d5cc">
+      <svg class="fback" viewBox="0 0 300 215" preserveAspectRatio="none" aria-hidden="true"><path d="M0 46Q0 26 20 26H38Q52 26 58 14L62 8Q67 0 80 0H128Q141 0 147 10L153 20Q157 26 170 26H280Q300 26 300 46V195Q300 215 280 215H20Q0 215 0 195Z"/></svg>
+      <span class="paper letter">Hello!</span>
+      <span class="front"><span class="gridpat"></span><span class="cv" style="left:.55em;top:.55em;font-size:3.4em;color:#161616">Let’s<br>talk</span><span class="cs" style="left:1em;bottom:1em;color:#161616">Bangkok or remote</span></span>
+    </button>
+  </div>
+
+  <div class="copy" id="copy">
+    <h1>Ideas that<br>go <span class="mini" aria-hidden="true"><i></i></span> live.</h1>
+    <p class="sub">Real projects, live today. Each one planned, built and run by Kirsah, Tech / AI Project Manager.</p>
+    <button class="pill dark start" id="start" type="button">Open my work&nbsp; →</button>
+    <div class="chips" id="chips" role="group" aria-label="Show folders">
+      <button class="chip" type="button" aria-pressed="false" data-group="build">Built<span>3</span></button>
+      <button class="chip" type="button" aria-pressed="false" data-group="grow">Grown<span>2</span></button>
+      <button class="chip" type="button" aria-pressed="false" data-group="run">Run<span>1</span></button>
+      <button class="chip" type="button" aria-pressed="false" data-group="me">About<span>2</span></button>
     </div>
-    <div class="foot">
-      <span>© 2026 Kirsah Tiathawornchai · Surin and Bangkok, Thailand</span>
-      <span>Photos: my own.</span>
+  </div>
+
+  <article class="panel" id="panel" aria-live="polite"></article>
+
+  <!-- What each folder says when it opens. Plain HTML so search engines and AI assistants can read it. -->
+  <div class="details" id="details">
+    <div class="detail">
+      <div class="k">About · Surin and Bangkok</div><h2>Kirsah Tiathawornchai</h2><p class="role">Tech / AI Project Manager</p>
+      <div class="stats"><div><b>5 yrs</b><span>Running Den Air</span></div><div><b>4,267</b><span>Automated tests</span></div><div><b>180+</b><span>Code changes shipped</span></div></div>
+      <p class="desc">I plan, build and run real projects, then grow them with real numbers. Open to AI project manager roles, Bangkok or remote.</p>
+      <div class="actions"><a class="pill dark" href="/resume/" data-resume>Get my resume ↗</a></div>
     </div>
-  </section>
+    <div class="detail">
+      <div class="k">Build · For our A/C shop</div><h2>TeamPit</h2><p class="role">Back office and POS, built with AI agents</p>
+      <div class="stats"><div><b>POS</b><span>Front desk</span></div><div><b>A/C shop</b><span>Made for</span></div><div><b>AI agents</b><span>How I built it</span></div></div>
+      <p class="desc">Back office and point of sale for our car A/C shop. I planned it and built it with AI agents.</p>
+      <div class="actions"><a class="pill dark" href="https://teampit.formulal.cc" target="_blank" rel="noopener">Visit TeamPit ↗</a></div>
+    </div>
+    <div class="detail">
+      <div class="k">Build · Own web store</div><h2>AirPlus store</h2><p class="role">Our own car A/C parts store</p>
+      <div class="stats"><div><b>9 days</b><span>Idea to live store</span></div><div><b>Car A/C</b><span>Parts it sells</span></div><div><b>Own site</b><span>No marketplace fee</span></div></div>
+      <p class="desc">Our own parts store, live in 9 days. It sells the same car A/C parts as our Shopee shop, on our own site.</p>
+      <div class="actions"><a class="pill dark" href="https://airplusauto.com" target="_blank" rel="noopener">Visit airplusauto.com ↗</a></div>
+    </div>
+    <div class="detail">
+      <div class="k">Grow · Shopee shop</div><h2>26× on Shopee</h2><p class="role">AirPlus Auto, grown with no paid ads</p>
+      <div class="stats"><div><b>26×</b><span>Sales growth</span></div><div><b>฿0</b><span>Paid ads</span></div><div><b>Shopee</b><span>Where it sells</span></div></div>
+      <p class="desc">Our car A/C parts shop on Shopee. I re-priced the shop and ran the campaigns myself, with no paid ads.</p>
+      <div class="actions"><a class="pill dark" href="https://shopee.co.th/air.plus.auto" target="_blank" rel="noopener">Visit the Shopee shop ↗</a></div>
+    </div>
+    <div class="detail">
+      <div class="k">Build · Cashback platform</div><h2>GoGoCash</h2><p class="role">Admin, forward deployed engineer and UX/UI</p>
+      <div class="stats"><div><b>1,035</b><span>GoGoCash users</span></div><div><b>3</b><span>Roles I hold</span></div><div><b>Live</b><span>Today</span></div></div>
+      <p class="desc">A cashback shopping platform. I run the admin side, ship as a forward deployed engineer and design the screens.</p>
+      <div class="actions"><a class="pill dark" href="https://about.gogocash.co/th" target="_blank" rel="noopener">Visit GoGoCash ↗</a></div>
+    </div>
+    <div class="detail">
+      <div class="k">Grow · Short video</div><h2>45.9K views</h2><p class="role">Den Air TikTok, about 70× my followers</p>
+      <div class="stats"><div><b>45.9K</b><span>Views, best video</span></div><div><b>~70×</b><span>My follower count</span></div><div><b>TikTok</b><span>Where</span></div></div>
+      <p class="desc">Short videos for our family shop. One video reached about 70 times more people than follow the account.</p>
+      <div class="actions"></div>
+    </div>
+    <div class="detail">
+      <div class="k">Run · Family shop</div><h2>Den Air Service</h2><p class="role">Our family DENSO car A/C shop</p>
+      <div class="stats"><div><b>5 yrs</b><span>Running it</span></div><div><b>2021</b><span>Since</span></div><div><b>DENSO</b><span>Service partner</span></div></div>
+      <p class="desc">Our family car A/C shop. I have run it since 2021, and it is where every other project here started.</p>
+      <div class="actions"><a class="pill dark" href="https://www.facebook.com/profile.php?id=100063697504009" target="_blank" rel="noopener">Visit the Facebook page ↗</a></div>
+    </div>
+    <div class="detail">
+      <div class="k">Contact</div><h2>Let’s talk</h2><p class="role">Open to AI project manager roles. Bangkok or remote.</p>
+      <div class="stats"><div><b>9 days</b><span>Idea to live store</span></div><div><b>26×</b><span>Shopee growth</span></div><div><b>4,267</b><span>Tests before release</span></div></div>
+      <p class="desc">Email me about AI project manager roles.</p>
+      <div class="actions"><button class="pill dark" type="button" data-copy="lady.kirsah@gmail.com">Copy email</button><span class="mail">lady.kirsah@gmail.com</span></div>
+    </div>
+  </div>
+
+  <div class="bar bottom">
+    <div class="hint"><span class="mouse"><b>Drag</b> to throw · <b>Scroll</b> to spin · <b>Click</b> to open</span><span class="touch"><b>Swipe</b> to spin · <b>Tap</b> to open</span></div>
+    <div class="nav"><button class="pill round" id="prev" type="button" aria-label="Previous folder">←</button><button class="pill round" id="next" type="button" aria-label="Next folder">→</button></div>
+    <div class="toggle" role="group" aria-label="Layout"><button id="vRing" type="button" aria-pressed="true">Ring</button><button id="vGrid" type="button" aria-pressed="false">Grid</button></div>
+  </div>
+  <div class="follow" id="follow" aria-hidden="true"></div>
+</section>
+
+<section class="sec" id="work" aria-labelledby="work-h">
+  <div class="wrap">
+    <div class="sec-head"><div><span class="eyebrow2">Latest work</span><h2 id="work-h">Every folder,<br>one list.</h2></div>
+      <p>Real projects, live today. Tap a row to open its folder.</p></div>
+    <ul class="index" id="index">
+      <li><button class="row" type="button" data-open="0" aria-label="Open the About me folder" style="--c:#cbb9f2;--c2:#a995dc"><span class="thumb"></span><span class="nm">About me<small>About · Surin and Bangkok</small></span><span class="ln">Tech / AI Project Manager</span><span class="big">5 yrs</span><span class="arr" aria-hidden="true">→</span></button></li>
+      <li><button class="row" type="button" data-open="1" aria-label="Open the TeamPit folder" style="--c:#ff5a1f;--c2:#d8410c"><span class="thumb"></span><span class="nm">TeamPit<small>Build · For our A/C shop</small></span><span class="ln">Back office and POS, built with AI agents</span><span class="big">POS</span><span class="arr" aria-hidden="true">→</span></button></li>
+      <li><button class="row" type="button" data-open="2" aria-label="Open the AirPlus store folder" style="--c:#2350e6;--c2:#1a3bb0"><span class="thumb"></span><span class="nm">AirPlus store<small>Build · Own web store</small></span><span class="ln">Our own car A/C parts store</span><span class="big">9 days</span><span class="arr" aria-hidden="true">→</span></button></li>
+      <li><button class="row" type="button" data-open="3" aria-label="Open the AirPlus Auto folder" style="--c:#f2e03a;--c2:#d3bf17"><span class="thumb"></span><span class="nm">AirPlus Auto<small>Grow · Shopee shop</small></span><span class="ln">AirPlus Auto, grown with no paid ads</span><span class="big">26×</span><span class="arr" aria-hidden="true">→</span></button></li>
+      <li><button class="row" type="button" data-open="4" aria-label="Open the GoGoCash folder" style="--c:#1f4b3b;--c2:#143428"><span class="thumb"></span><span class="nm">GoGoCash<small>Build · Cashback platform</small></span><span class="ln">Admin, forward deployed engineer and UX/UI</span><span class="big">1,035</span><span class="arr" aria-hidden="true">→</span></button></li>
+      <li><button class="row" type="button" data-open="5" aria-label="Open the Den Air TikTok folder" style="--c:#141414;--c2:#000"><span class="thumb"></span><span class="nm">Den Air TikTok<small>Grow · Short video</small></span><span class="ln">Den Air TikTok, about 70× my followers</span><span class="big">45.9K</span><span class="arr" aria-hidden="true">→</span></button></li>
+      <li><button class="row" type="button" data-open="6" aria-label="Open the Den Air Service folder" style="--c:#b9b8b4;--c2:#9d9c98"><span class="thumb"></span><span class="nm">Den Air Service<small>Run · Family shop</small></span><span class="ln">Our family DENSO car A/C shop</span><span class="big">2021</span><span class="arr" aria-hidden="true">→</span></button></li>
+      <li><button class="row" type="button" data-open="7" aria-label="Open the Let’s talk folder" style="--c:#f6f4ef;--c2:#d9d5cc"><span class="thumb"></span><span class="nm">Let’s talk<small>Contact</small></span><span class="ln">Open to AI project manager roles. Bangkok or remote.</span><span class="big">Hello</span><span class="arr" aria-hidden="true">→</span></button></li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec" id="numbers" aria-labelledby="num-h">
+  <div class="wrap">
+    <div class="sec-head"><div><span class="eyebrow2">Real numbers from real work</span><h2 id="num-h">The proof wall.</h2></div>
+      <p>Every number comes from my resume, across Den Air, AirPlus, TeamPit and GoGoCash.</p></div>
+    <div class="nums">
+      <div class="num" style="--c:#cbb9f2"><span class="from">Den Air</span><b>5 yrs</b><span>Running our family A/C shop</span></div>
+      <div class="num" style="--c:#2350e6;--fg:#fff"><span class="pat" style="background:repeating-radial-gradient(circle at 20% 130%,transparent 0 22px,rgba(255,255,255,.16) 22px 24px)"></span><span class="from">Engineering</span><b>4,267</b><span>Automated tests before release</span></div>
+      <div class="num" style="--c:#1f4b3b;--fg:#efe6d2"><span class="from">GoGoCash</span><b>1,035</b><span>Users on the cashback platform</span></div>
+      <div class="num" style="--c:#f2e03a"><span class="pat" style="background-image:radial-gradient(circle,rgba(0,0,0,.8) 28%,transparent 30%);background-size:14px 14px;-webkit-mask-image:radial-gradient(circle at 92% 12%,#000 0 14%,transparent 46%);mask-image:radial-gradient(circle at 92% 12%,#000 0 14%,transparent 46%)"></span><span class="from">AirPlus Auto</span><b>26×</b><span>Shopee sales growth, no paid ads</span></div>
+      <div class="num" style="--c:#141414;--fg:#cdf24a"><span class="from">Den Air TikTok</span><b>45.9K</b><span>Views on one video</span></div>
+      <div class="num" style="--c:#ff5a1f;--fg:#fff"><span class="from">Engineering</span><b>180+</b><span>Code changes shipped</span></div>
+    </div>
+  </div>
+  <div class="tools"><ul class="track" aria-label="Tools I use">
+    <li>Claude Code</li><li>Cursor</li><li>Cloudflare</li><li>GitHub</li><li>Figma</li><li>Shopee</li><li>TikTok Shop</li><li>LINE OA</li>
+    <li aria-hidden="true">Claude Code</li><li aria-hidden="true">Cursor</li><li aria-hidden="true">Cloudflare</li><li aria-hidden="true">GitHub</li><li aria-hidden="true">Figma</li><li aria-hidden="true">Shopee</li><li aria-hidden="true">TikTok Shop</li><li aria-hidden="true">LINE OA</li>
+  </ul></div>
+</section>
+
+<section class="wrap" id="contact" aria-labelledby="talk-h">
+  <div class="talk">
+    <div class="deco" aria-hidden="true"><i></i></div>
+    <span class="eyebrow2">Open to AI project manager roles · Bangkok or remote</span>
+    <h2 id="talk-h">Let’s <em>talk.</em></h2>
+    <p>If you need someone who plans the work, builds it with AI and gets it live, email me.</p>
+    <div class="mailrow"><span class="addr" id="addr">lady.kirsah@gmail.com</span>
+      <button class="pill" id="copyMail" type="button">Copy email</button>
+      <a class="pill ghost" href="/resume/" data-resume>Get my resume ↗</a></div>
+    <div class="facts">
+      <div><b>9 days</b><span>from idea to a live web store</span></div>
+      <div><b>26×</b><span>Shopee sales growth, no paid ads</span></div>
+      <div><b>4,267</b><span>automated tests before release</span></div>
+    </div>
+  </div>
+</section>
 </main>
+<footer class="wrap"><span>© 2026 Kirsah Tiathawornchai · Surin and Bangkok, Thailand</span><span>Photos: my own.</span></footer>
 
-
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" integrity="sha384-HOvlOYPIs/zjoIkWUGXkVmXsjr8GuZLV+Q+rcPwmJOVZVpvTSXQChiN4t9Euv9Vc" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" integrity="sha384-P8VzCVnT9NBUkMrpcIZrJbA7EBjJvh/fJS6PmP+4nLIM284DtsImIv8D0fFjIkeh" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js" integrity="sha384-xb96EMJeax+NLXMC88ZBa1xAeAW+kn+horHh/zFlbMLG2UPWhMJJSlv7fi57hS+Q" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/DrawSVGPlugin.min.js" integrity="sha384-hk4mr+NXgJSfCJFF+LKzt26e6ZekZmmXAesF9r58nbaoAqB/VAlvY4T8k2plkXf+" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.17/dist/lenis.min.js" integrity="sha384-4EgXbGZLDwcPHcRGrHOxm1OvumWUqhr/ts6eapdZnak6ORZAsSE3fMd0niykaSkw" crossorigin="anonymous"></script>
 <script>
 (() => {
   "use strict";
-  const html = document.documentElement;
-  const main = document.querySelector("main");
-  const wipe = document.querySelector(".wipe");
-  const reduceMQ = matchMedia("(prefers-reduced-motion: reduce)");
-  const touchMQ = matchMedia("(hover: none), (pointer: coarse)");
-  const clamp = (min, max, v) => Math.min(max, Math.max(min, v));
+  const $ = (s) => document.querySelector(s);
+  const stage = $('.stage'), ring = $('#ring'), panel = $('#panel'), follow = $('#follow'), q = $('#q'), chipsEl = $('#chips');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const TILTS = [-14, 9, -6, 12, -10, 7, -12, 5];
+  const details = [...document.querySelectorAll('#details .detail')];
+  const state = { theta: -Math.PI / 2 + .25, vel: 0, base: reduce ? 0 : 0.00006, open: -1, hover: -1, filter: '', query: '', view: 'ring' };
+  let down = null, moved = false, lastX = 0, lastT = 0;
 
-  /* Content (hero photos, tools, project cards, proof wall) is plain HTML above, so crawlers can read it. */
-
-  /* ---------- resume links ---------- */
-
-  /* ---------- copy email ---------- */
-  document.getElementById("copyBtn").addEventListener("click", () => {
-    const btn = document.getElementById("copyBtn");
-    const email = document.getElementById("email");
-    const done = () => { btn.textContent = "Copied"; setTimeout(() => (btn.textContent = "Copy email"), 1800); };
-    const fallback = () => { const r = document.createRange(); r.selectNodeContents(email); const s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = "Selected, press copy"; setTimeout(() => (btn.textContent = "Copy email"), 2200); };
-    try { navigator.clipboard.writeText(email.textContent.trim()).then(done, fallback); } catch (e) { fallback(); }
+  const items = [...ring.querySelectorAll('.folder')].map((el, i) => {
+    const d = details[i], text = (s) => d.querySelector(s)?.textContent || '';
+    const name = el.getAttribute('aria-label').replace(/^Open /, '');
+    const hay = [name, text('.k'), text('h2'), text('.role'), text('.desc')].join(' ').toLowerCase();
+    const it = { el, i, name, hay, group: el.dataset.group, tilt: TILTS[i], x: 0, y: 0, r: TILTS[i], s: .4, o: 0 };
+    el.addEventListener('click', (e) => { if (moved) { e.preventDefault(); return; } if (state.open !== i) openFromAnywhere(i); });
+    el.addEventListener('pointerenter', (e) => {
+      if (e.pointerType !== 'mouse') return;
+      state.hover = i;
+      if (state.open < 0) { follow.textContent = 'Open ' + name; follow.classList.add('on'); }
+    });
+    el.addEventListener('pointerleave', () => { if (state.hover === i) { state.hover = -1; if (!down) follow.classList.remove('on'); } });
+    return it;
   });
+  addEventListener('pointermove', (e) => { if (e.pointerType !== 'mouse') return; follow.style.left = e.clientX + 'px'; follow.style.top = (e.clientY + 22) + 'px'; });
 
-  /* ---------- failsafes ---------- */
-  function revealAll() {
-    html.setAttribute("data-page-ready", "");
-    main.style.visibility = "visible"; main.style.opacity = "1";
-    document.querySelectorAll("[data-text-reveal],[data-scroll-reveal]").forEach(el => (el.style.visibility = "visible"));
-    wipe.setAttribute("data-transition-ready", "");
-  }
-  setTimeout(() => { if (!html.hasAttribute("data-page-ready")) revealAll(); }, 4000);
-  if (!window.gsap || !window.ScrollTrigger || !window.SplitText) { revealAll(); return; }
-
-  gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin);
-  ScrollTrigger.config({ ignoreMobileResize: true });
-
-  /* ---------- smooth scroll ---------- */
-  let lenis = null;
-  if (!reduceMQ.matches && window.Lenis) {
-    lenis = new Lenis({ lerp: 0.165, wheelMultiplier: 1.25 });
-    lenis.on("scroll", ScrollTrigger.update);
-    gsap.ticker.add(t => lenis.raf(t * 1000));
-    gsap.ticker.lagSmoothing(0);
-  }
-  document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener("click", e => {
-    const id = a.getAttribute("href");
-    if (id.length < 2) return;
-    const t = id === "#wall" ? document.querySelector(".wall:not([hidden])") : document.querySelector(id);
-    if (!t) return;
-    e.preventDefault();
-    if (lenis) lenis.scrollTo(t, { duration: 1.4 });
-    else t.scrollIntoView({ behavior: reduceMQ.matches ? "auto" : "smooth" });
+  // chips + search
+  const chips = [...chipsEl.querySelectorAll('.chip')];
+  chips.forEach((c) => c.addEventListener('click', () => {
+    const g = c.dataset.group;
+    state.filter = state.filter === g ? '' : g; q.value = ''; state.query = '';
+    chips.forEach((x) => x.setAttribute('aria-pressed', String(x === c && state.filter === g)));
   }));
+  const matches = (it) => {
+    if (state.filter && it.group !== state.filter) return false;
+    return !state.query || it.hay.includes(state.query);
+  };
+  q.addEventListener('input', () => { state.query = q.value.trim().toLowerCase(); state.filter = ''; chips.forEach((x) => x.setAttribute('aria-pressed', 'false')); });
+  q.addEventListener('keydown', (e) => { if (e.key === 'Enter') { const it = items.find(matches); if (it) { q.blur(); openAt(it.i); } } });
 
-  /* ---------- split helpers ---------- */
-  function split(el) {
-    if (!el._split) el._split = SplitText.create(el, { type: "chars,words,lines", linesClass: "line", charsClass: "char", mask: "lines", autoSplit: false });
-    return el._split;
+  // sizes
+  let W = 0, H = 0, FW = 0, narrow = false, band = null;
+  // On phones the folders orbit in the free bands above and below the headline, never behind it.
+  function copyBox() {
+    const h1 = $('.copy h1'), chips = $('#chips'), last = chips.offsetHeight ? chips : $('#start');
+    return { top: h1.offsetTop, bottom: last.offsetTop + last.offsetHeight };
   }
-  function revealTween(el, mode, delay = 0) {
-    if (mode === "element") { gsap.set(el, { visibility: "visible" }); return gsap.fromTo(el, { y: 24, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .8, ease: "expo.out", delay }); }
-    // Text lines are split at the width the reader has now, and put back once shown, so a resize re-wraps them.
-    const s = mode === "chars" ? split(el) : SplitText.create(el, { type: "lines", linesClass: "line", mask: "lines", autoSplit: false });
-    gsap.set(el, { visibility: "visible" });
-    return gsap.from(mode === "chars" ? s.chars : s.lines, { yPercent: 135, duration: 1, ease: "expo.out", stagger: mode === "chars" ? 0.07 * 0.25 : 0.07, delay, onComplete: () => { if (mode !== "chars") s.revert(); el.dispatchEvent(new CustomEvent("reveal:done")); } });
+  function measure() {
+    const r = stage.getBoundingClientRect(); W = r.width; H = r.height;
+    narrow = W < 760 && H >= W * .9;
+    if (narrow) {
+      const c = copyBox(), top = c.top - 100, bottom = H - 60 - c.bottom;
+      band = { t: 100 + top / 2, b: c.bottom + bottom / 2 };
+      FW = Math.max(120, Math.min(W * .52, 240, (Math.min(top, bottom) - 8) * 300 / 215));
+    } else FW = Math.max(150, Math.min(W * .195, H * .36, 330));
+    items.forEach((it) => { it.el.style.width = FW + 'px'; it.el.style.setProperty('--w', FW + 'px'); });
+    layoutPanel();
   }
-  function runTextReveal(base) {
-    const groups = new Map();
-    document.querySelectorAll("[data-text-reveal]").forEach(el => {
-      const g = el.closest("[data-text-reveal-group]");
-      let d = base;
-      if (g) { const i = groups.get(g) || 0; d += i * 0.12; groups.set(g, i + 1); }
-      revealTween(el, el.dataset.textReveal, d);
-    });
+  function ellipse() {
+    const fh = FW * 215 / 300;
+    if (narrow) return { cx: W / 2, cy: (band.t + band.b) / 2, rx: W * .8, ry: Math.max(80, (band.b - band.t) / 2) };
+    return { cx: W / 2, cy: H / 2 + 10, rx: W / 2 - FW * .22, ry: H / 2 - fh * .16 };
   }
-  function initScrollReveal(root) {
-    const groups = new Map(), singles = [];
-    root.querySelectorAll("[data-scroll-reveal]").forEach(el => {
-      if (el.closest(".wall") && root === document) return; // walls handle their own
-      const g = el.closest("[data-scroll-reveal-group]");
-      if (g) { if (!groups.has(g)) groups.set(g, []); groups.get(g).push(el); } else singles.push(el);
-    });
-    if (reduceMQ.matches) { [...singles, ...[...groups.values()].flat()].forEach(el => (el.style.visibility = "visible")); return; }
-    groups.forEach((els, g) => ScrollTrigger.create({ trigger: g, start: "top 85%", once: true, onEnter: () => els.forEach((el, i) => revealTween(el, el.dataset.scrollReveal, i * 0.12)) }));
-    singles.forEach(el => ScrollTrigger.create({ trigger: el, start: "top 85%", once: true, onEnter: () => revealTween(el, el.dataset.scrollReveal) }));
+  function openSpot() {
+    if (narrow) { const w = Math.min(W * .66, H * (H < 740 ? .2 : .24) * 300 / 215), hh = w * 215 / 300; return { x: W / 2, y: 70 + hh * .95, s: w / FW }; }
+    if (W < 1000) { const w = Math.min(W * .34, (H - 170) * 300 / 215 * .9); return { x: W * .27, y: H * .54, s: w / FW }; }
+    const w = Math.min(W * .36, (H - 170) * 300 / 215 * .9); return { x: W * .31, y: H * .54, s: w / FW };
   }
-
-  /* ---------- draw underline ---------- */
-  const LINES = [
-    "M5 20.9999C26.7762 16.2245 49.5532 11.5572 71.7979 14.6666C84.9553 16.5057 97.0392 21.8432 109.987 24.3888C116.413 25.6523 123.012 25.5143 129.042 22.6388C135.981 19.3303 142.586 15.1422 150.092 13.3333C156.799 11.7168 161.702 14.6225 167.887 16.8333C181.562 21.7212 194.975 22.6234 209.252 21.3888C224.678 20.0548 239.912 17.991 255.42 18.3055C272.027 18.6422 288.409 18.867 305 17.9999",
-    "M5 24.2592C26.233 20.2879 47.7083 16.9968 69.135 13.8421C98.0469 9.5853 128.407 4.02322 158.059 5.14674C172.583 5.69708 187.686 8.66104 201.598 11.9696C207.232 13.3093 215.437 14.9471 220.137 18.3619C224.401 21.4596 220.737 25.6575 217.184 27.6168C208.309 32.5097 197.199 34.281 186.698 34.8486C183.159 35.0399 147.197 36.2657 155.105 26.5837C158.11 22.9053 162.993 20.6229 167.764 18.7924C178.386 14.7164 190.115 12.1115 201.624 10.3984C218.367 7.90626 235.528 7.06127 252.521 7.49276C258.455 7.64343 264.389 7.92791 270.295 8.41825C280.321 9.25056 296 10.8932 305 13.0242",
-    "M5 29.5014C9.61174 24.4515 12.9521 17.9873 20.9532 17.5292C23.7742 17.3676 27.0987 17.7897 29.6575 19.0014C33.2644 20.7093 35.6481 24.0004 39.4178 25.5014C48.3911 29.0744 55.7503 25.7731 63.3048 21.0292C67.9902 18.0869 73.7668 16.1366 79.3721 17.8903C85.1682 19.7036 88.2173 26.2464 94.4121 27.2514C102.584 28.5771 107.023 25.5064 113.276 20.6125C119.927 15.4067 128.83 12.3333 137.249 15.0014C141.418 16.3225 143.116 18.7528 146.581 21.0014C149.621 22.9736 152.78 23.6197 156.284 24.2514C165.142 25.8479 172.315 17.5185 179.144 13.5014C184.459 10.3746 191.785 8.74853 195.868 14.5292C199.252 19.3205 205.597 22.9057 211.621 22.5014C215.553 22.2374 220.183 17.8356 222.979 15.5569C225.4 13.5845 227.457 11.1105 230.742 10.5292C232.718 10.1794 234.784 12.9691 236.164 14.0014C238.543 15.7801 240.717 18.4775 243.356 19.8903C249.488 23.1729 255.706 21.2551 261.079 18.0014C266.571 14.6754 270.439 11.5202 277.146 13.6125C280.725 14.7289 283.221 17.209 286.393 19.0014C292.321 22.3517 298.255 22.5014 305 22.5014",
-    "M17.0039 32.6826C32.2307 32.8412 47.4552 32.8277 62.676 32.8118C67.3044 32.807 96.546 33.0555 104.728 32.0775C113.615 31.0152 104.516 28.3028 102.022 27.2826C89.9573 22.3465 77.3751 19.0254 65.0451 15.0552C57.8987 12.7542 37.2813 8.49399 44.2314 6.10216C50.9667 3.78422 64.2873 5.81914 70.4249 5.96641C105.866 6.81677 141.306 7.58809 176.75 8.59886C217.874 9.77162 258.906 11.0553 300 14.4892",
-    "M4.99805 20.9998C65.6267 17.4649 126.268 13.845 187.208 12.8887C226.483 12.2723 265.751 13.2796 304.998 13.9998",
-    "M5 29.8857C52.3147 26.9322 99.4329 21.6611 146.503 17.1765C151.753 16.6763 157.115 15.9505 162.415 15.6551C163.28 15.6069 165.074 15.4123 164.383 16.4275C161.704 20.3627 157.134 23.7551 153.95 27.4983C153.209 28.3702 148.194 33.4751 150.669 34.6605C153.638 36.0819 163.621 32.6063 165.039 32.2029C178.55 28.3608 191.49 23.5968 204.869 19.5404C231.903 11.3436 259.347 5.83254 288.793 5.12258C294.094 4.99476 299.722 4.82265 305 5.45025"
-  ];
-  let lineIdx = Math.floor(Math.random() * LINES.length);
-  const nextLine = () => { const d = LINES[lineIdx]; lineIdx = (lineIdx + 1) % LINES.length; return d; };
-  function makeLine(box) {
-    box.innerHTML = `<svg viewBox="0 0 310 40" preserveAspectRatio="none" aria-hidden="true"><path d="${nextLine()}" fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round"/></svg>`;
-    return box.querySelector("path");
+  function layoutPanel() {
+    panel.classList.toggle('narrow', narrow);
+    if (narrow) { const sp = openSpot(); panel.style.top = (sp.y + FW * sp.s * 215 / 300 / 2 + 18) + 'px'; }
+    else panel.style.top = '';
   }
-  function initDrawLines() {
-    document.querySelectorAll("[data-draw-line]").forEach(el => {
-      const box = el.querySelector(".draw-box");
-      if (!box) return;
-      let tween = null, leaving = false;
-      el.addEventListener("mouseenter", () => {
-        leaving = false;
-        if (tween && tween.isActive()) return;
-        const p = makeLine(box);
-        tween = gsap.fromTo(p, { drawSVG: "0%" }, { drawSVG: "100%", duration: .5, ease: "power2.inOut", onComplete: () => { if (leaving) erase(); } });
-      });
-      const erase = () => {
-        const p = box.querySelector("path");
-        if (!p) return;
-        tween = gsap.to(p, { drawSVG: "100% 100%", duration: .5, ease: "power2.inOut", onComplete: () => { box.innerHTML = ""; } });
-      };
-      el.addEventListener("mouseleave", () => { leaving = true; if (!(tween && tween.isActive())) erase(); });
-    });
-  }
-  function drawAlways() {
-    const box = document.querySelector(".hero-link [data-draw-target]");
-    const p = makeLine(box);
-    if (reduceMQ.matches) return;
-    gsap.fromTo(p, { drawSVG: "0%" }, { drawSVG: "100%", duration: .6, ease: "power2.inOut" });
+  function gridSpots() {
+    const cols = W >= 1000 ? 4 : W >= 620 ? 3 : 2, rows = Math.ceil(items.length / cols);
+    const top = 118, bot = 70, gw = W - 32, gh = H - top - bot, cw = gw / cols, ch = gh / rows;
+    const w = Math.min(cw * .82, ch * .74 * 300 / 215);
+    return items.map((_, i) => ({ x: 16 + cw * (i % cols + .5), y: top + ch * (Math.floor(i / cols) + .5) + w * .03, s: w / FW }));
   }
 
-  /* ---------- font weight follows cursor ---------- */
-  const WH = { items: [], px: null, py: null, lastScroll: scrollY, enabled: !touchMQ.matches && !reduceMQ.matches };
-  function whMeasure() {
-    const sx = scrollX, sy = scrollY;
-    WH.items.forEach(it => { const r = it.char.getBoundingClientRect(); it.cx = r.left + r.width / 2 + sx; it.cy = r.top + r.height / 2 + sy; });
+  // open / close
+  function copyText(btn, text, node) {
+    const done = () => { btn.textContent = 'Copied'; };
+    const select = () => { const r = document.createRange(); r.selectNodeContents(node); const s = getSelection(); s.removeAllRanges(); s.addRange(r); };
+    try { navigator.clipboard.writeText(text).then(done, select); } catch (e) { select(); }
   }
-  function whAdd(el) {
-    if (!WH.enabled) return;
-    const chars = split(el).chars;
-    chars.forEach(char => {
-      const owner = char.parentElement.closest("[data-font-weight-hover]") || el;
-      const rest = +owner.dataset.fwRest, near = +owner.dataset.fwNear, radius = +owner.dataset.fwRadius;
-      const cs = getComputedStyle(char).fontVariationSettings;
-      const axes = cs && cs !== "normal" ? cs.split(",").map(s => s.trim()).filter(a => !/^["']wght["']/.test(a)) : [];
-      char.style.fontVariationSettings = [...axes, '"wght" var(--wght)'].join(", ");
-      gsap.set(char, { "--wght": rest });
-      WH.items.push({ el, char, rest, near, radius, cur: rest, quick: gsap.quickTo(char, "--wght", { duration: .4, ease: "power2.out" }), cx: 0, cy: 0 });
-    });
-    el.addEventListener("reveal:done", whMeasure);
-    whMeasure();
+  function renderPanel(i) {
+    panel.innerHTML = '<div class="pin">' + details[i].innerHTML + '</div>';
+    const actions = panel.querySelector('.actions');
+    const next = document.createElement('button');
+    next.className = 'pill'; next.type = 'button'; next.textContent = 'Next folder →';
+    next.addEventListener('click', () => step(1));
+    actions.appendChild(next);
+    const cb = panel.querySelector('[data-copy]');
+    if (cb) cb.addEventListener('click', () => copyText(cb, cb.dataset.copy, panel.querySelector('.mail')));
+    panel.scrollTop = 0;
   }
-  function whRemove(root) { WH.items = WH.items.filter(it => !root.contains(it.el)); }
-  if (WH.enabled) {
-    addEventListener("mousemove", e => { WH.px = e.clientX + scrollX; WH.py = e.clientY + scrollY; }, { passive: true });
-    addEventListener("scroll", () => { const d = scrollY - WH.lastScroll; WH.lastScroll = scrollY; if (WH.py !== null) WH.py += d; whMeasure(); }, { passive: true });
-    addEventListener("resize", whMeasure);
-    gsap.ticker.add(() => {
-      if (WH.px === null) return;
-      for (const it of WH.items) {
-        const d = Math.hypot(WH.px - it.cx, WH.py - it.cy);
-        const f = d >= it.radius ? 0 : 1 - d / it.radius;
-        const target = clamp(Math.min(it.rest, it.near), Math.max(it.rest, it.near), it.rest + (it.near - it.rest) * f);
-        if (Math.abs(target - it.cur) >= 1) { it.cur = target; it.quick(target); }
-      }
-    });
+  function openAt(i) {
+    document.body.classList.add('locked'); state.open = i; follow.classList.remove('on');
+    stage.classList.add('is-open'); items.forEach((it) => it.el.classList.toggle('open', it.i === i));
+    renderPanel(i); layoutPanel(); $('#close').focus({ preventScroll: true });
   }
-  const topLevelFW = root => [...root.querySelectorAll("[data-font-weight-hover]")].filter(el => !el.parentElement.closest("[data-font-weight-hover]"));
+  // From further down the page: glide back to the folders first, then open.
+  function openFromAnywhere(i) {
+    if (scrollY < 4) { openAt(i); return; }
+    scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+    const t0 = performance.now();
+    (function wait() {
+      if (scrollY < 4 || performance.now() - t0 > 2500) { if (scrollY >= 4) scrollTo(0, 0); openAt(i); }
+      else requestAnimationFrame(wait);
+    })();
+  }
+  function closeAll() {
+    document.body.classList.remove('locked'); const was = state.open; state.open = -1;
+    stage.classList.remove('is-open'); items.forEach((it) => it.el.classList.remove('open'));
+    if (was >= 0) items[was].el.focus({ preventScroll: true });
+  }
+  function step(d) { if (state.open < 0) return openAt(0); openAt((state.open + d + items.length) % items.length); }
+  $('#close').addEventListener('click', closeAll);
+  $('#prev').addEventListener('click', () => step(-1));
+  $('#next').addEventListener('click', () => step(1));
+  $('#start').addEventListener('click', () => openAt(0));
+  addEventListener('keydown', (e) => {
+    const typing = e.target.closest && e.target.closest('input, textarea');
+    if (e.key === '/' && !typing && state.open < 0) { e.preventDefault(); q.focus(); return; }
+    if (e.key === 'Escape') { if (state.open >= 0) closeAll(); else if (typing) q.blur(); }
+    if (state.open >= 0 && e.key === 'ArrowRight') step(1);
+    if (state.open >= 0 && e.key === 'ArrowLeft') step(-1);
+  });
+  function setView(v) {
+    state.view = v; stage.classList.toggle('is-grid', v === 'grid');
+    $('#vRing').setAttribute('aria-pressed', String(v === 'ring')); $('#vGrid').setAttribute('aria-pressed', String(v === 'grid'));
+  }
+  $('#vRing').addEventListener('click', () => setView('ring'));
+  $('#vGrid').addEventListener('click', () => setView('grid'));
 
-  /* ---------- hero photo card ---------- */
-  // The card follows the mouse, at any window width. Touch phones and tablets have no cursor, so CSS hides it.
-  function initHeroCard(mm) {
-    const hero = document.querySelector("[data-cursor-cards]");
-    const threshold = +hero.dataset.threshold || 300;
-    const card = hero.querySelector(".hero-card"), media = card.querySelector(".hero-card-media"), crops = [...media.children];
-    let idx = 0;
-    const next = () => { crops[idx].classList.remove("on"); idx = (idx + 1) % crops.length; crops[idx].classList.add("on"); };
-    mm.add("(hover: hover) and (pointer: fine)", () => {
-      // load every photo now, so a flip never shows an empty frame
-      media.querySelectorAll("img").forEach(img => { img.loading = "eager"; });
-      const xTo = gsap.quickTo(card, "x", { duration: 1, ease: "power4" }), yTo = gsap.quickTo(card, "y", { duration: 1, ease: "power4" });
-      const rTo = gsap.quickTo(card, "rotation", { duration: 1, ease: "power4" });
-      const mxTo = gsap.quickTo(media, "xPercent", { duration: .6, ease: "power2" }), myTo = gsap.quickTo(media, "yPercent", { duration: .7, ease: "power2" });
-      gsap.set(card, { autoAlpha: 0 });
-      let last = null, travel = 0, idle = 0, shown = false;
-      const onMove = e => {
-        const top = hero.getBoundingClientRect().top;
-        const x = e.clientX - innerWidth / 2, y = e.clientY - innerHeight / 2 - top;
-        if (e.target.closest("a,button")) { if (shown) { gsap.to(card, { autoAlpha: 0, duration: .25, ease: "power2.out", overwrite: "auto" }); shown = false; } last = { x, y }; return; }
-        if (!last) { gsap.set(card, { x, y }); last = { x, y }; }
-        if (!shown) { gsap.to(card, { autoAlpha: 1, duration: .3, overwrite: "auto" }); shown = true; }
-        const dx = (x - last.x) / 2, dy = (y - last.y) / 2;
-        rTo((x - last.x) / 4); xTo(x); yTo(y);
-        mxTo(-clamp(-8, 8, dx)); myTo(-clamp(-8, 8, dy));
-        travel += Math.abs(dx) + Math.abs(dy);
-        if (travel > threshold) { travel = 0; next(); }
-        last = { x, y };
-        clearTimeout(idle);
-        idle = setTimeout(() => { rTo(0); mxTo(0); myTo(0); }, 66);
-      };
-      const onLeave = () => { last = null; travel = 0; rTo(0); mxTo(0); myTo(0); gsap.to(card, { autoAlpha: 0, duration: .3, overwrite: "auto" }); shown = false; };
-      hero.addEventListener("mousemove", onMove);
-      hero.addEventListener("mouseleave", onLeave);
-      return () => { hero.removeEventListener("mousemove", onMove); hero.removeEventListener("mouseleave", onLeave); clearTimeout(idle); };
-    });
-  }
-
-  /* ---------- marquee ---------- */
-  function initMarquee() {
-    const m = document.querySelector("[data-marquee]");
-    const scroll = m.querySelector(".marquee-scroll");
-    const coll = m.querySelector(".marquee-collection");
-    const speed = 30, direction = -1, dup = 2;
-    for (let i = 0; i < dup; i++) scroll.appendChild(coll.cloneNode(true));
-    scroll.querySelectorAll(".marquee-collection").forEach((c, i) => { if (i) c.setAttribute("aria-hidden", "true"); });
-    if (reduceMQ.matches) return;
-    scroll.style.marginLeft = "-10%"; scroll.style.width = "120%";
-    const f = innerWidth < 479 ? .25 : innerWidth < 991 ? .5 : 1;
-    const dur = speed * (coll.offsetWidth / innerWidth) * f;
-    const colls = scroll.querySelectorAll(".marquee-collection");
-    gsap.set(colls, { xPercent: 0 });
-    const tw = gsap.to(colls, { xPercent: -100, repeat: -1, duration: dur, ease: "none" });
-    tw.totalProgress(.5);
-    ScrollTrigger.create({ trigger: m, start: "top bottom", end: "bottom top", onUpdate: self => tw.timeScale(self.direction === 1 ? -direction : direction) });
-    gsap.fromTo(scroll, { x: "10vw" }, { x: "-10vw", ease: "none", scrollTrigger: { trigger: m, start: "top bottom", end: "bottom top", scrub: 0 } });
-  }
-
-  /* ---------- 3D work stack ---------- */
-  function initStack(mm) {
-    // Same pinned card stack on every size.
-    mm.add({ desktop: "(min-width: 992px)", small: "(max-width: 991px)" }, ctx => {
-      const section = document.querySelector("[data-featured-stack]");
-      const pin = section.querySelector(".pin"), root = section.querySelector(".stack"), badge = section.querySelector(".badge svg");
-      const items = [...root.querySelectorAll(".slide")], n = items.length;
-      const factor = +section.dataset.scrollFactor || 1.2;
-      // each card behind is the same step smaller and higher, so the frames peek out evenly;
-      // these two numbers keep the desktop stack the same size and height as the approved 3D version
-      const SHRINK = .06, OFFSET = 26;
-      const stage = section.querySelector(".stage");
-      const layout = () => {
-        // every card gets the tallest card's height (text wraps differently per width), so the steps stay even
-        items.forEach(s => { s.style.minHeight = ""; });
-        const tallest = Math.max(...items.map(s => s.offsetHeight));
-        items.forEach(s => { s.style.minHeight = tallest + "px"; });
-        if (!ctx.conditions.small) return;
-        // small screens: shrink the whole stack when it is taller than the space under the title, and centre it there
-        const rise = (n - 1) * (OFFSET - tallest * SHRINK / 2);
-        const room = stage.clientHeight, centre = parseFloat(getComputedStyle(items[0]).top);
-        const k = Math.min(1, room / (tallest + rise));
-        gsap.set(root, { scale: k, y: k * (room / 2 + rise / 2 - centre) });
-      };
-      layout();
-      ScrollTrigger.addEventListener("refreshInit", layout);
-      // measure again whenever the card text changes size: fonts arriving late, or the frame changing width
-      let raf = 0;
-      const ro = new ResizeObserver(() => { cancelAnimationFrame(raf); raf = requestAnimationFrame(layout); });
-      items.forEach(s => ro.observe(s.querySelector(".slide-body")));
-      // centring is set here too: reading it back from the CSS translate is unreliable on some sizes
-      items.forEach((s, b) => gsap.set(s, { x: 0, xPercent: -50, yPercent: -50, scale: 1 - b * SHRINK, y: -b * OFFSET, zIndex: n - b, autoAlpha: 1 }));
-      const tl = gsap.timeline({ paused: true });
-      for (let b = 0; b < n - 1; b++) {
-        tl.to(items[b], { y: () => "+=" + innerHeight * .9, ease: "power2.in", duration: 1 }, b);
-        tl.to(items[b], { autoAlpha: 0, ease: "none", duration: .25 }, b + .7);
-        for (let j = b + 1; j < n; j++) { const C = j - b - 1; tl.to(items[j], { scale: 1 - C * SHRINK, y: -C * OFFSET, ease: "none", duration: 1 }, b); }
-      }
-      tl.fromTo(badge, { rotation: 0 }, { rotation: 180, ease: "none", duration: n - 1 }, 0);
-      ScrollTrigger.create({ trigger: section, start: "top top", end: () => "+=" + innerHeight * factor * (n - 1), pin, pinSpacing: true, animation: tl, scrub: .3, refreshPriority: 1, invalidateOnRefresh: true,
-        // touch screens: hold the stack by moving it with the page (not a floating layer), so iPhone Safari keeps
-        // drawing it under its bottom bar
-        pinType: touchMQ.matches ? "transform" : "fixed" });
-      return () => { ro.disconnect(); cancelAnimationFrame(raf); ScrollTrigger.removeEventListener("refreshInit", layout); items.forEach(s => { s.style.minHeight = ""; }); gsap.set(root, { clearProps: "transform" }); };
-    });
-  }
-
-  /* ---------- proof wall ---------- */
-  let wallCtx = null, wallMM = null;
-  function activateWall(ver, scrollTo) {
-    if (wallCtx) { wallCtx.revert(); wallCtx = null; }
-    if (wallMM) { wallMM.revert(); wallMM = null; }
-    document.querySelectorAll(".wall").forEach(w => { whRemove(w); if (w._splits) w._splits.forEach(s => s.revert()); w._splits = []; w.querySelectorAll("[data-scroll-reveal],[data-text-reveal]").forEach(el => { delete el._split; el.style.visibility = ""; }); });
-    html.removeAttribute("data-theme");
-    const sec = document.querySelector(`.wall[data-wall="${ver}"]`);
-    wallCtx = gsap.context(() => {
-      initScrollReveal(sec);
-      ScrollTrigger.create({ trigger: sec, start: "top 55%", end: "bottom 45%", refreshPriority: -1, onToggle: self => { if (self.isActive) html.dataset.theme = "dark"; else html.removeAttribute("data-theme"); } });
-    }, sec);
-    sec._splits = [...sec.querySelectorAll("[data-scroll-reveal]")].map(el => el._split).filter(Boolean);
-    wallMM = gsap.matchMedia();
-    wallMM.add({ isDesktop: "(min-width: 992px)", isTablet: "(min-width: 480px) and (max-width: 991px)", isMobile: "(max-width: 479px)", reduce: "(prefers-reduced-motion: reduce)" }, ctx => {
-      const { isDesktop, isTablet, reduce } = ctx.conditions;
-      if (reduce) return;
-      const dist = 320 * (isDesktop ? 1 : isTablet ? .7 : .5);
-      sec.querySelectorAll(".ph").forEach(p => {
-        const sp = +p.dataset.speed;
-        gsap.fromTo(p, { y: dist * sp }, { y: -dist * sp, ease: "none", scrollTrigger: { trigger: sec, start: "clamp(top bottom)", end: "clamp(bottom top)", scrub: true, invalidateOnRefresh: true, refreshPriority: -1 } });
-      });
-    });
-    topLevelFW(sec).forEach(whAdd);
-    ScrollTrigger.refresh();
-    whMeasure();
-    if (scrollTo) { if (lenis) lenis.scrollTo(sec, { duration: 1.2 }); else sec.scrollIntoView({ behavior: reduceMQ.matches ? "auto" : "smooth" }); }
-  }
-
-  /* ---------- init + load sequence ---------- */
-  let initDone = false;
-  function init() {
-    if (initDone) return; initDone = true;
-    initDrawLines();
-    initMarquee();
-    const mm = gsap.matchMedia();
-    initHeroCard(mm);
-    initStack(mm);
-    initScrollReveal(document);
-    topLevelFW(document).filter(el => !el.closest(".wall")).forEach(whAdd);
-    activateWall("proof", false);
-    gsap.delayedCall(1.3, drawAlways);
-    addEventListener("load", () => ScrollTrigger.refresh());
-  }
-  let started = false;
-  function start() {
-    if (started) return; started = true;
-    html.setAttribute("data-page-ready", "");
-    if (reduceMQ.matches) {
-      gsap.set(main, { autoAlpha: 1 });
-      document.querySelectorAll("[data-text-reveal]").forEach(el => (el.style.visibility = "visible"));
-      wipe.setAttribute("data-transition-ready", "");
-      init();
-      return;
+  // drag / swipe / wheel
+  stage.addEventListener('pointerdown', (e) => {
+    if (state.open >= 0 || state.view !== 'ring') return;
+    if (e.target.closest('.copy button, .bar, input, .panel')) return;
+    down = { x: e.clientX, y: e.clientY }; moved = false; lastX = e.clientX; lastT = performance.now();
+  });
+  addEventListener('pointermove', (e) => {
+    if (!down) return;
+    const dx = e.clientX - lastX;
+    if (!moved && Math.hypot(e.clientX - down.x, e.clientY - down.y) > 6) {
+      moved = true;
+      if (e.pointerType === 'mouse') { follow.textContent = 'Gravity: optional.'; follow.classList.add('on'); }
     }
-    const path = wipe.querySelector("path");
-    // full orange for a short beat (0.3 s), then one even stroke draws away (1.6 s): about 2 seconds in all
-    gsap.set(wipe, { y: window.scrollY });
-    const tl = gsap.timeline();
-    tl.set(main, { autoAlpha: 0 })
-      .set(path, { drawSVG: "0% 100%", strokeWidth: "72%" })
-      .addLabel("reveal", .3)
-      .set(main, { autoAlpha: 1 }, "reveal")
-      .call(() => { runTextReveal(.6); init(); }, null, "reveal")
-      .to(path, { drawSVG: "100% 100%", strokeWidth: "20%", duration: 1.6, ease: "sine.inOut", onComplete: () => wipe.setAttribute("data-transition-ready", "") }, "reveal");
+    if (moved) {
+      const E = ellipse(), sign = down.y < E.cy ? 1 : -1, now = performance.now(), dt = Math.max(1, now - lastT);
+      const dth = sign * dx / E.rx; state.theta += dth; state.vel = dth / dt; lastX = e.clientX; lastT = now;
+    }
+  });
+  const release = () => { if (!down) return; down = null; if (state.hover < 0) follow.classList.remove('on'); setTimeout(() => { moved = false; }, 0); };
+  addEventListener('pointerup', release);
+  addEventListener('pointercancel', release);
+  let lastY = scrollY;
+  addEventListener('scroll', () => { const d = scrollY - lastY; lastY = scrollY; if (state.open < 0 && state.view === 'ring' && !reduce) state.theta += d * .0022; }, { passive: true });
+  stage.addEventListener('wheel', (e) => {
+    if (state.open >= 0 || state.view !== 'ring' || Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
+    e.preventDefault(); state.vel = Math.max(-.004, Math.min(.004, state.vel + e.deltaX * .0000045));
+  }, { passive: false });
+
+  // motion
+  let prev = performance.now();
+  function frame(now) {
+    const dt = Math.min(48, now - prev); prev = now;
+    if (!down) { const slow = (state.hover >= 0 && state.open < 0) ? .12 : 1; state.theta += (state.base * slow + state.vel) * dt; state.vel *= Math.pow(.955, dt / 16); }
+    const E = ellipse(), n = items.length, sp = openSpot(), grid = state.view === 'grid' ? gridSpots() : null;
+    const k = reduce ? 1 : 1 - Math.pow(1 - .1, dt / 16), h = FW * 215 / 300;
+    items.forEach((it) => {
+      let tx, ty, tr, ts, to = 1;
+      const a = state.theta + it.i * 2 * Math.PI / n;
+      if (state.open === it.i) { tx = sp.x; ty = sp.y; tr = 0; ts = sp.s; }
+      else if (state.open >= 0) { tx = E.cx + Math.cos(a) * E.rx * 1.6; ty = E.cy + Math.sin(a) * E.ry * 1.7; tr = it.tilt * 1.6; ts = .85; to = 0; }
+      else if (grid) { tx = grid[it.i].x; ty = grid[it.i].y; tr = it.tilt * .12; ts = grid[it.i].s; }
+      else { tx = E.cx + Math.cos(a) * E.rx; ty = E.cy + Math.sin(a) * E.ry; tr = it.tilt + (reduce ? 0 : Math.sin(now / 1800 + it.i) * 2); ts = 1; }
+      if (state.open < 0 && state.hover === it.i && !down) { ts *= 1.05; tr *= .4; }
+      if (state.open < 0 && !matches(it)) { to = .18; ts *= .94; }
+      it.x += (tx - it.x) * k; it.y += (ty - it.y) * k; it.r += (tr - it.r) * k; it.s += (ts - it.s) * k; it.o += (to - it.o) * k;
+      it.el.style.transform = `translate(${(it.x - FW / 2).toFixed(2)}px,${(it.y - h / 2).toFixed(2)}px) rotate(${it.r.toFixed(3)}deg) scale(${it.s.toFixed(4)})`;
+      it.el.style.opacity = it.o.toFixed(3);
+      it.el.style.zIndex = state.open === it.i ? 50 : Math.round(it.y / 10);
+      it.el.classList.toggle('dim', it.o < .5);
+      it.el.tabIndex = it.o < .5 ? -1 : 0;
+    });
+    requestAnimationFrame(frame);
   }
-  Promise.race([document.fonts.ready, new Promise(r => setTimeout(r, 1500))]).then(start);
+
+  // below the folders
+  document.querySelectorAll('#index .row').forEach((row) => row.addEventListener('click', () => openFromAnywhere(+row.dataset.open)));
+  $('#copyMail').addEventListener('click', function () { copyText(this, $('#addr').textContent, $('#addr')); });
+
+  addEventListener('resize', measure);
+  measure();
+  if (document.fonts) document.fonts.ready.then(measure);
+  items.forEach((it) => { it.x = W / 2; it.y = H / 2; });
+  requestAnimationFrame(frame);
 })();
 </script>
 </body>

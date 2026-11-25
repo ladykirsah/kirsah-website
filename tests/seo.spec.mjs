@@ -116,8 +116,20 @@ test.describe('search and share', () => {
   test('raw page without JavaScript > already shows projects and proof numbers', async ({ request }) => {
     // Text inside <script> is code, not page content: crawlers skip it.
     const html = (await rawHome(request)).replace(/<script[\s\S]*?<\/script>/g, '');
-    for (const text of ['TeamPit', 'AirPlus store', 'GoGoCash', 'Claude Code', 'Running Den Air', '45.9K', '1,035', '4,267']) {
+    for (const text of ['TeamPit', 'AirPlus store', 'GoGoCash', 'Claude Code', 'Running Den Air', '45.9K', '1,035', '4,267',
+      'Den Air Service', 'Every folder', 'The proof wall', 'lady.kirsah@gmail.com']) {
       expect(html, text).toContain(text);
     }
+  });
+
+  test('raw page without JavaScript > already has the eight folders, the work list and every project link', async ({ request }) => {
+    const html = (await rawHome(request)).replace(/<script[\s\S]*?<\/script>/g, '');
+    expect(html.match(/<button class="folder"/g)).toHaveLength(8);
+    expect(html.match(/<button class="row"/g)).toHaveLength(8);
+    for (const href of ['https://teampit.formulal.cc', 'https://airplusauto.com', 'https://shopee.co.th/air.plus.auto',
+      'https://about.gogocash.co/th', 'https://www.facebook.com/profile.php?id=100063697504009']) {
+      expect(html, href).toContain(`href="${href}"`);
+    }
+    expect(html).not.toContain('href="https://gogocash.co');
   });
 });
