@@ -11,17 +11,24 @@ The rules this site follows, and the lessons from building it. Read before chang
 - Look: warm grey `#eeece8`, ink `#161616`; Inter Tight headlines, Inter text, Instrument Serif accents; each folder
   has its own poster colour.
 - Top screen: 8 folders orbit "Ideas that go live." Drag to throw, scroll spins, click opens (the folder flies to the
-  middle, its photo slides up, details on the right, below it on phones); arrows and Esc; Ring / Grid; search with
-  the "/" key; chips Built / Grown / Run / About; the cursor label is for a mouse only. As in the draft, a closed
+  middle, its photo slides up, details on the right, below it on phones); arrows and Esc; Ring / Grid; chips
+  Built / Grown / Run / About; the cursor label is for a mouse only. The big button under the headline is
+  "My resume" (opens /resume/). As in the draft, a closed
   folder shows no back tab; the tab appears when it opens.
-- Below: "Every folder, one list." (a row scrolls up and opens its folder), "The proof wall." (6 number cards),
-  tools row, black "Let's talk." card with email, Copy and resume, footer.
-- Folders, their details, list rows, number cards, tools and contact are plain HTML in the page; JavaScript only
+- Below: "The proof wall." (6 number cards), tools row, black "Let's talk." card with email, Copy and resume, footer.
+- Her changes after seeing it live on her iPhone (25 Nov 2026): no search box, no Resume button in the top corner,
+  "Open my work" became "My resume", the "Every folder, one list." section is gone.
+- Folders, their details, number cards, tools and contact are plain HTML in the page; JavaScript only
   adds the motion and the opening. Without JavaScript the folders show as a plain grid.
 - 4,267 tests and 180+ code changes are labelled "Engineering" until she confirms which project they come from.
 - Polish inside this design. Do not swap fonts, colours or layout without her OK.
-- Every size: on phones the folders orbit in the free space above and below the headline (their size comes from
-  the headline's box), so they never slide behind it; short phones drop the sentence under the headline. On short
+- Every size: folders never pass over the headline, sentence, button or chips (a check spins the ring and looks).
+  On phones the ring becomes two rows, one above the headline moving right and one below moving left, turning the
+  corner off screen at the sides; their size comes from the free space. A plain ring on a phone always crossed the
+  text at its corners (her iPhone showed the 26× folder over "Ideas that"). On computers a folder whose path would
+  cross the text swings out sideways. Short phones drop the sentence under the headline.
+- The folder area clips with `overflow: clip`, not `hidden`: with `hidden`, focusing a folder that sat off screen
+  scrolled the whole area sideways. On short
   screens the open folder is smaller and the details scroll inside their panel, between the top and bottom buttons.
   Checked at 1440×900, 1280×720, 390×844, 390×667 and 700×500.
 - Lesson (25 Nov 2026): the draft was only looked at on desktop and a tall phone, so the short-phone and short-window
@@ -70,7 +77,7 @@ The rules this site follows, and the lessons from building it. Read before chang
 - What AI assistants read: `public/llms.txt` (the "who is Kirsah" answer and key facts) and the
   `application/ld+json` profile in the page head. Every fact must match her current resume; update both
   together when the resume changes. Keep the phone number out of these two (it is only on the resume page).
-- The folders and their details, the work list, the tools row and the proof wall are plain HTML (not built by
+- The folders and their details, the tools row and the proof wall are plain HTML (not built by
   JavaScript), so crawlers that don't run code can read them. Keep it that way.
 - `robots.txt` allows everyone; Cloudflare adds its own lines on top. `sitemap.xml` lists the page.
 - Open: LinkedIn link and Thai spelling of her name (add to `sameAs` / `alternateName` when she gives them).
