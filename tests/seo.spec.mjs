@@ -73,6 +73,28 @@ test.describe('search and share', () => {
     expect(manifest.icons.map((i) => i.src)).toEqual(['/icon-192.png', '/icon-512.png']);
   });
 
+  // Her pick (25 Nov): Mix C, a lilac folder with "k." in front of a yellow folder, on the page's warm grey.
+  test('tab and phone icons > show Mix C (lilac, yellow and black on warm grey), not the old orange K', async ({ page, request }) => {
+    const manifest = await (await request.get('/site.webmanifest')).json();
+    expect([manifest.background_color, manifest.theme_color]).toEqual(['#eeece8', '#eeece8']);
+    await page.goto('/');
+    for (const path of ['/icon-512.png', '/apple-touch-icon.png']) {
+      const share = await page.evaluate(async (src) => {
+        const img = new Image(); img.src = src; await img.decode();
+        const c = document.createElement('canvas'); c.width = img.width; c.height = img.height;
+        const x = c.getContext('2d'); x.drawImage(img, 0, 0);
+        const d = x.getImageData(0, 0, c.width, c.height).data, n = d.length / 4;
+        const near = (r, g, b) => { let k = 0; for (let i = 0; i < d.length; i += 4) if (Math.abs(d[i] - r) + Math.abs(d[i + 1] - g) + Math.abs(d[i + 2] - b) < 30) k++; return k / n; };
+        return { grey: near(0xee, 0xec, 0xe8), lilac: near(0xcb, 0xb9, 0xf2), yellow: near(0xf6, 0xd1, 0x3a), ink: near(0x16, 0x16, 0x16), orange: near(0xef, 0x4a, 0x23) };
+      }, path);
+      expect(share.grey, path).toBeGreaterThan(0.15);
+      expect(share.lilac, path).toBeGreaterThan(0.2);
+      expect(share.yellow, path).toBeGreaterThan(0.05);
+      expect(share.ink, path).toBeGreaterThan(0.02);
+      expect(share.orange, path).toBeLessThan(0.01);
+    }
+  });
+
   test('AI profile > describes the person with no phone number', async ({ request }) => {
     const html = await rawHome(request);
     const block = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)?.[1];

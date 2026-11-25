@@ -262,6 +262,73 @@ test.describe('home page', () => {
     await context.close();
   });
 
+  // Her call (25 Nov): folders are always drawn whole. When the circle dips below the folder room they hang into the
+  // space under it (no straight cut line, no fade), and they never reach the next heading.
+  for (const size of [{ width: 1920, height: 1080 }, { width: 1440, height: 900 }, { width: 1280, height: 720 }, { width: 700, height: 500 }]) {
+    test(`folders > at ${size.width}x${size.height}, a folder dipping below the room is drawn whole and stays clear of the next heading`, async ({ browser }) => {
+      const { context, page } = await stillPage(browser, size);
+      let deepest = -Infinity, closest = Infinity;
+      for (let turn = 0; turn < 12; turn++) {
+        const r = await page.evaluate(() => {
+          const room = document.querySelector('.stage').getBoundingClientRect();
+          const heading = document.querySelector('#numbers .eyebrow2').getBoundingClientRect();
+          const low = Math.max(...[...document.querySelectorAll('.folder')].map((f) => f.getBoundingClientRect().bottom));
+          return { dip: low - room.bottom, gap: heading.top - low };
+        });
+        deepest = Math.max(deepest, r.dip); closest = Math.min(closest, r.gap);
+        await page.mouse.move(size.width * 0.3, 70);
+        await page.mouse.down();
+        await page.mouse.move(size.width * 0.3 + 40, 70, { steps: 4 });
+        await page.mouse.up();
+        await page.waitForTimeout(400);
+      }
+      expect(deepest, 'some folder dips below the room at this size').toBeGreaterThan(0);
+      expect(await page.locator('.stage').evaluate((s) => getComputedStyle(s).overflowY), 'the room does not cut folders off').toBe('visible');
+      expect(closest, 'folders stay at least 24 px above "Real numbers from real work"').toBeGreaterThanOrEqual(24);
+      await context.close();
+    });
+  }
+
+  test('folder room > its bottom edge is the same colour as the page below, so there is no line', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto('/');
+    await page.addStyleTag({ content: '.ring,.bar{visibility:hidden}' });
+    const bottom = await page.locator('.stage').evaluate((s) => s.getBoundingClientRect().bottom + scrollY);
+    await page.evaluate((y) => scrollTo(0, y - 450), bottom);
+    await page.waitForTimeout(300);
+    const shot = await page.screenshot({ clip: { x: 40, y: 440, width: 1, height: 20 } });
+    const colours = await page.evaluate(async (b64) => {
+      const img = new Image(); img.src = 'data:image/png;base64,' + b64; await img.decode();
+      const c = document.createElement('canvas'); c.width = img.width; c.height = img.height;
+      const x = c.getContext('2d'); x.drawImage(img, 0, 0);
+      const px = (y) => [...x.getImageData(0, y, 1, 1).data.slice(0, 3)];
+      return { above: px(Math.round(img.height * 0.35)), below: px(img.height - 1) };
+    }, shot.toString('base64'));
+    for (let i = 0; i < 3; i++) expect(Math.abs(colours.above[i] - colours.below[i]), JSON.stringify(colours)).toBeLessThanOrEqual(2);
+  });
+
+  test('folder > after a click opens and closes it, focus is not left on the folder (no outline after a tap)', async ({ browser }) => {
+    const { context, page } = await stillPage(browser);
+    await page.locator('.folder[aria-label="Open TeamPit"]').click();
+    await page.waitForTimeout(1000);
+    await page.locator('#close').click();
+    await page.waitForTimeout(800);
+    expect(await page.evaluate(() => document.activeElement?.getAttribute('aria-label') ?? null)).not.toBe('Open TeamPit');
+    await context.close();
+  });
+
+  test('folder > with the keyboard, Enter opens it and Escape puts focus back on it', async ({ browser }) => {
+    const { context, page } = await stillPage(browser);
+    await page.locator('.folder[aria-label="Open TeamPit"]').focus();
+    await page.keyboard.press('Enter');
+    await page.waitForTimeout(1000);
+    expect(await page.evaluate(() => document.activeElement?.id)).toBe('close');
+    await page.keyboard.press('Escape');
+    await page.waitForTimeout(800);
+    expect(await page.evaluate(() => document.activeElement?.getAttribute('aria-label'))).toBe('Open TeamPit');
+    await context.close();
+  });
+
   // Phones (her pick, 25 Nov): the folders go round in a full circle again, down the sides past the words,
   // and the words stay on top: a folder fades while it passes behind them.
   for (const size of [{ width: 440, height: 860 }, { width: 390, height: 844 }, { width: 390, height: 667 }]) {
