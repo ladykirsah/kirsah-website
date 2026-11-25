@@ -2,7 +2,8 @@ import { test, expect } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 
 // The "Folder room" home page (Kirsah's own pick, 25 Nov 2026): eight work folders orbit the headline,
-// then the work list, the proof wall, the tools row and "Let's talk".
+// then the proof wall, the tools row and "Let's talk". (25 Nov, her call: no search box, no work list, no top-right
+// Resume button; the big button under the headline is "My resume".)
 
 const TITLE = 'Kirsah Tiathawornchai · Tech / AI Project Manager';
 const BG = 'rgb(238, 236, 232)';
@@ -152,7 +153,8 @@ test.describe('home page', () => {
   test('folder panel > Next goes through all eight with the right buttons, then back to the start', async ({ page }) => {
     await page.goto('/');
     await page.waitForTimeout(1200);
-    await page.locator('#start').click();
+    await page.locator('.folder').first().focus();
+    await page.keyboard.press('Enter');
     await page.waitForTimeout(900);
     for (const f of FOLDERS) {
       await expect(page.locator('#panel h2')).toHaveText(f.title);
@@ -172,18 +174,17 @@ test.describe('home page', () => {
     await expect(page.locator('#panel h2')).toHaveText(FOLDERS[7].title);
   });
 
-  test('search > "/" jumps to the search box; Enter opens the first match', async ({ page }) => {
+  test('top of page > no search box and no Resume button in the top corner (her call, 25 Nov)', async ({ page }) => {
     await page.goto('/');
-    await page.waitForTimeout(1200);
-    await page.keyboard.press('/');
-    await expect(page.locator('#q')).toBeFocused();
-    await page.keyboard.type('shopee');
-    await page.waitForTimeout(900);
-    const dim = await page.locator('.folder').evaluateAll((els) => els.map((e) => e.classList.contains('dim')));
-    expect(dim).toEqual([true, true, false, false, true, true, true, true]);
-    await page.keyboard.press('Enter');
-    await page.waitForTimeout(900);
-    await expect(page.locator('#panel h2')).toHaveText('AirPlus store');
+    await expect(page.locator('#q, .search, input[type="search"]')).toHaveCount(0);
+    await expect(page.locator('.bar.top a[data-resume]')).toHaveCount(0);
+  });
+
+  test('top of page > the big button under the headline says My resume and opens the resume page, same tab', async ({ page, baseURL }) => {
+    await page.goto('/');
+    const start = page.locator('#start');
+    await expect(start).toHaveText(/^\s*My resume\s*→\s*$/);
+    expect(await start.evaluate((a) => [a.href, a.target, a.hasAttribute('data-resume')])).toEqual([new URL('/resume/', baseURL).href, '', true]);
   });
 
   test('chips > "Run" keeps only Den Air Service bright; pressing it again shows all', async ({ page }) => {
@@ -216,17 +217,39 @@ test.describe('home page', () => {
     });
   }
 
-  test('work list > eight rows; a row far down the page scrolls back up and opens its folder', async ({ page }) => {
+  test('work list > the "Every folder, one list." section is gone (her call, 25 Nov)', async ({ page }) => {
     await page.goto('/');
-    await page.waitForTimeout(1200);
-    const rows = page.locator('#index .row');
-    await expect(rows).toHaveCount(8);
-    await rows.nth(4).scrollIntoViewIfNeeded();
-    await rows.nth(4).click();
-    await expect.poll(() => page.evaluate(() => Math.round(scrollY)), { timeout: 5000 }).toBe(0);
-    await expect(page.locator('#panel h2')).toHaveText('GoGoCash', { timeout: 5000 });
-    await expect(page.locator('.folder[aria-label="Open GoGoCash"]')).toHaveClass(/\bopen\b/);
+    await expect(page.locator('#index, #work')).toHaveCount(0);
+    await expect(page.getByText('Every folder')).toHaveCount(0);
   });
+
+  // Her iPhone (440 wide) showed the 26× folder over "Ideas that". Spin the ring step by step and check that no
+  // folder (with its photo) ever covers the headline, the sentence, the button or the chips.
+  for (const size of [{ width: 440, height: 860 }, { width: 390, height: 844 }, { width: 390, height: 667 }, { width: 1280, height: 720 }]) {
+    test(`folders > at ${size.width}x${size.height}, spinning the ring never puts a folder over the headline`, async ({ browser }) => {
+      const { context, page } = await stillPage(browser, size);
+      for (let turn = 0; turn < 10; turn++) {
+        const hits = await page.evaluate(() => {
+          const parts = ['h1', '.sub', '#start', '#chips'].map((s) => document.querySelector(s)).filter((e) => e && e.offsetHeight);
+          const rs = parts.map((e) => e.getBoundingClientRect());
+          const copy = { left: Math.min(...rs.map((r) => r.left)), right: Math.max(...rs.map((r) => r.right)), top: Math.min(...rs.map((r) => r.top)), bottom: Math.max(...rs.map((r) => r.bottom)) };
+          return [...document.querySelectorAll('.folder')].filter((f) => {
+            const a = f.getBoundingClientRect(), b = f.querySelector('.paper').getBoundingClientRect();
+            const box = { left: Math.min(a.left, b.left), right: Math.max(a.right, b.right), top: Math.min(a.top, b.top), bottom: Math.max(a.bottom, b.bottom) };
+            return box.left < copy.right && box.right > copy.left && box.top < copy.bottom && box.bottom > copy.top;
+          }).map((f) => f.getAttribute('aria-label'));
+        });
+        expect(hits, `turn ${turn}`).toEqual([]);
+        // drag the ring a little, along the empty band at the top
+        await page.mouse.move(size.width * 0.3, 70);
+        await page.mouse.down();
+        await page.mouse.move(size.width * 0.3 + 40, 70, { steps: 4 });
+        await page.mouse.up();
+        await page.waitForTimeout(1600);
+      }
+      await context.close();
+    });
+  }
 
   test('proof wall > six number cards; the two unconfirmed numbers are labelled Engineering', async ({ page }) => {
     await page.goto('/');
@@ -311,7 +334,7 @@ test.describe('home page', () => {
         const start = box('#start');
         const hit = document.elementFromPoint(start.left + start.width / 2, start.top + start.height / 2);
         const chips = box('#chips');
-        return { h1: box('h1').toJSON(), search: box('.search').bottom, bottomBar: box('.bar.bottom').top,
+        return { h1: box('h1').toJSON(), search: box('.logo').bottom, bottomBar: box('.bar.bottom').top,
           last: chips.height > 0 ? chips.bottom : start.bottom, startHit: !!hit?.closest('#start') };
       });
       expect(r.h1.top).toBeGreaterThanOrEqual(r.search + 4);
