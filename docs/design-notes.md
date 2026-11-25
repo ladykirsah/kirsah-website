@@ -24,6 +24,8 @@ The rules this site follows, and the lessons from building it. Read before chang
   the headline's box), so they never slide behind it; short phones drop the sentence under the headline. On short
   screens the open folder is smaller and the details scroll inside their panel, between the top and bottom buttons.
   Checked at 1440×900, 1280×720, 390×844, 390×667 and 700×500.
+- Lesson (25 Nov 2026): the draft was only looked at on desktop and a tall phone, so the short-phone and short-window
+  problems above only showed when building. Look at every draft at 390×667 and 700×500 too before she approves it.
 - Still in the V1 look (open, needs her pick): the share card `og.png`, the tab icons and the colours in
   `site.webmanifest`. The `/resume/` page is unchanged.
 
